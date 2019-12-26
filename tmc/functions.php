@@ -294,38 +294,13 @@ function tmc_content_width() {
 	// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
 	$GLOBALS['content_width'] = apply_filters( 'tmc_content_width', 800 );
 }
-/* Register Sidebar */
 add_action( 'after_setup_theme', 'tmc_content_width', 0 );
 
-function tomochain_widgets_init() {
-    register_sidebar( array(
-		'name'          => esc_html__( 'Sidebar', 'tmc' ),
-		'id'            => 'sidebar-1',
-		'description'   => esc_html__( 'Add widgets here.', 'tmc' ),
-		'before_widget' => '<section id="%1$s" class="widget %2$s">',
-		'after_widget'  => '</section>',
-		'before_title'  => '<h2 class="widget-title">',
-		'after_title'   => '</h2>',
-	) );
-	register_sidebar( array(
-		'name'          => esc_html__( 'Footer Sidebar', 'tmc' ),
-		'id'            => 'sidebar-footer',
-		'description'   => esc_html__( 'Add widgets here.', 'tmc' ),
-		'before_widget' => '<section id="%1$s" class="widget %2$s">',
-		'after_widget'  => '</section>',
-		'before_title'  => '<h2 class="widget-title">',
-		'after_title'   => '</h2>',
-	) );
-}
-add_action( 'widgets_init', 'tomochain_widgets_init' );
-
 /**
- * Enqueue scripts and styles.
+ * Enqueue libraries
  */
 function tmc_enqueue_libs() {
-
-	$suffix = ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) ? '' : '.min';
-	/*
+    /*
     * Enqueue Google Fonts
     */
     $opensans_url = add_query_arg( 'family',
@@ -342,11 +317,8 @@ function tmc_enqueue_libs() {
         array(),
         null,
         false );
-	wp_register_style('tmc-style',TMC_THEME_URI . '/assets/css/tomochain.css');
-	wp_enqueue_style('tmc-style');
 
-
-	wp_enqueue_script( 'superfish',
+    wp_enqueue_script( 'superfish',
         TMC_LIBS_URI . '/superfish/js/superfish.min.js',
         array(),
         null,
@@ -356,13 +328,24 @@ function tmc_enqueue_libs() {
         TMC_LIBS_URI . '/superfish/js/hoverIntent.js',
         array(),
         null,
-        true ); 
+        true );
+}
+add_action( 'wp_enqueue_scripts', 'tmc_enqueue_libs');
 
+/**
+ * Enqueue scripts and styles.
+ */
+function tmc_scripts() {
+
+	$suffix = ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) ? '' : '.min';
+
+	wp_register_style('tmc-style',TMC_THEME_URI . '/assets/css/tomochain.css');
+	wp_enqueue_style('tmc-style');
     wp_enqueue_script( 'tmc-js',
         TMC_THEME_URI . '/assets/js/tomochain' . $suffix . '.js',
             array('jquery'),
             TMC_THEME_VERSION,
-            true );
+            false );
 
     wp_localize_script( 'tmc-js',
         'tmcParam',
@@ -374,7 +357,7 @@ function tmc_enqueue_libs() {
 		wp_enqueue_script( 'comment-reply' );
 	}
 }
-add_action( 'wp_enqueue_scripts', 'tmc_enqueue_libs' );
+add_action( 'wp_enqueue_scripts', 'tmc_scripts' );
 
 /**
  * Custom template tags for this theme.
@@ -387,13 +370,7 @@ require_once TMC_THEME_DIR . '/inc/template-tags.php';
 require_once TMC_THEME_DIR . '/inc/template-functions.php';
 
 /**
- * Functions add custom html use hook
- */
-require_once TMC_THEME_DIR . '/inc/template-html-func.php';
-
-/**
  * Customizer additions.
  */
 require_once TMC_THEME_DIR . '/inc/customizer.php';
-
 
