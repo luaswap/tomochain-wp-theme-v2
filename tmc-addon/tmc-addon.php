@@ -50,6 +50,7 @@ if ( ! class_exists( 'TMC_Addon' ) ) {
 
 	    function include_files(){
 	    	require_once TMC_ADDON_INCLUDES_DIR . '/libs/cmb2/init.php';
+	    	require_once TMC_ADDON_INCLUDES_DIR . '/admin/sidebar-register.php';
 	    	/*
 			* CMB2 Custom field
 			*/

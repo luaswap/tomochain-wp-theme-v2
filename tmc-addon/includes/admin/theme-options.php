@@ -56,7 +56,7 @@ class TMC_Theme_Options {
 		        'add_button'        => __( 'Add', 'tmc' ),
 		        'remove_button'     => __( 'Remove', 'tmc' ),
 		        'sortable'          => true,
-		        // 'closed'         => true, // true to have the groups closed by default
+		        'closed'         => true, // true to have the groups closed by default
 		        // 'remove_confirm' => esc_html__( 'Are you sure you want to remove?', 'tmc' ), // Performs confirmation before removing group.
 		    )
 		) );
@@ -74,6 +74,47 @@ class TMC_Theme_Options {
 		    'id'   => 'rp_url',
 		    'type' => 'text_url',
 		) );
+
+		$options->add_field( array(
+			'name' => esc_html__('Social','tmc'),
+			'type' => 'title',
+			'id'   => 'tmc_social_title'
+		) );
+		$group_field_id = $options->add_field( array(
+		    'id'          => 'tmc_social_list',
+		    'type'        => 'group',
+		    // 'repeatable'  => false, // use false if you want non-repeatable group
+		    'options'     => array(
+		        'group_title'       => __( 'Social {#}', 'tmc' ), // since version 1.1.4, {#} gets replaced by row number
+		        'add_button'        => __( 'Add', 'tmc' ),
+		        'remove_button'     => __( 'Remove', 'tmc' ),
+		        'sortable'          => true,
+		        'closed'         => true, // true to have the groups closed by default
+		        // 'remove_confirm' => esc_html__( 'Are you sure you want to remove?', 'tmc' ), // Performs confirmation before removing group.
+		    )
+		) );
+
+		$options->add_group_field( $group_field_id, array(
+		    'name' => __('Social Name','tmc'),
+		    'id'   => 'social_name',
+		    'type' => 'text',
+		    // 'repeatable' => true, // Repeatable fields are supported w/in repeatable groups (for most types)
+		) );
+
+		$options->add_group_field( $group_field_id, array(
+		    'name' => __('Social Icon','tmc'),
+		    'id'   => 'social_icon',
+		    'type' => 'text',
+		    'sanitization_cb' => 'tmc_sanitize_text_callback',
+		    // 'repeatable' => true, // Repeatable fields are supported w/in repeatable groups (for most types)
+		) );
+
+		$options->add_group_field( $group_field_id, array(
+		    'name' => __('Social Url','tmc'),
+		    'id'   => 'social_url',
+		    'type' => 'text_url',
+		) );
+
 		/**
 		 * Options fields ids only need
 		 * to be unique within this box.
@@ -140,6 +181,18 @@ class TMC_Theme_Options {
 			'name' => esc_html__('Footer Settings','tmc'),
 			'type' => 'title',
 			'id'   => 'tmc_footer_title'
+		) );
+		$footer_options->add_field( array(
+			'name'             => esc_html__('Footer columns','tmc'),
+			'id'               => 'footer_column',
+			'desc'			   => sprintf(__('Go to <a href="%s">the widget</a> to set up the footer','tmc'),admin_url('widgets.php')),
+			'type'             => 'select',
+			'default'          => 3,
+			'options'          => array(
+				1 	=> __( '1', 'tmc' ),
+				2   => __( '2', 'tmc' ),
+				3   => __( '3', 'tmc' )
+			),
 		) );
 		$footer_options->add_field( array(
 			'name'    => esc_html__('Logo','tmc'),
@@ -214,6 +267,17 @@ class TMC_Theme_Options {
 	}
 }
 new TMC_Theme_Options();
+function tmc_sanitize_text_callback( $value, $field_args, $field ) {
+
+    /*
+     * Do your custom sanitization. 
+     * strip_tags can allow whitelisted tags
+     * http://php.net/manual/en/function.strip-tags.php
+     */
+    $value = strip_tags( $value, '<i><p><a><br><br/>' );
+
+    return $value;
+}
 
 function tmc_get_option( $key = '', $default = false ) {
 	if ( function_exists( 'cmb2_get_option' ) ) {
@@ -237,6 +301,21 @@ function tmc_get_header_option( $key = '', $default = false ) {
 	}
 	// Fallback to get_option if CMB2 is not loaded yet.
 	$opts = get_option( 'tmc_header_options', $default );
+	$val = $default;
+	if ( 'all' == $key ) {
+		$val = $opts;
+	} elseif ( is_array( $opts ) && array_key_exists( $key, $opts ) && false !== $opts[ $key ] ) {
+		$val = $opts[ $key ];
+	}
+	return $val;
+}
+function tmc_get_footer_option( $key = '', $default = false ) {
+	if ( function_exists( 'cmb2_get_option' ) ) {
+		// Use cmb2_get_option as it passes through some key filters.
+		return cmb2_get_option( 'tmc_footer_options', $key, $default );
+	}
+	// Fallback to get_option if CMB2 is not loaded yet.
+	$opts = get_option( 'tmc_footer_options', $default );
 	$val = $default;
 	if ( 'all' == $key ) {
 		$val = $opts;
