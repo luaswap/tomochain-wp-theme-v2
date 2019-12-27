@@ -8,8 +8,9 @@
  *
  * @package st
  */
-$social_lists = tmc_get_option( 'tmc_social_list');
-$num = tmc_get_footer_option( 'footer_column', 3 );
+$social_lists   = tmc_get_option( 'tmc_social_list');
+$num            = tmc_get_footer_option( 'footer_column', 3 );
+$form_id        = tmc_get_footer_option( 'form_subscribe' );
 ?>
 
     </div><!-- #content -->
@@ -24,6 +25,9 @@ $num = tmc_get_footer_option( 'footer_column', 3 );
                         if(!empty($image)):?>
                             <img src="<?php echo esc_url($image);?>" alt="<?php esc_html_e('Tomochain','tmc')?>">
                         <?php endif;?>
+                        <div class="tmc-newletter">
+                            <?php echo do_shortcode('[contact-form-7 id="'. $form_id .'"]');?>
+                        </div>
                         <ul class="social-list">
                             <?php
                             $url = $title = $icon = '';
@@ -66,13 +70,6 @@ $num = tmc_get_footer_option( 'footer_column', 3 );
                 </div>
             </div>
         </div>
-        <div class="site-info">
-            <div class="container">                
-                <?php
-                printf( esc_html__( 'Copyright &copy; %1$s by %2$s.', 'tmc' ), date('Y'), 'Tomochain' );
-                ?>
-            </div>
-        </div><!-- .site-info -->
     </footer><!-- #colophon -->
     <?php endif; ?>
 </div><!-- #page -->
