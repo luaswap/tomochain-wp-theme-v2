@@ -175,6 +175,7 @@ class TMC_Theme_Options {
 		if ( version_compare( CMB2_VERSION, '2.4.0' ) ) {
 			$args['display_cb'] = array($this,'tmc_options_display_with_tabs');
 		}
+		
 		$footer_options = new_cmb2_box( $args );
 
 		$footer_options->add_field( array(
@@ -218,6 +219,18 @@ class TMC_Theme_Options {
 			),
 			'preview_size' => 'large', // Image size to use when previewing in the admin.
 		) );
+		$ctf7_arg = array('post_type' => 'wpcf7_contact_form', 'posts_per_page' => -1);
+		$cf7Forms = get_posts( $ctf7_arg );
+		if(!empty($cf7Forms)){
+		  	// $post_ids = wp_list_pluck( $cf7Forms , 'ID' );
+			$form_list = wp_list_pluck( $cf7Forms , 'post_title', 'ID' );
+			$footer_options->add_field( array(
+				'name'             => esc_html__('Form Subscribe','tmc'),
+				'id'               => 'form_subscribe',
+				'type'             => 'select',
+				'options'          => $form_list
+			) );
+		}
 	}
 	/**
 	 * A CMB2 options-page display callback override which adds tab navigation among
