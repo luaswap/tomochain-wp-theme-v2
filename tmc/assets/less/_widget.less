@@ -13,7 +13,7 @@
 .widget-title{
     font-size: 1.17em;
     position: relative;
-    margin-bottom: 30px;
+    margin: 0 0 25px;
 }
 .widget_search{
     form{
@@ -77,23 +77,10 @@
     }
 }
 .widget_nav_menu{
-    padding-bottom: 15px;
-    ul{
-        a{
-            position: relative;
-            padding: 5px 5px 5px 20px;
-            display: block;
-            &:before{
-                content: '';
-                width: 6px;
-                height: 2px;
-                background-color: @white;
-                position: absolute;
-                left: 0;
-                top: 50%;
-                transform: translateY(-50%);
-            }
-        }
+    ul,li{
+        padding: 0;
+        margin: 0;
+        list-style: none;
     }
 }
 .widget_recent_news{
