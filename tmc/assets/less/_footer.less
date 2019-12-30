@@ -21,9 +21,11 @@
             li{
                 list-style: square;
                 margin-left: 20px;
+                font-size: 14px;
                 a {
                     padding: 5px 0;
                     display: block;
+                    font-size: @font-size-min;
                 }
             }
         }
@@ -36,12 +38,26 @@
         }
         .tmc-newletter{
             position: relative;
+            margin: 35px 0 15px;
+            p {
+                margin: 0;
+            }
             .form-subcribe{
                 display: flex;
             }
             input[type="email"]{
                 width: 100%;
                 padding-right: 93px;
+                font-size: @font-size-min;
+                &::-webkit-input-placeholder { /* Edge */
+                    color: #D8D8D8;
+                }
+                &:-ms-input-placeholder { /* Internet Explorer 10-11 */
+                    color: #D8D8D8;
+                }
+                &::placeholder {
+                    color: #D8D8D8;
+                }
             }
             input[type="submit"]{
                 padding: 0 20px;
@@ -51,6 +67,7 @@
                 position: absolute;
                 right: 0;
                 top: 0;
+                font-size: @font-size-min;
             }
             .ajax-loader{
                 position: absolute;
@@ -66,7 +83,7 @@
                     width: 40px;
                     height: 40px;
                     line-height: 40px;
-                    font-size: 20px;
+                    font-size: @font-size-medium-social;
                     text-align: center;
                     display: block;
                     opacity: .2;
