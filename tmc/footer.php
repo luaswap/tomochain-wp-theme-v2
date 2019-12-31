@@ -59,10 +59,10 @@ $form_id        = tmc_get_footer_option( 'form_subscribe' );
                             <?php
                                 $i = 0;
                                 switch ( $num ) {
-                                    case 3 : $class = 'col-sm-4';
+                                    case 3 : $class = 'col-sm-4 mt-5';
                                     break;
-                                    case 2 : $class = 'col-md-6 col-sm-12';  break;
-                                    case 1 : $class = 'col-md-12'; break;
+                                    case 2 : $class = 'col-md-6 col-sm-12 mt-lg-0';  break;
+                                    case 1 : $class = 'col-md-12 mt-lg-0'; break;
                                 }
                                 while ( $i < $num ) : $i ++;
                                     echo '<div class="'. $class .'">';
