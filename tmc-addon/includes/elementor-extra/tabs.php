@@ -378,7 +378,7 @@ class Tabs extends Widget_Base{
                         $link_props .= ' rel="nofollow" ';
                       }
                       ?>
-                      <div class="p-item col-md-3 col-sm-6">
+                      <div class="p-item col-4 col-md-3">
                         <a class="link" <?php echo esc_attr($p_link_props);?>>
                           <img src="<?php echo esc_url($pi);?>" alt="<?php echo esc_attr($pt);?>">
                         </a>
