@@ -1,4 +1,27 @@
 .tmc-tabs-widget{
+	width: 80%;
+	margin: 0 auto;
+	.title-heading{
+		font-size: 60px;
+		line-height: 1;
+		margin-bottom: 10%;
+		text-align: right;
+		span{
+			position: relative;
+			z-index: 1;
+			&:after{
+				content: '';
+				height: 30px;
+				display: block;
+				background-color: @secondary-color;
+				position: absolute;
+				z-index: -1;
+				width: 200px;
+				left: -45px;
+    			bottom: 0px;
+			}
+		}
+	}
 	.tmc-tab-title{
 		list-style: none;
 		padding: 0;
@@ -6,6 +29,7 @@
 		display: flex;
 		flex-wrap: wrap;
 		justify-content: space-between;
+		margin-bottom: 60px;
 		li{
 			position: relative;
 			font-size: 28px;
@@ -24,9 +48,9 @@
 					position: absolute;
 					content: '';
 					width: 0;
-					height: 5px;
-					background: #000;
-					bottom: -5px;
+					height: 2px;
+					background: @text-color;
+					bottom: 5px;
 					left: 0;
 					opacity: 0;
 					transition: all 0.35s ease;
@@ -46,6 +70,17 @@
 	.tab-content{
 		display: none;
 		width: 100%!important;
+		.row{
+			align-items: center;
+			a{
+				display: block;
+				text-align: center;
+				margin-bottom: 50px;
+				img{
+					max-width: 150px;
+				}
+			}
+		}
 	}
 	.img-size {
 		img {

@@ -116,10 +116,10 @@ class Title extends Widget_Base{
       $settings = $this->get_settings();
       ?>
         <div class="tmc-title-heading-widget">
-          <?php if(!empty($settings['title'])):?>
+          <?php if(!empty($settings['h_title'])):?>
             <h2 class="tmc-title-heading <?php echo esc_html($settings['tmc_title_type']);?>">
               <span>
-                <?php echo $settings['title']?>
+                <?php echo $settings['h_title']?>
               </span>
             </h2>
           <?php endif;?>

@@ -33,6 +33,24 @@ class Tabs extends Widget_Base{
     }
     private function tmc_tabs_option(){
       $this->start_controls_section(
+        'tmc_tab_title',
+        [
+            'label' => esc_html__('Title heading', 'tmc'),
+            'tab'   => Controls_Manager::TAB_CONTENT,
+        ]
+      );
+      $this->add_control(
+        'title_heading',
+        [
+          'label'     => __( 'Title', 'tmc' ),
+          'type'      => Controls_Manager::TEXT,
+          'default'     => __( 'Ecosystem', 'tmc' ),
+          'placeholder'   => __( 'Type your title', 'tmc' ),
+        ]
+      );
+      $this->end_controls_section();
+
+      $this->start_controls_section(
         'tmc_tab_partner',
         [
             'label' => esc_html__('Partner', 'tmc'),
@@ -327,6 +345,9 @@ class Tabs extends Widget_Base{
 
         ?>
         <div class="tmc-tabs-widget">
+          <?php if(!empty($settings['title_heading'])):?>
+            <h2 class="title-heading"><span><?php echo $settings['title_heading'];?></span></h2>
+          <?php endif;?>
             <ul class="tmc-tab-title">
               <?php if(!empty($p_title)):?>
                 <li class="tab-title p-tab active"><a href="#p-tab"><?php echo esc_html($p_title);?></a></li>
@@ -339,11 +360,11 @@ class Tabs extends Widget_Base{
               <?php endif;?>
               <?php if(!empty($c_title)):?>
                 <li class="tab-title c-tab"><a href="#c-tab"><?php echo esc_html($c_title);?></a></li>
-              <?php endif;?>
+              <?php endif;?>              
             </ul>
             <?php if(!empty($p_list) && is_array($p_list)):?>
-              <div id="p-tab" class="tab-content pt-5 img-size">
-                <div class="row align-items-center">
+              <div id="p-tab" class="tab-content">
+                <div class="row">
                   <?php
                     foreach ( $p_list as $p ) {
                       $pt = isset($p['p_title']) ? $p['p_title'] : '';
@@ -357,8 +378,8 @@ class Tabs extends Widget_Base{
                         $link_props .= ' rel="nofollow" ';
                       }
                       ?>
-                      <div class="p-item col-4 col-md-3 my-4">
-                        <a class="link d-block" <?php echo esc_attr($p_link_props);?>>
+                      <div class="p-item col-md-3 col-sm-6">
+                        <a class="link" <?php echo esc_attr($p_link_props);?>>
                           <img src="<?php echo esc_url($pi);?>" alt="<?php echo esc_attr($pt);?>">
                         </a>
                       </div>
@@ -367,7 +388,7 @@ class Tabs extends Widget_Base{
               </div>
             <?php endif;?>
             <?php if(!empty($ex_list) && is_array($ex_list)):?>
-              <div id="ex-tab" class="tab-content pt-5 img-size">
+              <div id="ex-tab" class="tab-content">
                 <div class="row">
                   <?php
                     foreach ( $ex_list as $ex ) {
@@ -382,8 +403,8 @@ class Tabs extends Widget_Base{
                         $link_props .= ' rel="nofollow" ';
                       }
                       ?>
-                      <div class="ex-item col-4 col-md-3 my-4">
-                        <a class="link d-block" <?php echo esc_attr($link_props);?>>
+                      <div class="ex-item col-md-4 col-sm-6">
+                        <a class="link" <?php echo esc_attr($link_props);?>>
                           <img src="<?php echo esc_url($ei);?>" alt="<?php echo esc_attr($et);?>">
                         </a>
                       </div>
@@ -392,7 +413,7 @@ class Tabs extends Widget_Base{
               </div>
             <?php endif;?>
             <?php if(!empty($w_list) && is_array($w_list)):?>
-              <div id="w-tab" class="tab-content pt-5 img-size">
+              <div id="w-tab" class="tab-content">
                 <div class="row">
                   <?php
                     foreach ( $w_list as $w ) {
@@ -406,8 +427,8 @@ class Tabs extends Widget_Base{
                         $w_link_props .= ' rel="nofollow" ';
                       }
                       ?>
-                      <div class="w-item col-4 col-md-3 my-4">
-                        <a class="link d-block" <?php echo esc_attr($w_link_props);?>>
+                      <div class="w-item col-md-4 col-sm-6">
+                        <a class="link" <?php echo esc_attr($w_link_props);?>>
                           <?php echo esc_html($wt);?>
                         </a>
                       </div>
@@ -416,7 +437,7 @@ class Tabs extends Widget_Base{
               </div>
             <?php endif;?>
             <?php if(!empty($c_list) && is_array($c_list)):?>
-              <div id="c-tab" class="tab-content pt-5 img-size">
+              <div id="c-tab" class="tab-content">
                 <div class="row">
                   <?php
                     foreach ( $c_list as $c ) {
@@ -431,8 +452,8 @@ class Tabs extends Widget_Base{
                         $c_link_props .= ' rel="nofollow" ';
                       }
                       ?>
-                      <div class="c-item col-4 col-md-3 my-4">
-                        <a class="link d-block" <?php echo esc_attr($c_link_props);?>>
+                      <div class="c-item col-md-3 col-sm-4">
+                        <a class="link" <?php echo esc_attr($c_link_props);?>>
                           <i class="<?php echo esc_attr($ci);?>"></i>
                           <?php echo esc_html($ct);?>
                         </a>
@@ -440,7 +461,7 @@ class Tabs extends Widget_Base{
                   <?php }?>
                 </div>
               </div>
-            <?php endif;?>
+            <?php endif;?>            
         </div>
         <?php
     }
