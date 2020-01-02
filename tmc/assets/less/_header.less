@@ -1,5 +1,10 @@
 .site-header{
     background-color: @header-bg;
+    width: 100%!important;
+	position: fixed;
+	top: 42px;
+	left: 0;
+	z-index: 9;
     .tmc-header{
         -webkit-transition: all .2s;
         transition: all .2s;
@@ -15,7 +20,7 @@
             transform: translateY(-100%);
             background-color: #202741;
         }
-    }    
+    }
     .navbar-header{
         display: flex;
         justify-content: space-between;
