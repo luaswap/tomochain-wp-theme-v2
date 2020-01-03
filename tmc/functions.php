@@ -168,7 +168,31 @@ function tmc_enqueue_libs() {
         TMC_LIBS_URI . '/superfish/js/hoverIntent.js',
         array(),
         null,
-        true ); 
+        true );
+
+    wp_enqueue_script( 'tweenMax',
+        TMC_LIBS_URI . '/scrollmagic/TweenMax.min.js',
+        array(),
+        null,
+        true );
+
+    wp_enqueue_script( 'scrollMagic',
+        TMC_LIBS_URI . '/scrollmagic/ScrollMagic.min.js',
+        array(),
+        null,
+        true );
+
+    wp_enqueue_script( 'animationGsap',
+        TMC_LIBS_URI . '/scrollmagic/animation.gsap.js',
+        array(),
+        null,
+        true );
+    
+    wp_enqueue_script( 'debugIndicatior',
+        TMC_LIBS_URI . '/scrollmagic/debug.addIndicators.js',
+        array(),
+        null,
+        true );
 
     wp_enqueue_script( 'tmc-js',
         TMC_THEME_URI . '/assets/js/tomochain' . $suffix . '.js',
