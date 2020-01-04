@@ -57,14 +57,21 @@ class Section_Build extends Widget_Base{
       ?>
         <div class="tmc-build-widget">
           <div class="tmc-build-left">
-            
           </div>
           <div class="tmc-build-right">
             <?php if(!empty($settings['b_title'])):?>
-              <h2 class="tmc-build-title">
-                <span>
-                  <?php echo $settings['b_title']?>
-                </span>
+              <h2 class="tmc-build-title scrollme">
+                <?php echo $settings['b_title']?>
+                <span
+                  class="animateme"
+                  data-when="enter"
+                  data-from="1"
+                  data-to="0"
+                  data-opacity="0"
+                  data-translatex="-600"
+                  data-translatey="0"
+                  data-rotatez="0"
+                ></span>
               </h2>
             <?php endif;?>
             <?php if($settings['b_subtitle']):?>

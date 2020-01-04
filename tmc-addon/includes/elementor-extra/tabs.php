@@ -346,7 +346,19 @@ class Tabs extends Widget_Base{
         ?>
         <div class="tmc-tabs-widget">
           <?php if(!empty($settings['title_heading'])):?>
-            <h2 class="title-heading"><span><?php echo $settings['title_heading'];?></span></h2>
+            <h2 class="title-heading scrollme">
+              <?php echo $settings['title_heading'];?>
+              <span
+                class="animateme"
+                data-when="enter"
+                data-from="1"
+                data-to="0"
+                data-opacity="0"
+                data-translatex="-600"
+                data-translatey="0"
+                data-rotatez="0"
+              ></span>
+            </h2>
           <?php endif;?>
             <ul class="tmc-tab-title">
               <?php if(!empty($p_title)):?>
@@ -360,7 +372,7 @@ class Tabs extends Widget_Base{
               <?php endif;?>
               <?php if(!empty($c_title)):?>
                 <li class="tab-title c-tab"><a href="#c-tab"><?php echo esc_html($c_title);?></a></li>
-              <?php endif;?>              
+              <?php endif;?>
             </ul>
             <?php if(!empty($p_list) && is_array($p_list)):?>
               <div id="p-tab" class="tab-content">
