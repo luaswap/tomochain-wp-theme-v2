@@ -170,6 +170,13 @@ function tmc_enqueue_libs() {
         null,
         true );
 
+
+	wp_enqueue_script( 'scrollme',
+        TMC_LIBS_URI . '/scrollme-master/jquery.scrollme.js',
+        array(),
+        null,
+        true );
+
     wp_enqueue_script( 'tweenMax',
         TMC_LIBS_URI . '/scrollmagic/TweenMax.min.js',
         array(),
@@ -187,13 +194,15 @@ function tmc_enqueue_libs() {
         array(),
         null,
         true );
-    
+
     wp_enqueue_script( 'debugIndicatior',
         TMC_LIBS_URI . '/scrollmagic/debug.addIndicators.js',
         array(),
         null,
         true );
 
+
+		
     wp_enqueue_script( 'tmc-js',
         TMC_THEME_URI . '/assets/js/tomochain' . $suffix . '.js',
             array('jquery'),

@@ -225,22 +225,21 @@
  /* Section Features */
  .tmc-features-widget{
 	.tmc-feature-title{
-		 font-size: 60px;
-		 line-height: 1;
+		display: inline-block;
+		font-size: 60px;
+		line-height: 1;
+		position: relative;
+		z-index: 1;
 		span{
-			position: relative;
-			z-index: 1;
-			&:after{
-				content: '';
-				height: 30px;
-				display: block;
-				background-color: @secondary-color;
-				position: absolute;
-				z-index: -1;
-				width: 210px;
-				right: -98px;
-				top: 20px;
-			}
+			content: '';
+			height: 30px;
+			display: block;
+			background-color: @secondary-color;
+			position: absolute;
+			z-index: -1;
+			width: 210px;
+			right: 0;
+			top: 0;
 		}
 	}
 	.tmc-feature-subtitle{
@@ -250,22 +249,20 @@
  /* Section Build on Tomochain */
  .tmc-build-widget{
 	.tmc-build-title{
-		 font-size: 60px;
-		 line-height: 1;
+		display: inline-block;
+		font-size: 60px;
+		line-height: 1;
+		position: relative;
+		z-index: 1;
 		span{
-			position: relative;
-			z-index: 1;
-			&:after{
-				content: '';
-				height: 30px;
-				display: block;
-				background-color: @secondary-color;
-				position: absolute;
-				z-index: -1;
-				width: 200px;
-				left: -45px;
-	    		bottom: 0px;
-			}
+			height: 30px;
+			display: block;
+			background-color: @secondary-color;
+			position: absolute;
+			z-index: -1;
+			width: 200px;
+			right: 0;
+			bottom: 0px;
 		}
 	}
 	.tmc-build-subtitle{
@@ -274,19 +271,17 @@
 }
  /* TMC Title Heading */
  .tmc-title-heading{
+	display: inline-block;
 	font-size: 60px;
 	line-height: 1;
+	position: relative;
+	z-index: 1;
 	span{
-		position: relative;
-		z-index: 1;
-		&:after{
-			content: '';
-			height: 30px;
-			display: block;
-			background-color: @secondary-color;
-			position: absolute;
-			z-index: -1;
-		}
+		height: 30px;
+		display: block;
+		background-color: @secondary-color;
+		position: absolute;
+		z-index: -1;
 	}
 	&.type-1{
 		span{
@@ -424,6 +419,39 @@
 		&.type-2{
 			border: 2px solid @white;
 			color: @white;
+		}
+	}
+}
+/* TMC animation */
+.elementor-section-position {
+	* {
+		position: initial!important;
+	}
+	.position-absolute {
+		position: absolute!important;
+		z-index: -1;
+		left: 0;
+		height: calc(100%)!important;
+		width: 40%!important;
+		* {
+			height: 100%;
+			width: 100%;
+		}
+	}
+}
+@keyframes textclip {
+	to {
+		background-position: -100% center;
+	}
+}
+
+.rev-btn {
+	i {
+		transition: all .3s;
+	}
+	&:hover {
+		i {
+			transform: translateX(15px);
 		}
 	}
 }

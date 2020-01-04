@@ -16,6 +16,9 @@
             TMC.mobileMenu();
             TMC.video();
             TMC.click();
+            // TMC.tomoMagic();
+            TMC.TomoSlidesManual();
+            
         },
         header: function(){
             // $('.site-header').headroom();
@@ -242,6 +245,60 @@
                     $(this).closest('.tmc-alpha-tabs-wrap').find(tab).show(500);
                 })
             }
+        },
+        tomoMagic: function(){
+            // alert("fdfdfdf");
+            function pathPrepare ($el) {
+                var lineLength = $el[0].getTotalLength();
+                $el.css("stroke-dasharray", lineLength);
+                $el.css("stroke-dashoffset", lineLength);
+            }
+            var $word = $("path#word");
+            var $dot = $("path#dot");
+            // prepare SVG
+            pathPrepare($word);
+            pathPrepare($dot);
+            // init controller
+            var controller = new ScrollMagic.Controller();
+            // build tween
+            var tween = new TimelineMax()
+                .add(TweenMax.to($word, 0.9, {strokeDashoffset: 0, ease:Linear.easeNone})) // draw word for 0.9
+                .add(TweenMax.to($dot, 0.1, {strokeDashoffset: 0, ease:Linear.easeNone}))  // draw dot for 0.1
+                .add(TweenMax.to("path", 1, {stroke: "#33629c", ease:Linear.easeNone}), 0);			// change color during the whole thing
+            // build scene
+            var scene = new ScrollMagic.Scene({triggerElement: "#trigger1", duration: 200, tweenChanges: true})
+                .setTween(tween)
+                .addIndicators() // add indicators (requires plugin)
+                .addTo(controller);
+        },
+        TomoSlidesManual: function(){
+            var controller = new ScrollMagic.Controller();
+
+            // define movement of panels
+            var wipeAnimation = new TimelineMax()
+            // animate to second panel
+            .to("#slideContainer", 0.5, {z: -150})		// move back in 3D space
+            .to("#slideContainer", 1,   {x: "-25%"})	// move in to first panel
+            .to("#slideContainer", 0.5, {z: 0})				// move back to origin in 3D space
+            // animate to third panel
+            .to("#slideContainer", 0.5, {z: -150, delay: 1})
+            .to("#slideContainer", 1,   {x: "-50%"})
+            .to("#slideContainer", 0.5, {z: 0})
+            // animate to forth panel
+            .to("#slideContainer", 0.5, {z: -150, delay: 1})
+            .to("#slideContainer", 1,   {x: "-75%"})
+            .to("#slideContainer", 0.5, {z: 0});
+
+            // create scene to pin and link animation
+            new ScrollMagic.Scene({
+                triggerElement: "#pinContainer",
+                triggerHook: "onLeave",
+                duration: "500%"
+            })
+            .setPin("#pinContainer")
+            .setTween(wipeAnimation)
+            .addIndicators() // add indicators (requires plugin)
+            .addTo(controller);
         }
 
     }
@@ -249,4 +306,8 @@
     $(document).ready(function() {
         TMC.init();
     })
+
+
+
 })(jQuery);
+
