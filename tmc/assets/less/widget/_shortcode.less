@@ -306,6 +306,15 @@
 .tmc-service-widget{
 	display: flex;
 	align-items: center;
+	.tmc-text-icon{
+		font-size: 50px;
+		i,svg {
+		    width: 1em;
+		    height: 1em;
+		    position: relative;
+		    display: block;
+		}
+	}
 	.tmc-service-content{
 		padding-left: 20px;
 	}
@@ -314,18 +323,26 @@
 	}
 }
 /* TMC Alpha Tabs */
+#slideContainer {
+  position: relative;
+}
+ 
+#pinContainer {
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+}
+.panel {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+}
+.panel:not(:first-of-type) {
+  transform: translateX(100%);
+}
 .tmc-alpha-tabs-widget{
-	.tmc-alpha-tabs-wrap{
-		position: relative;
-		overflow: hidden;
-	}
-	.tmc-alpha-tab-content{
-		display: none;
-		width: 100%!important;
-		&:first-child{
-			display: block;
-		}
-	}
+	padding-top: 10%;
 	.tmc-flex-content{
 		display: flex;
 		.tmc-tab-left{
