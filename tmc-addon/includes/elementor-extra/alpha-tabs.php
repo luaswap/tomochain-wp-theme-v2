@@ -140,8 +140,8 @@ class Alpha_Tabs extends Widget_Base{
         }
         $i = $j = 0;
         ?>
-        <div class="tmc-alpha-tabs-widget">
-            <div id="pinContainer" class="tmc-alpha-tabs-wrap">
+        <div id="pinContainer" class="tmc-alpha-tabs-widget">
+            <div id="slideContainer" class="tmc-alpha-tabs-wrap">
               <?php foreach($settings['tab_list'] as $value):
                   $i++;
                   $image = !empty($value['image']['url']) ? $value['image']['url'] : '';
@@ -172,13 +172,13 @@ class Alpha_Tabs extends Widget_Base{
                   </div>
                 </div>
               <?php endforeach;?>
-              <ul class="tmc-alpha-tab-filter">
-                <?php foreach($tabs as $tab): $j++;?>
+             <!--  <ul class="tmc-alpha-tab-filter">
+                <?php //foreach($tabs as $tab): $j++;?>
                   <li class="tmc-tab-item">
-                    <a href="#tab-<?php echo esc_attr($j);?>"><?php echo esc_html($tab);?></a>
+                    <a href="#tab-<?php //echo esc_attr($j);?>"><?php //echo esc_html($tab);?></a>
                   </li>
-                <?php endforeach;?>
-              </ul>
+                <?php //endforeach;?>
+              </ul> -->
             </div>
         </div>
         <?php
