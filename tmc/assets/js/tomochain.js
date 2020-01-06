@@ -21,13 +21,40 @@
         },
         header: function(){
             // $('.site-header').headroom();
-            if($('.site-header').length > 0){
-                var height = $('.site-header').outerHeight();
-                $('.site-header').css('min-height',height);
-            }
+
+            // if($('.site-header').length > 0){
+            //     var height = $('.site-header').outerHeight();
+            //     $('.site-header').css('min-height',height);
+            // }
+
             // $(window).scroll(function() {    // this will work when your window scrolled.
             //     var height = $(window).scrollTop();  //getting the scrolling height of window
             // });
+
+            $(window).on('load', function() {
+                setTimeout(function (){
+                    var navScrollListener = function(_this, navTopScroll) {
+                        var _this = $('#masthead');
+                        var scrollTop = $(window).scrollTop();
+                        if (($(window).scrollTop()) > navTopScroll) {
+                            if (!$('#masthead').hasClass('scrollFixed')) {
+                                _this.addClass('scrollFixed')
+                            }
+                        } else {
+                            _this.removeClass('scrollFixed')
+                        }
+                    };
+                    var navTopScroll = 0;
+                    var navScrollEl = $('#masthead');
+                    if (navScrollEl.length) {
+                        navTopScroll = navScrollEl.offset().top;
+                        navScrollListener(navScrollEl, navTopScroll);
+                        $(window).on('resize scroll', function() {
+                            navScrollListener(navScrollEl, navTopScroll);
+                        });
+                    }
+                }, 1000);
+            });
         },
         mainMenu: function() {
             var $siteHeader   = $( '.site-header:not(.sticky-header)' ),
@@ -244,7 +271,7 @@
 
             // tl.to(sections[0], .5, { x: "-100%", ease: Linear.easeNone }, '-=.5')
             for (var i = 0; i < slides - 1; i++) {
-              tl.to(sections[i], 1, { x: "-100%", ease: Linear.easeNone }, '-=.5')
+              tl.to(sections[i], 1, { x: "-150%", ease: Linear.easeNone }, '-=.5')
             }
 
             // console.log(sections[sections.length - 1])
