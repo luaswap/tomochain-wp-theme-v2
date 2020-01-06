@@ -82,7 +82,18 @@ class Section_Features extends Widget_Base{
               </p>
             <?php endif;?>
           </div>
-          <div class="tmc-feature-right"></div>
+          <div class="tmc-feature-right">
+            <div class="scrollme">
+              <div
+                class="animateme"
+                data-when="enter"
+                data-from="1"
+                data-to="0"
+                data-opacity="0"
+                data-translatex="-400">
+              </div>
+            </div>
+          </div>
         </div>
     <?php
     }

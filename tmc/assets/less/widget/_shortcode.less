@@ -246,6 +246,21 @@
 	.tmc-feature-subtitle{
 		font-size: 20px;
 	}
+	.tmc-feature-right {
+		* {
+			height: 100%;
+			width: 100%;
+		}
+		position: absolute!important;
+		z-index: -1;
+		right: 20%;
+		top: 150px;
+		height: 400px!important;
+		width: 1500px!important;
+		.animateme {
+			background: #EDEDED;
+		}
+	}
 }
  /* Section Build on Tomochain */
  .tmc-build-widget{
@@ -322,6 +337,12 @@
 	}
 	.tmc-title-sc{
 		margin-top: 0;
+		font-size: 24px;
+	}
+	.tmc-subtitle-sc {
+		p  {
+			margin: 0;
+		}
 	}
 }
 /* TMC Alpha Tabs */
@@ -458,17 +479,17 @@
 		* {
 			position: initial!important;
 		}
-		.position-absolute {
-			position: absolute!important;
-			z-index: -1;
-			left: 0;
-			height: calc(100%)!important;
-			width: 40%!important;
-			* {
-				height: 100%;
-				width: 100%;
-			}
-		}
+		// .position-absolute {
+		// 	position: absolute!important;
+		// 	z-index: -1;
+		// 	left: 0;
+		// 	height: calc(100%)!important;
+		// 	width: 40%!important;
+		// 	* {
+		// 		height: 100%;
+		// 		width: 100%;
+		// 	}
+		// }
 	}
 	/*Top banner*/
 	.position-initial {
