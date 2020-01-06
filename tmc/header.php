@@ -31,9 +31,9 @@
 </div>
 <?php endif; ?>
 <div class="site">
-	<?php do_action('tmc_before_site_content');?>
 	<?php if (!is_404()): ?>
 	<header id="masthead" class="site-header">
+		<?php do_action('tmc_before_site_content');?>
 		<div class="tmc-header">
 			<div class="container">
 				<div class="navbar-header">

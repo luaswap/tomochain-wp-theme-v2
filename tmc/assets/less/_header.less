@@ -2,9 +2,8 @@
     background-color: @header-bg;
     width: 100%!important;
 	position: fixed;
-	top: 42px;
 	left: 0;
-	z-index: 9;
+    z-index: 9;
     .tmc-header{
         -webkit-transition: all .2s;
         transition: all .2s;
@@ -34,8 +33,12 @@
             color: @white;
         }
         a{
-            display: block;
-            padding: 10px 0;
+            display: flex;
+            align-items: center;
+            padding: 25px 0;
+            img {
+                transition: all .3s;
+            }
         }
         .wpml-ls-statics-shortcode_actions{
             width: auto;
@@ -55,6 +58,23 @@
             -webkit-transform: translateY(-50%);
             -moz-transform: translateY(-50%);
             -ms-transform: translateY(-50%);
+        }
+    }
+
+    &.scrollFixed {
+        .site-branding {
+            a{
+                padding: 5px 0;
+                img {
+                    width: 70%;
+                }
+            }
+        }
+        .tmc-report-item{
+            padding: 5px 0;
+            a {
+                font-size: 12px;
+            }
         }
     }
     // .mobile-menu-btn{

@@ -141,7 +141,7 @@ class Alpha_Tabs extends Widget_Base{
         $i = $j = 0;
         ?>
         <div class="tmc-alpha-tabs-widget">
-            <div class="tmc-alpha-tabs-wrap">
+            <div id="pinContainer" class="tmc-alpha-tabs-wrap">
               <?php foreach($settings['tab_list'] as $value):
                   $i++;
                   $image = !empty($value['image']['url']) ? $value['image']['url'] : '';
@@ -157,7 +157,7 @@ class Alpha_Tabs extends Widget_Base{
                     $link .= ' rel="nofollow" ';
                   }
                 ?>
-                <div id="tab-<?php echo esc_attr($i);?>" class="tmc-alpha-tab-content">
+                <div id="tab-<?php echo esc_attr($i);?>" class="tmc-alpha-tab-content panel">
                   <div class="tmc-flex-content">
                     <div class="tmc-tab-left alpha-<?php echo $this->convert_to_slug($value['tab']);?>">
                       <img src="<?php echo esc_url($image);?>">

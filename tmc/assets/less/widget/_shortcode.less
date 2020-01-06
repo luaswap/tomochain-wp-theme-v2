@@ -229,6 +229,7 @@
 		font-size: 60px;
 		line-height: 1;
 		position: relative;
+		font-weight: 900;
 		z-index: 1;
 		span{
 			content: '';
@@ -253,6 +254,7 @@
 		font-size: 60px;
 		line-height: 1;
 		position: relative;
+		font-weight: 900;
 		z-index: 1;
 		span{
 			height: 30px;
@@ -323,36 +325,44 @@
 	}
 }
 /* TMC Alpha Tabs */
-#slideContainer {
-  position: relative;
-}
- 
 #pinContainer {
-  width: 100%;
-  height: 100vh;
-  overflow: hidden;
-  position: relative;
-}
-.panel {
-  height: 100%;
-  width: 100%;
-  position: absolute;
-}
-.panel:not(:first-of-type) {
-  transform: translateX(100%);
-}
+	width: 100%;
+	height: 100vh;
+	// padding: 10% 0 0;
+	position: relative;
+  }
+  .panel {
+	height: 100%;
+	width: 100%;
+	padding-top: 15%;
+	position: absolute;
+  }
+  .panel:not(:first-of-type) {
+	transform: translateX(150%);
+  }
+
 .tmc-alpha-tabs-widget{
-	padding-top: 10%;
 	.tmc-flex-content{
 		display: flex;
+		align-items: end;
 		.tmc-tab-left{
-			width: 33%;
-			margin-left: 10%;
+			width: 40%;
+			margin-right: 100px;
+			position: relative;
+			&::before {
+				content: '';
+				width: 150px;
+				height: 150px;
+				background-color: #00E8B4;
+				bottom: 0;
+				right: 0;
+				position: absolute;
+				z-index: -1;
+	        	animation: rotate-center 4s ease-in-out infinite;
+			}
 		}
 		.tmc-tab-right{
-			width: 48%;
-		    position: absolute;
-		    right: 0;
+			width: 60%;
 		    padding: 40px 60px;
 		    box-shadow: 0 0 7px 1px #e8e8e8;
 		    .c-title{
@@ -367,7 +377,7 @@
 		    	display: inline-block;
 		    	padding: 8px 40px;
 		    	font-weight: bold;
-		    	background-color: #1b7db7;
+		    	background-color: #607ECA;
 		    	color: @white;
 		    }
 		}
@@ -388,7 +398,7 @@
 				content: '';
 				width: 100%;
 				height: 3px;
-				background-color: #1b7db7;
+				background-color: #607ECA;
 				position: absolute;
 				top: -1px;
 				opacity: 0;
@@ -412,15 +422,16 @@
 				}
 				a{
 					transform: translate(0, -100%);
-					color: #1b7db7;
+					color: #607ECA;
 					&:hover{
-						color: #1b7db7;
+						color: #607ECA;
 					}
 				}
 			}
 		}
 	}
 }
+
 /* TMC Button */
 .tmc-button-widget{
 	a{
@@ -439,36 +450,67 @@
 		}
 	}
 }
-/* TMC animation */
-.elementor-section-position {
-	* {
-		position: initial!important;
-	}
-	.position-absolute {
-		position: absolute!important;
-		z-index: -1;
-		left: 0;
-		height: calc(100%)!important;
-		width: 40%!important;
-		* {
-			height: 100%;
-			width: 100%;
-		}
-	}
-}
-@keyframes textclip {
-	to {
-		background-position: -100% center;
-	}
-}
 
-.rev-btn {
-	i {
-		transition: all .3s;
-	}
-	&:hover {
-		i {
-			transform: translateX(15px);
+/* TMC animation */
+
+	/*Features*/
+	.elementor-section-position {
+		* {
+			position: initial!important;
+		}
+		.position-absolute {
+			position: absolute!important;
+			z-index: -1;
+			left: 0;
+			height: calc(100%)!important;
+			width: 40%!important;
+			* {
+				height: 100%;
+				width: 100%;
+			}
 		}
 	}
-}
+	/*Top banner*/
+	.position-initial {
+		position: initial;
+	}
+	@keyframes textclip {
+		to {
+			background-position: -100% center;
+		}
+	}
+	.rev-btn {
+		i {
+			transition: all .3s;
+		}
+		&:hover {
+			i {
+				transform: translateX(15px);
+			}
+		}
+	}
+	/*section launch*/
+	.bg-animation-logo {
+		position: absolute!important;
+		width: 400px!important;
+		height: 400px!important;
+		top: 50%;
+		right: -20%;
+		transform: translateY(-50%);
+		.box-layer {
+			*{
+				height: 100%;
+				width: 100%;
+			}
+			.animateme {
+				position: absolute;
+				&.logo-item-2 {
+					padding: 15%;
+				}
+				&.logo-item-3 {
+					text-align: center;
+					padding: 30%;
+				}
+			}
+		}
+	}
