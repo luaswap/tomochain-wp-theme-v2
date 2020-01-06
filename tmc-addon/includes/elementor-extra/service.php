@@ -6,6 +6,7 @@ use Elementor\Widget_Base;
 use Elementor\Scheme_Color;
 use Elementor\Group_Control_Typography;
 use Elementor\Scheme_Typography;
+use Elementor\Icons_Manager;
 
 class Service extends Widget_Base{
     public function get_name()
@@ -38,12 +39,33 @@ class Service extends Widget_Base{
         ]
       );
       $this->add_control(
-        'image',
+        'icon',
         [
-          'label'   => __( 'Choose Image', 'tmc' ),
-          'type'    => Controls_Manager::MEDIA,
+          'label' => __( 'Icon', 'tmc' ),
+          'type' => Controls_Manager::ICONS,
+          'default' => [
+            'value' => 'fas fa-star',
+            'library' => 'solid',
+          ],
         ]
       );
+      $this->add_responsive_control(
+        'icon_size',
+        [
+          'label' => __( 'Size', 'tmc' ),
+          'type' => Controls_Manager::SLIDER,
+          'range' => [
+            'px' => [
+              'min' => 6,
+              'max' => 300,
+            ],
+          ],
+          'selectors' => [
+            '{{WRAPPER}} .tmc-text-icon' => 'font-size: {{SIZE}}{{UNIT}};',
+          ],
+        ]
+      );
+
       $this ->add_control(
         'title',
         [
@@ -62,19 +84,36 @@ class Service extends Widget_Base{
             'placeholder' => esc_html__('type your description here', 'tmc'),
          ]
       );
+      $this->add_control(
+        'scroll_animate',
+        [
+          'label' => __( 'Animate', 'tmc' ),
+          'type' => Controls_Manager::TEXTAREA,
+          'rows' => 5,
+          'default' => __( 'Default description', 'tmc' ),
+          'placeholder' => __( 'Values ​​separated by |', 'tmc' ),
+        ]
+      );
       $this->end_controls_section();
     }
 
     protected function render()
     {
-        $settings = $this->get_settings();
-        $image = $settings['image'];
+        $settings = $this->get_settings_for_display();
+
+        $migrated = isset( $settings['__fa4_migrated']['icon'] );
+        $is_new = Icons_Manager::is_migration_allowed();
+        $animate = isset($settings['scroll_animate']) ? explode('|', $settings['scroll_animate']) : array();
         ?>
-        <div class="tmc-service-widget">
+        <div class="tmc-service-widget" <?php echo join(' ',$animate);?>>
           <div class="tmc-text-icon">
-            <?php if(isset($image['url']) && !empty($image['url'])):?>
-              <img src="<?php echo esc_url($image['url']);?>" alt="<?php echo esc_attr($settings['title']);?>">
-            <?php endif;?>
+            <?php 
+            if ( $is_new || $migrated ) {
+              Icons_Manager::render_icon( $settings['icon'], [ 'aria-hidden' => 'true' ] );
+            } elseif ( ! empty( $settings['icon'] ) ) {
+              ?><i <?php echo $this->get_render_attribute_string( 'i' ); ?>></i><?php
+            }
+            ?>
           </div>
           <div class="tmc-service-content">
             <?php if ( !empty( $settings['title'] ) ) : ?>

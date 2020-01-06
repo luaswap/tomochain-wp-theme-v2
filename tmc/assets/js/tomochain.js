@@ -16,8 +16,7 @@
             TMC.mobileMenu();
             TMC.video();
             TMC.click();
-            // TMC.tomoMagic();
-            TMC.TomoSlidesManual();
+            TMC.tomoScrollMagic();
             
         },
         header: function(){
@@ -232,74 +231,51 @@
 
                 });
             }
-            if($('.tmc-alpha-tab-filter').length > 0){
-                $('.tmc-tab-item').first().addClass('active');
-                var height = $('.tmc-alpha-tabs-wrap').outerHeight();
-                $('.tmc-alpha-tabs-wrap').css('height', height + 'px');
-                $('.tmc-tab-item').find('a').on('click', function(e){
-                    e.preventDefault();
-                    var tab = $(this).attr('href');
-                    $('.tmc-tab-item').removeClass('active');
-                    $(this).parent().addClass('active');
-                    $('.tmc-alpha-tab-content').hide(500);
-                    $(this).closest('.tmc-alpha-tabs-wrap').find(tab).show(500);
-                })
-            }
         },
-        tomoMagic: function(){
-            // alert("fdfdfdf");
-            function pathPrepare ($el) {
-                var lineLength = $el[0].getTotalLength();
-                $el.css("stroke-dasharray", lineLength);
-                $el.css("stroke-dashoffset", lineLength);
+        tomoScrollMagic: function(){
+            var controller = new ScrollMagic.Controller();
+            var sections = document.querySelectorAll(".tmc-alpha-tab-content");
+            var tl = new TimelineMax();
+            var offset = window.innerHeight;
+            var w = window.innerWidth;
+
+            var slides = sections.length
+
+
+            // tl.to(sections[0], .5, { x: "-100%", ease: Linear.easeNone }, '-=.5')
+            for (var i = 0; i < slides - 1; i++) {
+              tl.to(sections[i], 1, { x: "-100%", ease: Linear.easeNone }, '-=.5')
             }
-            var $word = $("path#word");
-            var $dot = $("path#dot");
-            // prepare SVG
-            pathPrepare($word);
-            pathPrepare($dot);
-            // init controller
-            var controller = new ScrollMagic.Controller();
-            // build tween
-            var tween = new TimelineMax()
-                .add(TweenMax.to($word, 0.9, {strokeDashoffset: 0, ease:Linear.easeNone})) // draw word for 0.9
-                .add(TweenMax.to($dot, 0.1, {strokeDashoffset: 0, ease:Linear.easeNone}))  // draw dot for 0.1
-                .add(TweenMax.to("path", 1, {stroke: "#33629c", ease:Linear.easeNone}), 0);			// change color during the whole thing
-            // build scene
-            var scene = new ScrollMagic.Scene({triggerElement: "#trigger1", duration: 200, tweenChanges: true})
-                .setTween(tween)
-                .addIndicators() // add indicators (requires plugin)
-                .addTo(controller);
-        },
-        TomoSlidesManual: function(){
-            var controller = new ScrollMagic.Controller();
 
-            // define movement of panels
-            var wipeAnimation = new TimelineMax()
-            // animate to second panel
-            .to("#slideContainer", 0.5, {z: -150})		// move back in 3D space
-            .to("#slideContainer", 1,   {x: "-25%"})	// move in to first panel
-            .to("#slideContainer", 0.5, {z: 0})				// move back to origin in 3D space
-            // animate to third panel
-            .to("#slideContainer", 0.5, {z: -150, delay: 1})
-            .to("#slideContainer", 1,   {x: "-50%"})
-            .to("#slideContainer", 0.5, {z: 0})
-            // animate to forth panel
-            .to("#slideContainer", 0.5, {z: -150, delay: 1})
-            .to("#slideContainer", 1,   {x: "-75%"})
-            .to("#slideContainer", 0.5, {z: 0});
+            // console.log(sections[sections.length - 1])
 
-            // create scene to pin and link animation
+            tl.to(sections[sections.length - 1], .5, { x: "0%", ease: Linear.easeNone }, '-=.5')
+
             new ScrollMagic.Scene({
-                triggerElement: "#pinContainer",
-                triggerHook: "onLeave",
-                duration: "500%"
+              triggerElement: "#pinContainer",
+              triggerHook: "onLeave",
+              duration: (w * (sections.length - 1))
             })
-            .setPin("#pinContainer")
-            .setTween(wipeAnimation)
-            .addIndicators() // add indicators (requires plugin)
-            .addTo(controller);
-        }
+              .setPin("#pinContainer")
+              .setTween(tl)
+              .addTo(controller);
+
+            $(".tmc-alpha-tab-content").each(function(i) {
+                var target1 = $(this).find(".tmc-tab-left");
+                var target2 = $(this).find(".tmc-tab-right");
+                var tl = new TimelineMax();
+                tl.staggerFrom(target1, 0.3, { ease: "bounce.inOut" });
+                tl.staggerFrom(target2, 0.3, { ease: "bounce.inOut"});
+
+              new ScrollMagic.Scene({
+                triggerElement: "#pinContainer",
+                triggerHook: 0,
+                offset: i * w
+              })
+                .setTween(tl)
+                .addTo(controller)
+            });
+        },
 
     }
 
