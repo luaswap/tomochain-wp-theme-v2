@@ -158,27 +158,29 @@ class Alpha_Tabs extends Widget_Base{
                   }
                 ?>
                 <div id="tab-<?php echo esc_attr($i);?>" class="tmc-alpha-tab-content panel">
-                  <div class="tmc-flex-content">
-                    <div class="tmc-tab-left alpha-<?php echo $this->convert_to_slug($value['tab']);?>">
-                      <img src="<?php echo esc_url($image);?>">
-                    </div>
-                    <div class="tmc-tab-right alpha-<?php echo $this->convert_to_slug($value['tab']);?>">
-                      <h3 class="c-title"><?php echo esc_html($value['title']);?></h3>
-                      <p class="c-subtitle"><?php echo esc_html($value['subtitle']);?></p>
-                      <a class="link" <?php echo esc_attr($link);?>>
-                        <?php echo esc_html__('View more','tmc');?>
-                      </a>
+                  <div class="container">
+                    <div class="tmc-flex-content">
+                      <div class="tmc-tab-left alpha-<?php echo $this->convert_to_slug($value['tab']);?>">
+                        <img src="<?php echo esc_url($image);?>">
+                      </div>
+                      <div class="tmc-tab-right alpha-<?php echo $this->convert_to_slug($value['tab']);?>">
+                        <h3 class="c-title"><?php echo esc_html($value['title']);?></h3>
+                        <p class="c-subtitle"><?php echo esc_html($value['subtitle']);?></p>
+                        <a class="link" <?php echo esc_attr($link);?>>
+                          <?php echo esc_html__('View more','tmc');?>
+                        </a>
+                      </div>
                     </div>
                   </div>
                 </div>
               <?php endforeach;?>
-             <!--  <ul class="tmc-alpha-tab-filter">
-                <?php //foreach($tabs as $tab): $j++;?>
+              <ul class="tmc-alpha-tab-filter">
+                <?php foreach($tabs as $tab): $j++;?>
                   <li class="tmc-tab-item">
-                    <a href="#tab-<?php //echo esc_attr($j);?>"><?php //echo esc_html($tab);?></a>
+                    <a href="#tab-<?php echo esc_attr($j);?>"><?php echo esc_html($tab);?></a>
                   </li>
-                <?php //endforeach;?>
-              </ul> -->
+                <?php endforeach;?>
+              </ul>
             </div>
         </div>
         <?php
