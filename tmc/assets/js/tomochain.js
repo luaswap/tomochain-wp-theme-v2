@@ -271,7 +271,7 @@
 
             // tl.to(sections[0], .5, { x: "-100%", ease: Linear.easeNone }, '-=.5')
             for (var i = 0; i < slides - 1; i++) {
-              tl.to(sections[i], 1, { x: "-150%", ease: Linear.easeNone }, '-=.5')
+              tl.to(sections[i], 1, { x: "-100%", ease: Linear.easeNone }, '-=.5')
             }
 
             // console.log(sections[sections.length - 1])
