@@ -48,12 +48,14 @@ if ( ! class_exists( 'TMC_Addon' ) ) {
 	    	}
 	    }
 
-	    function include_files(){
-	    	require_once TMC_ADDON_INCLUDES_DIR . '/libs/cmb2/init.php';
+	    function include_files(){	    	
+	    	/* Register Sidebar */
 	    	require_once TMC_ADDON_INCLUDES_DIR . '/admin/sidebar-register.php';
+	    	
 	    	/*
 			* CMB2 Custom field
 			*/
+			require_once TMC_ADDON_INCLUDES_DIR . '/libs/cmb2/init.php';
 			if(class_exists('CMB2_Bootstrap_260')){
 				require_once TMC_ADDON_INCLUDES_DIR . '/libs/cmb2-extend/condition/cmb2-condition.php';
 				require_once TMC_ADDON_INCLUDES_DIR . '/admin/theme-options.php';
@@ -62,7 +64,13 @@ if ( ! class_exists( 'TMC_Addon' ) ) {
 				require_once TMC_ADDON_INCLUDES_DIR . '/libs/cmb2-extend/select2/cmb-field-select2.php';
 				require_once TMC_ADDON_INCLUDES_DIR . '/libs/cmb2-extend/ajax-search/cmb-field-ajax-search.php';
 			}
+			/* Register Custom Post type */
+	    	require_once TMC_ADDON_INCLUDES_DIR . '/post-type/event.php';
+
+	    	/* Include Elementor Widget */
 	    	require_once TMC_ADDON_INCLUDES_DIR . '/class-elementor-extra-widgets.php';
+	    	
+	    	/* Include Wordpress Widget */
 	    	require_once TMC_ADDON_INCLUDES_DIR . '/wp-widget/widgets.php';
 	    }
 	    function load_textdomain() {
