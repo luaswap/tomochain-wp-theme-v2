@@ -10,7 +10,7 @@ use Elementor\Scheme_Typography;
 class Event extends Widget_Base{
     public function get_name()
     {
-        return 'tmc_event';
+        return 'tmc-event';
     }
     public function get_title()
     {
@@ -19,6 +19,23 @@ class Event extends Widget_Base{
     public function get_icon()
     {
       return 'fa fa-text-width';
+    }
+    /*
+    * Depend Style
+    */
+    public function get_style_depends() {
+          return [
+              'slick',
+          ];
+      }
+    /*
+    * Depend Script
+    */
+    public function get_script_depends() {
+        return [
+            'slick',
+            'tmc-addon',
+        ];
     }
     public function get_categories()
     {
@@ -164,36 +181,39 @@ class Event extends Widget_Base{
       // echo '</pre>';
       ?>
       <div class="tmc-events-widget">
-          <div class="tmc-events-wrap">      
-            <?php if($e->have_posts()):
-              $current_time = time();
-              while ($e->have_posts()): $e->the_post();
-                $open_date = get_post_meta(get_the_ID(),'open_date',true);
-                $place = get_post_meta(get_the_ID(),'event_place',true);
-                $day = $month = '';
-                if(!empty($open_date)){
-                  $day = date('d',$open_date);
-                  $month = date('M/Y',$open_date);
-                }?>                
-                <div class="tmc-event-dot">
-                  <?php if(!empty($day)):?>
-                    <div class="tmc-event-time">
-                      <h2 class="tmc-date"><?php echo esc_html($day);?></h2>
-                      <span class="tmc-month-year"><?php echo esc_html($month);?></span>
-                    </div>
-                  <?php endif;?>
-                  <div class="tmc-event-title">
-                    <span><?php the_title();?></span>
-                    <?php if($current_time > $open_date):?>
-                      <span class="tmc-event-status"><?php echo esc_html__('Past Event','tmc')?></span>
-                    <?php else:?>
-                      <span class="tmc-event-status"><?php echo esc_html__('Upcomming Event','tmc')?></span>
+          <div class="tmc-events-wrap">
+            <div class="tmc-event-dots">    
+              <?php if($e->have_posts()):
+                $current_time = time();
+                while ($e->have_posts()): $e->the_post();
+                  $open_date = get_post_meta(get_the_ID(),'open_date',true);
+                  $place = get_post_meta(get_the_ID(),'event_place',true);
+                  $day = $month = '';
+                  if(!empty($open_date)){
+                    $day = date('d',$open_date);
+                    $month = date('M/Y',$open_date);
+                  }?>                
+                  <div class="tmc-dot">
+                    <?php if(!empty($day)):?>
+                      <div class="tmc-event-time">
+                        <h2 class="tmc-date"><?php echo esc_html($day);?></h2>
+                        <span class="tmc-month-year"><?php echo esc_html($month);?></span>
+                      </div>
                     <?php endif;?>
+                    <div class="tmc-info">
+                      <h3 class="tmc-title"><?php the_title();?></h3>
+                      <?php if($current_time > $open_date):?>
+                        <span class="tmc-status"><?php echo esc_html__('Past Event','tmc')?></span>
+                      <?php else:?>
+                        <span class="tmc-status"><?php echo esc_html__('Upcomming Event','tmc')?></span>
+                      <?php endif;?>
+                    </div>
                   </div>
-                </div>
-              <?php endwhile;?>
+                <?php endwhile;?>
+              </div>
               <div class="tmc-event-content">
-                <?php while ($e->have_posts()): $e->the_post();?>
+                <?php while ($e->have_posts()): $e->the_post();
+                  $place = get_post_meta(get_the_ID(), 'event_place',true);?>
                   <div class="tmc-event-item">
                     <?php if ( has_post_thumbnail() ):?>
                       <a class="tmc-event-img" href="<?php the_permalink(); ?>" title="<?php the_title(); ?>">
@@ -208,6 +228,9 @@ class Event extends Widget_Base{
                     <?php endif;?>
                     <div class="tmc-event-info">
                       <h2 class="tmc-event-title"><a href="<?php echo get_permalink();?>"><?php the_title();?></a></h2>
+                      <?php if(!empty($place)):?>
+                        <span class="tmc-place"><i class="fas fa-map-marker-alt"></i> <?php echo esc_html($place);?></span>
+                      <?php endif;?>
                       <p class="tmc-event-desc">
                         <?php
                             echo wp_trim_words( get_the_excerpt(), $excerpt_length );
@@ -222,5 +245,4 @@ class Event extends Widget_Base{
         </div>
     <?php
     }
-
 }

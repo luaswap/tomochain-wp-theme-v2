@@ -497,64 +497,100 @@
 
 /* TMC animation */
 
-	/*Features*/
-	.elementor-section-position {
-		* {
-			position: initial!important;
-		}
-		// .position-absolute {
-		// 	position: absolute!important;
-		// 	z-index: -1;
-		// 	left: 0;
-		// 	height: calc(100%)!important;
-		// 	width: 40%!important;
-		// 	* {
-		// 		height: 100%;
-		// 		width: 100%;
-		// 	}
-		// }
+/*Features*/
+.elementor-section-position {
+	* {
+		position: initial!important;
 	}
-	/*Top banner*/
-	.position-initial {
-		position: initial;
+	// .position-absolute {
+	// 	position: absolute!important;
+	// 	z-index: -1;
+	// 	left: 0;
+	// 	height: calc(100%)!important;
+	// 	width: 40%!important;
+	// 	* {
+	// 		height: 100%;
+	// 		width: 100%;
+	// 	}
+	// }
+}
+/*Top banner*/
+.position-initial {
+	position: initial;
+}
+@keyframes textclip {
+	to {
+		background-position: -100% center;
 	}
-	@keyframes textclip {
-		to {
-			background-position: -100% center;
-		}
+}
+.rev-btn {
+	i {
+		transition: all .3s;
 	}
-	.rev-btn {
+	&:hover {
 		i {
-			transition: all .3s;
+			transform: translateX(15px);
 		}
-		&:hover {
-			i {
-				transform: translateX(15px);
+	}
+}
+/*section launch*/
+.bg-animation-logo {
+	position: absolute!important;
+	width: 400px!important;
+	height: 400px!important;
+	top: 50%;
+	right: -20%;
+	transform: translateY(-50%);
+	.box-layer {
+		*{
+			height: 100%;
+			width: 100%;
+		}
+		.animateme {
+			position: absolute;
+			&.logo-item-2 {
+				padding: 15%;
+			}
+			&.logo-item-3 {
+				text-align: center;
+				padding: 30%;
 			}
 		}
 	}
-	/*section launch*/
-	.bg-animation-logo {
-		position: absolute!important;
-		width: 400px!important;
-		height: 400px!important;
-		top: 50%;
-		right: -20%;
-		transform: translateY(-50%);
-		.box-layer {
-			*{
-				height: 100%;
-				width: 100%;
+}
+/* TMC Event */
+.tmc-events-widget{
+	.tmc-events-wrap{
+		display: flex;
+		align-items: top;
+		.slick-slide{
+			&:focus{
+				outline: none;
 			}
-			.animateme {
-				position: absolute;
-				&.logo-item-2 {
-					padding: 15%;
-				}
-				&.logo-item-3 {
-					text-align: center;
-					padding: 30%;
+		}
+	}
+	.tmc-event-dots{
+		width: 33.33%;
+		.slick-current{
+			background-color: @secondary-color;
+		}
+		.tmc-dot{
+			display: flex;
+			align-items: flex-end;
+			padding: 25px;
+			.tmc-date{
+				font-size: 60px;
+				line-height: 60px;
+			}
+			.tmc-info{
+				padding-left: 30px;
+				span{
+					display: block;
 				}
 			}
 		}
 	}
+	.tmc-event-content{
+		width: 67.67%;
+	}
+}
