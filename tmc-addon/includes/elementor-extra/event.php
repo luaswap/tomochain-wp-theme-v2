@@ -94,7 +94,7 @@ class Event extends Widget_Base{
           'default' => 'default',
           'options' => [
             'default'       => esc_html__( 'Default', 'tmc' ),
-            'upcommint'     => esc_html__( 'Upcomming Event', 'tmc' ),
+            'upcomming'     => esc_html__( 'Upcomming Event', 'tmc' ),
             'past'          => esc_html__( 'Past Event', 'tmc' ),
           ],
         ]
@@ -152,6 +152,7 @@ class Event extends Widget_Base{
         $args['meta_key'] = 'open_date';
         $args['orderby'] = 'meta_value_num';
       }elseif('upcomming' == $order_by){
+        $args['orderby'] = 'meta_value_num';
         $args['meta_query'] = array(
           array(
             'key' => 'open_date',
@@ -160,6 +161,7 @@ class Event extends Widget_Base{
           )
         );
       }elseif('past' == $order_by){
+        $args['orderby'] = 'meta_value_num';
         $args['meta_query'] = array(
           array(
             'key' => 'open_date',
@@ -170,15 +172,14 @@ class Event extends Widget_Base{
       }
       if(!empty($e_cat)){
         $args['tax_query'] = array(
+          array(
             'taxonomy' => 'event_category',
             'field'    => 'term_id',
             'terms'    => $e_cat,
+          )
         );
       }
       $e = new \WP_Query($args);
-      // echo '<pre>';
-      // var_dump($e);
-      // echo '</pre>';
       ?>
       <div class="tmc-events-widget">
           <div class="tmc-events-wrap">
@@ -216,15 +217,13 @@ class Event extends Widget_Base{
                   $place = get_post_meta(get_the_ID(), 'event_place',true);?>
                   <div class="tmc-event-item">
                     <?php if ( has_post_thumbnail() ):?>
-                      <a class="tmc-event-img" href="<?php the_permalink(); ?>" title="<?php the_title(); ?>">
                         <?php
                         the_post_thumbnail(
-                          'medium', array(
+                          'event-image', array(
                             'class' => 'img-responsive',
                             'alt'   => get_the_title( get_post_thumbnail_id() ),
                           )
                         ); ?>
-                      </a>
                     <?php endif;?>
                     <div class="tmc-event-info">
                       <h2 class="tmc-event-title"><a href="<?php echo get_permalink();?>"><?php the_title();?></a></h2>
@@ -245,4 +244,5 @@ class Event extends Widget_Base{
         </div>
     <?php
     }
+
 }

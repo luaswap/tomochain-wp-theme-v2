@@ -260,48 +260,50 @@
             }
         },
         tomoScrollMagic: function(){
-            var controller = new ScrollMagic.Controller();
-            var sections = document.querySelectorAll(".tmc-alpha-tab-content");
-            var tl = new TimelineMax();
-            var offset = window.innerHeight;
-            var w = window.innerWidth;
-
-            var slides = sections.length
-
-
-            // tl.to(sections[0], .5, { x: "-100%", ease: Linear.easeNone }, '-=.5')
-            for (var i = 0; i < slides - 1; i++) {
-              tl.to(sections[i], 1, { x: "-100%", ease: Linear.easeNone }, '-=.5')
-            }
-
-            // console.log(sections[sections.length - 1])
-
-            tl.to(sections[sections.length - 1], .5, { x: "0%", ease: Linear.easeNone }, '-=.5')
-
-            new ScrollMagic.Scene({
-              triggerElement: "#pinContainer",
-              triggerHook: "onLeave",
-              duration: (w * (sections.length - 1))
-            })
-              .setPin("#pinContainer")
-              .setTween(tl)
-              .addTo(controller);
-
-            $(".tmc-alpha-tab-content").each(function(i) {
-                var target1 = $(this).find(".tmc-tab-left");
-                var target2 = $(this).find(".tmc-tab-right");
+            if($('.tmc-alpha-tab-content').length > 0){
+                var controller = new ScrollMagic.Controller();
+                var sections = document.querySelectorAll(".tmc-alpha-tab-content");
                 var tl = new TimelineMax();
-                tl.staggerFrom(target1, 0.3, { ease: "bounce.inOut" });
-                tl.staggerFrom(target2, 0.3, { ease: "bounce.inOut"});
+                var offset = window.innerHeight;
+                var w = window.innerWidth;
 
-              new ScrollMagic.Scene({
-                triggerElement: "#pinContainer",
-                triggerHook: 0,
-                offset: i * w
-              })
-                .setTween(tl)
-                .addTo(controller)
-            });
+                var slides = sections.length
+
+
+                // tl.to(sections[0], .5, { x: "-100%", ease: Linear.easeNone }, '-=.5')
+                for (var i = 0; i < slides - 1; i++) {
+                  tl.to(sections[i], 1, { x: "-100%", ease: Linear.easeNone }, '-=.5')
+                }
+
+                // console.log(sections[sections.length - 1])
+
+                tl.to(sections[sections.length - 1], .5, { x: "0%", ease: Linear.easeNone }, '-=.5')
+
+                new ScrollMagic.Scene({
+                  triggerElement: "#pinContainer",
+                  triggerHook: "onLeave",
+                  duration: (w * (sections.length - 1))
+                })
+                  .setPin("#pinContainer")
+                  .setTween(tl)
+                  .addTo(controller);
+
+                $(".tmc-alpha-tab-content").each(function(i) {
+                    var target1 = $(this).find(".tmc-tab-left");
+                    var target2 = $(this).find(".tmc-tab-right");
+                    var tl = new TimelineMax();
+                    tl.staggerFrom(target1, 0.3, { ease: "bounce.inOut" });
+                    tl.staggerFrom(target2, 0.3, { ease: "bounce.inOut"});
+
+                  new ScrollMagic.Scene({
+                    triggerElement: "#pinContainer",
+                    triggerHook: 0,
+                    offset: i * w
+                  })
+                    .setTween(tl)
+                    .addTo(controller)
+                });
+            }
         },
 
     }
