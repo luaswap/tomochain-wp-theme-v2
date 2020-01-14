@@ -591,6 +591,26 @@
 		}
 	}
 	.tmc-event-content{
-		width: 67.67%;
+		width: calc(67.67% - 120px);
+		margin-left: 120px;
+		.tmc-event-item{
+			.tmc-event-img{
+				display: block;
+				img{
+					width: 100%;
+				}
+			}
+		}
+	}
+}
+/*  TMC Team Member */
+.tmc-team-widget{
+	.tmc-team-wrap{
+		display: flex;
+		flex-wrap: wrap;
+	}
+	.tmc-team-item{
+		width: 33.33%;
+		padding: 40px 60px;
 	}
 }
