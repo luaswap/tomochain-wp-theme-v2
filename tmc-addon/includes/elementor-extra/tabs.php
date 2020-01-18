@@ -225,6 +225,17 @@ class Tabs extends Widget_Base{
       );
 
       $repeater->add_control(
+        'w_image',
+        [
+          'type'      => Controls_Manager::MEDIA,
+          'label'     => esc_html__( 'Image', 'tmc' ),
+          'default'   => [
+            'url'   => Utils::get_placeholder_image_src(),
+          ],
+        ]
+      );
+
+      $repeater->add_control(
         'w_url',
         [
           'label'     => __( 'Url', 'tmc' ),
@@ -282,15 +293,18 @@ class Tabs extends Widget_Base{
         [
           'label' => __( 'Title', 'tmc' ),
           'type' => Controls_Manager::TEXT,
-          'default' => __( 'Add Social' , 'tmc' ),
+          'default' => __( 'Dapp Title' , 'tmc' ),
           'label_block' => true,
         ]
       );
       $repeater->add_control(
-        'icon',
+        'c_image',
         [
-          'label'   => esc_html__( 'Icons', 'tmc' ),
-          'type'    => Controls_Manager::ICON,
+          'type'      => Controls_Manager::MEDIA,
+          'label'     => esc_html__( 'Image', 'tmc' ),
+          'default'   => [
+            'url'   => Utils::get_placeholder_image_src(),
+          ],
         ]
       );
 
@@ -318,10 +332,10 @@ class Tabs extends Widget_Base{
           'fields' => $repeater->get_controls(),
           'default' => [
             [
-              'c_title' => __( 'Social 1', 'tmc' ),
+              'c_title' => __( 'Dapp 1', 'tmc' ),
             ],
             [
-              'c_title' => __( 'Social 2', 'tmc' ),
+              'c_title' => __( 'Dapp 2', 'tmc' ),
             ],
           ],
           'title_field' => '{{{ c_title }}}',
@@ -346,19 +360,7 @@ class Tabs extends Widget_Base{
         ?>
         <div class="tmc-tabs-widget">
           <?php if(!empty($settings['title_heading'])):?>
-            <h2 class="title-heading scrollme">
-              <?php echo $settings['title_heading'];?>
-              <span
-                class="animateme"
-                data-when="enter"
-                data-from="1"
-                data-to="0"
-                data-opacity="0"
-                data-translatex="-600"
-                data-translatey="0"
-                data-rotatez="0"
-              ></span>
-            </h2>
+            <h2 class="title-heading"><span><?php echo $settings['title_heading'];?></span></h2>
           <?php endif;?>
             <ul class="tmc-tab-title">
               <?php if(!empty($p_title)):?>
@@ -372,7 +374,7 @@ class Tabs extends Widget_Base{
               <?php endif;?>
               <?php if(!empty($c_title)):?>
                 <li class="tab-title c-tab"><a href="#c-tab"><?php echo esc_html($c_title);?></a></li>
-              <?php endif;?>
+              <?php endif;?>              
             </ul>
             <?php if(!empty($p_list) && is_array($p_list)):?>
               <div id="p-tab" class="tab-content">
@@ -430,6 +432,7 @@ class Tabs extends Widget_Base{
                   <?php
                     foreach ( $w_list as $w ) {
                       $wt = $w['w_title'];
+                      $wi = isset($w['w_image']['url']) ? $w['w_image']['url'] : '';
                       $w_url = isset($w['url']['url']) && !empty($w['url']['url']) ? $w['url']['url'] : '#';
                       $w_link_props = ' href="' . esc_url( $w_url ) . '" ';
                       if ( isset($w['url']['is_external']) && $w['url']['is_external'] === 'on' ) {
@@ -441,7 +444,7 @@ class Tabs extends Widget_Base{
                       ?>
                       <div class="w-item col-md-4 col-sm-6">
                         <a class="link" <?php echo esc_attr($w_link_props);?>>
-                          <?php echo esc_html($wt);?>
+                          <img src="<?php echo esc_url($wi);?>" alt="<?php echo esc_attr($wt);?>">
                         </a>
                       </div>
                   <?php }?>
@@ -454,7 +457,7 @@ class Tabs extends Widget_Base{
                   <?php
                     foreach ( $c_list as $c ) {
                       $ct = isset($c['c_title']) ? $c['c_title'] : '';
-                      $ci = isset($c['icon']) ? $c['icon'] : '';
+                      $ci = isset($c['c_image']['url']) ? $c['c_image']['url'] : '';
                       $c_url = !empty($c['url']['url']) ? $c['url']['url'] : '#';
                       $c_link_props = ' href="' . esc_url( $c_url ) . '" ';
                       if ( isset($c['url']['is_external']) && $c['url']['is_external'] === 'on' ) {
@@ -466,8 +469,7 @@ class Tabs extends Widget_Base{
                       ?>
                       <div class="c-item col-md-3 col-sm-4">
                         <a class="link" <?php echo esc_attr($c_link_props);?>>
-                          <i class="<?php echo esc_attr($ci);?>"></i>
-                          <?php echo esc_html($ct);?>
+                          <img src="<?php echo esc_url($ci);?>" alt="<?php echo esc_attr($ct);?>">
                         </a>
                       </div>
                   <?php }?>
