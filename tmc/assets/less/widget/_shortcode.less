@@ -182,21 +182,18 @@
 			}
 		}
 	}
-	.owl-dots{
-		margin-top: 20px;
-	}
-	.owl-nav{
-		opacity: 1;
-		button{
-			i{
-				color: @secondary-color;
-			}
-		}
-		.owl-prev{
-			left: -50px;
-		}
-		.owl-next{
-			right: -50px;
+	.slick-nav{
+		padding: 0;
+		list-style: none;
+		text-align: center;
+		li{
+			display: inline-block;
+			width: 40px;
+			height: 40px;
+			line-height: 40px;
+			border-radius: 50%;
+			margin-right: 20px;
+			cursor: pointer;
 		}
 	}
 }
@@ -687,6 +684,56 @@
 					text-decoration: underline;
 				}
 			}
+		}
+	}
+}
+/* TMC Step */
+.tmc-step-widget{
+	.step-header{
+		display: flex;
+		align-items: center;
+		.number{
+			font-size: 60px;
+			margin-right: 20px;
+		}
+	}
+}
+/* TMC Layer */
+.tmc-layer-widget{
+	.tmc-grid-item{
+		display: flex;
+		width: 100%;
+		.layer-header{
+			width: 70%;
+			position: relative;
+		}
+		.tmc-cube{
+			width: 180px;
+		    height: 180px;
+		    -webkit-transform: skew(45deg);
+		    -ms-transform: skew(45deg);
+		    transform: rotate(45deg) skew(-20deg, -20deg);
+		    position: absolute;
+		    z-index: 2;
+		}
+		.layer-number{
+			position: absolute;
+			right: 0;
+			color: #fff;
+			padding-left: 10px;
+			padding-right: 10px;
+			z-index: 2;
+			top: 46px;
+		}
+		.line{
+			position: absolute;
+		    height: 2px;
+		    width: 70%;
+		    display: block;
+		    background: red;
+		    right: 0;
+		    top: 60px;
+		    z-index: 1;
 		}
 	}
 }
