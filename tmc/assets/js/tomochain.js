@@ -311,7 +311,24 @@
     $(document).ready(function() {
         TMC.init();
     })
-
+    $(document).ready(function() {
+        $('.reportFade').slick({
+            dots: false,
+            infinite: true,
+            arrows: false,
+            autoplay: true,
+            autoplaySpeed: 5000,
+            slidesToShow: 2,
+            responsive: [
+                {
+                    breakpoint: 768,
+                    settings: {
+                        slidesToShow: 1
+                    }
+                }
+            ]
+        });
+    })
 
 
 })(jQuery);
