@@ -1,12 +1,12 @@
 .site-header{
-    background-color: @header-bg;
+    background-color: transparent;
     width: 100%!important;
 	position: fixed;
-	left: 0;
+    left: 0;
+    transition: all .3s;
     z-index: 9;
     .tmc-header{
-        -webkit-transition: all .2s;
-        transition: all .2s;
+        transition: all .3s;
         &.fixed-top{
             position: fixed;
             top: 32px;
@@ -38,6 +38,7 @@
             padding: 25px 0;
             img {
                 transition: all .3s;
+                width: 170px;
             }
         }
         .wpml-ls-statics-shortcode_actions{
@@ -62,11 +63,16 @@
     }
 
     &.scrollFixed {
+        background-color: @header-bg;
         .site-branding {
             a{
                 padding: 5px 0;
+                @media only screen and (max-width: 1024px) {
+                    padding: 15px 0;
+                }
                 img {
-                    width: 70%;
+                    width: 120px;
+                    transition: all .3s;
                 }
             }
         }

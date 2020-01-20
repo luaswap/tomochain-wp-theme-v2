@@ -6,7 +6,7 @@ if(!function_exists('tmc_report_list')){
 		if(!empty($show) && !empty($lists) && is_array($lists)){
 			echo '<div class="tmc-top-report">';
 			echo '<div class="container">';
-			echo '<div class="tmc-report-list">';
+			echo '<div class="tmc-report-list reportFade">';
 			foreach ($lists as $value) {?>
 				<div class="tmc-report-item">
 					<a href="<?php echo esc_url($value['rp_url']);?>"><?php echo esc_html($value['rp_title']);?></a>

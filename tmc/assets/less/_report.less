@@ -1,29 +1,44 @@
 .tmc-top-report{
 	background-color: #3A3D3D;
 	width: 100%!important;
+	max-height: 43px;
+	overflow: hidden;
 	top: 0;
 	left: 0;
 	z-index: 10;
 	.container{
 		position: relative;
 	}
-	.tmc-report-list{
-		display: flex;
-	}
-	.tmc-report-item{
-		color: @white;
-		padding: 10px 0;
-		&:last-child{
-			a{
-				border-right: none;
-				padding-left: 30px;
+	.tmc-report-list {
+		max-width: 650px;
+		overflow: hidden;
+		.slick-list {
+			margin: 0 -30px;
+			@media only screen and (max-width: 767px) {
+				margin: 0;
 			}
 		}
-		a{
-			display: block;
-			border-right: 1px solid @white;
-			padding-right: 30px;
-			font-size: 14px;
+		.tmc-report-item{
+			color: @white;
+			padding: 10px 0;
+			a{
+				white-space: nowrap;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				display: block;
+				border-right: 1px solid @white;
+				font-size: 14px;
+				padding: 0 30px;
+				@media only screen and (max-width: 767px) {
+					padding: 0;
+					border-right: 0;
+				}
+			}
+			&:last-child{
+				a{
+					border-right: none;
+				}
+			}
 		}
 	}
 	.close{
