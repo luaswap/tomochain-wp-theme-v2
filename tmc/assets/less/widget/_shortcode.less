@@ -570,10 +570,22 @@
 .tmc-events-widget{
 	.tmc-events-wrap{
 		display: flex;
-		align-items: top;		
+		align-items: top;
 	}
 	.tmc-event-dots{
 		width: 33.33%;
+		.slick-list {
+			position: relative;
+			&::before {
+				content: '';
+				width: 2px;
+				height: 100%;
+				background-color: #F5F5F5;
+				position: absolute;
+				left: -30px;
+				top: 0;
+			}
+		}
 		.slick-current{
 			background-color: @secondary-color;
 		}
@@ -642,8 +654,31 @@
 			display: inline-block;
 			margin-right: 10px;
 			&.slick-active{
+				position: relative;
+				&::before {
+					content: '';
+					width: 16px;
+					height: 16px;
+					background-color: #00E8B4;
+					border-radius: 50%;
+					position: absolute;
+					left: -30px;
+					top: 50%;
+					transform: translateY(-50%);
+				}
 				.dot{
 					background-color: @secondary-color;
+					&::before {
+						content: '';
+						width: 16px;
+						height: 16px;
+						background-color: #00E8B4;
+						border-radius: 50%;
+						position: absolute;
+						left: -30px;
+						top: 50%;
+						transform: translateY(-50%);
+					}
 				}
 			}
 		}
