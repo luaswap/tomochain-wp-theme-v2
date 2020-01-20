@@ -1,18 +1,18 @@
 <?php
 if(!class_exists('TMC_Event')){
-	/**
-	 * 
-	 */
-	class TMC_Event{
-		
-		function __construct(){
-			add_action('init', array($this,'tmc_event'));
-			if ( is_admin() ) {
+    /**
+     * 
+     */
+    class TMC_Event{
+        
+        function __construct(){
+            add_action('init', array($this,'tmc_event'));
+            if ( is_admin() ) {
                 add_filter( 'manage_tmc_event_posts_columns', array( $this, 'add_columns' ) );
                 add_action( 'manage_tmc_event_posts_custom_column', array( $this, 'set_columns_value'), 10, 2);
             }
-		}
-		function tmc_event(){
+        }
+        function tmc_event(){
 
             $labels = array(
                 'menu_name'          => esc_html__( 'Events', 'tmc' ),
@@ -39,14 +39,12 @@ if(!class_exists('TMC_Event')){
                 'show_in_admin_bar'     => true,
                 'show_in_nav_menus'     => true,
                 'can_export'            => true,
-                'has_archive'           => true,
+                'has_archive'           => false,
                 'exclude_from_search'   => false,
+                'publicly_queryable'    => false,           
                 'capability_type'       => 'post',
                 'supports'              => array( 'title', 'editor', 'thumbnail', 'excerpt' ),
-                'rewrite'           => array(
-                    'slug'          => 'event',
-                    'with_front'    => false
-                ) ,
+                'rewrite'               => false
             );
             register_post_type( 'tmc_event', $args );
 
@@ -86,8 +84,8 @@ if(!class_exists('TMC_Event')){
                 'tmc_event'
             ) , $category_args);
 
-		}
-		// Add columns to Event
+        }
+        // Add columns to Event
         function add_columns($columns) {
             unset(
                 $columns['cb'],
@@ -112,6 +110,6 @@ if(!class_exists('TMC_Event')){
                 }
             }
         }
-	}
-	new TMC_Event();
+    }
+    new TMC_Event();
 }

@@ -5,11 +5,12 @@
      * @param $ The jQuery alias
      */
     var EventSlick = function( $scope, $ ) {
+        var items = $scope.find('.tmc-event-dots').data('item');
         $scope.find('.tmc-event-dots').slick({
             vertical: true,
             focusOnSelect: true,
             asNavFor: '.tmc-event-content',
-            slidesToShow: 5,
+            slidesToShow: items != '' ? parseInt(items) : 4,
             slidesToScroll: 1,
             verticalSwiping: true,
             // autoplay: true,

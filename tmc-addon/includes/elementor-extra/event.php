@@ -123,12 +123,12 @@ class Event extends Widget_Base{
             ]
         );
         $this->add_control(
-            'excerpt_length',
+            'items',
             [
-            'label' => esc_html__( 'Excerpt Length', 'tmc' ),
+            'label' => esc_html__( 'Display slide number', 'tmc' ),
             'type' => Controls_Manager::NUMBER,
-            'placeholder' => esc_html__( '15', 'tmc' ),
-            'default'     => 15,
+            'placeholder' => esc_html__( '6', 'tmc' ),
+            'default'     => 6,
             ]
         );
         $this->end_controls_section();
@@ -140,8 +140,7 @@ class Event extends Widget_Base{
         $order_by = !empty($settings['order_by']) ? $settings['order_by'] : 'default';
         $order    = !empty($settings['order']) ? $settings['order'] : 'DESC';
         $per_page = !empty($settings['post_per_page']) ? $settings['post_per_page'] : 8;
-        $excerpt_length = !empty($settings['excerpt_length']) ? $settings['excerpt_length'] : 15;
-
+        $items    = !empty($settings['items']) ? $settings['items'] : 6;
         $args = array(
             'post_type'     => 'tmc_event',
             'post_status'   => 'publish',
@@ -183,7 +182,7 @@ class Event extends Widget_Base{
         ?>
         <div class="tmc-events-widget">
             <div class="tmc-events-wrap">
-                <div class="tmc-event-dots">
+                <div class="tmc-event-dots" data-item="<?php esc_attr_e($items);?>">
                 <?php if($e->have_posts()):
                     $current_time = time();
                     while ($e->have_posts()): $e->the_post();
@@ -231,9 +230,7 @@ class Event extends Widget_Base{
                                     <span class="tmc-place"><i class="fas fa-map-marker-alt"></i> <?php echo esc_html($place);?></span>
                                 <?php endif;?>
                                 <div class="tmc-event-desc">
-                                    <?php
-                                        echo the_content( get_the_excerpt(), $excerpt_length );
-                                    ?>
+                                    <?php the_content();?>
                                 </div>
                             </div>
                         </div>
