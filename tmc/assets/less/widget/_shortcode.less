@@ -58,6 +58,11 @@
 	    width: 100%;
 	}
 }
+.slick-slide{
+	&:focus{
+		outline: none;
+	}
+}
 /* Client */
 .tmc-client-widget{
 	.owl-item{
@@ -177,21 +182,18 @@
 			}
 		}
 	}
-	.owl-dots{
-		margin-top: 20px;
-	}
-	.owl-nav{
-		opacity: 1;
-		button{
-			i{
-				color: @secondary-color;
-			}
-		}
-		.owl-prev{
-			left: -50px;
-		}
-		.owl-next{
-			right: -50px;
+	.slick-nav{
+		padding: 0;
+		list-style: none;
+		text-align: center;
+		li{
+			display: inline-block;
+			width: 40px;
+			height: 40px;
+			line-height: 40px;
+			border-radius: 50%;
+			margin-right: 20px;
+			cursor: pointer;
 		}
 	}
 }
@@ -568,12 +570,7 @@
 .tmc-events-widget{
 	.tmc-events-wrap{
 		display: flex;
-		align-items: top;
-		.slick-slide{
-			&:focus{
-				outline: none;
-			}
-		}
+		align-items: top;		
 	}
 	.tmc-event-dots{
 		width: 33.33%;
@@ -618,5 +615,131 @@
 	.tmc-team-item{
 		width: 33.33%;
 		padding: 40px 60px;
+	}
+}
+/* TMC Press */
+.tmc-press-widget{
+	.title-heading{
+		font-size: 60px;
+	}
+	.p-item{
+		img{
+			max-height: 50px;
+		}
+		padding: 40px 60px;
+		.read-more{
+			font-weight: bold;
+			&:after{
+				content:'\f30b';
+				font-family: 'Font Awesome 5 Free';
+				margin-left: 20px;
+			}
+		}
+	}
+	.slick-dots{
+		text-align: center;
+		li{
+			display: inline-block;
+			margin-right: 10px;
+			&.slick-active{
+				.dot{
+					background-color: @secondary-color;
+				}
+			}
+		}
+		.dot{
+			width: 8px;
+			height: 8px;
+			background-color: @border-color;
+			cursor: pointer;
+			display: block;
+			&:hover{
+				background-color: @secondary-color;
+			}
+
+		}
+	}
+}
+/* TMC Contact */
+.tmc-contact-widget{
+	padding-left: 60px;
+	padding-right: 60px;
+	display: flex;
+	.tmc-contact-title{
+		position: relative;
+		width: 25%;
+		h2{
+			position: absolute;
+			font-size: 60px;
+			transform: translateY(-50%) rotate(-90deg);
+			top: 50%;
+		}
+	}
+	.tmc-contact-content{
+		width: 75%;
+		.c-item{
+			display: flex;
+			padding: 20px 0;
+			.contact-title{
+				min-width: 45%;
+				font-weight: bold;
+			}
+			.contact-info{
+				color: #3399ff;
+				a{
+					text-decoration: underline;
+				}
+			}
+		}
+	}
+}
+/* TMC Step */
+.tmc-step-widget{
+	.step-header{
+		display: flex;
+		align-items: center;
+		.number{
+			font-size: 60px;
+			margin-right: 20px;
+		}
+	}
+}
+/* TMC Layer */
+.tmc-layer-widget{
+	.tmc-grid-item{
+		display: flex;
+		width: 100%;
+		.layer-header{
+			width: 70%;
+			position: relative;
+		}
+		.tmc-cube{
+			width: 180px;
+		    height: 180px;
+		    -webkit-transform: skew(45deg);
+		    -ms-transform: skew(45deg);
+		    transform: rotate(45deg) skew(-20deg, -20deg);
+		    position: absolute;
+		    z-index: 2;
+		}
+		.layer-number{
+			position: absolute;
+			right: 0;
+			color: #fff;
+			padding-left: 10px;
+			padding-right: 10px;
+			z-index: 2;
+			top: 46px;
+		}
+		.line{
+			position: absolute;
+		    height: 2px;
+		    width: 70%;
+		    display: block;
+		    background: red;
+		    right: 0;
+		    top: 60px;
+		    z-index: 1;
+		}
 	}
 }
