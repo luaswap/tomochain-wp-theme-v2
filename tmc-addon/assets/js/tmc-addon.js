@@ -3,13 +3,13 @@
     /**
      * @param $scope The Widget wrapper element as a jQuery element
      * @param $ The jQuery alias
-     */ 
+     */
     var EventSlick = function( $scope, $ ) {
         $scope.find('.tmc-event-dots').slick({
             vertical: true,
             focusOnSelect: true,
             asNavFor: '.tmc-event-content',
-            slidesToShow: 3,
+            slidesToShow: 5,
             slidesToScroll: 1,
             verticalSwiping: true,
             // autoplay: true,
@@ -25,6 +25,7 @@
             // autoplaySpeed: 5000,
             asNavFor: '.tmc-event-dots',
             speed: 1000,
+            fade: true,
             arrows: false,
             slidesToShow: 1,
             slidesToScroll: 1,
