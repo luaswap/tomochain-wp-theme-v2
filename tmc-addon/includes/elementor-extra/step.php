@@ -150,10 +150,10 @@ class Step extends Widget_Base{
                       $sb = isset($s['button_text']) ? $s['button_text'] : '';
                       $s_url = !empty($s['url']['url']) ? $s['url']['url'] : '#';
                       $s_link_props = ' href="' . esc_url( $s_url ) . '" ';
-                      if ( isset($s['url']['is_external']) && $s['url']['is_external'] === 'on' ) {
+                      if ( isset($s['url']['is_external']) && $s['url']['is_external'] ) {
                         $s_link_props .= ' target="_blank" ';
                       }
-                      if ( isset($s['url']['nofollow']) && $s['url']['nofollow'] === 'on' ) {
+                      if ( isset($s['url']['nofollow']) && $s['url']['nofollow'] ) {
                         $link_props .= ' rel="nofollow" ';
                       }
                       ?>

@@ -172,17 +172,17 @@ class Press extends Widget_Base{
                       $pb = isset($p['button_text']) ? $p['button_text'] : esc_html__('Read the article','tmc');
                       $p_url = !empty($p['url']['url']) ? $p['url']['url'] : '#';
                       $p_link_props = ' href="' . esc_url( $p_url ) . '" ';
-                      if ( isset($p['url']['is_external']) && $p['url']['is_external'] === 'on' ) {
+                      if ( isset($p['url']['is_external']) && $p['url']['is_external'] ) {
                         $p_link_props .= ' target="_blank" ';
                       }
-                      if ( isset($p['url']['nofollow']) && $p['url']['nofollow'] === 'on' ) {
+                      if ( isset($p['url']['nofollow']) && $p['url']['nofollow'] ) {
                         $link_props .= ' rel="nofollow" ';
                       }
                       ?>
                       <div class="p-item">
                           <img src="<?php echo esc_url($pi);?>" alt="<?php echo esc_attr($pt);?>">
                           <p class="desc"><?php esc_html_e($pd);?></p>
-                          <a class="read-more" <?php echo esc_attr($p_link_props);?>><?php echo $pb?></a>
+                          <a class="read-more" <?php echo $p_link_props;?>><?php echo $pb?></a>
                       </div>
                   <?php }?>
               </div>
