@@ -148,7 +148,18 @@ class Press extends Widget_Base{
         ?>
         <div class="tmc-press-widget">
           <?php if(!empty($settings['title_heading'])):?>
-            <h2 class="title-heading"><span><?php echo $settings['title_heading'];?></span></h2>
+            <h2 class="title-heading scrollme">
+              <?php echo $settings['title_heading'];?>
+              <span class="animateme"
+                data-when="enter"
+                data-from="1"
+                data-to="0"
+                data-opacity="0"
+                data-translatex="-400"
+                data-translatey="0"
+                data-rotatez="0">
+              </span>
+            </h2>
           <?php endif;?>
 
             <?php if(!empty($press) && is_array($press)):?>

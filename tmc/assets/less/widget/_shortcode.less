@@ -485,15 +485,25 @@
 	.button-link{
 		display: inline-block;
 		padding: 10px 60px;
-		margin-right: 30px;
-		font-weight: bold;
+		font-weight: 900;
+		text-align: center;
 		color: inherit;
+		@media (max-width: 767px){
+			display: block;
+		}
+		&:not(:first-of-type){
+			margin-left: 30px;
+			@media (max-width: 767px){
+				margin-left: 0px;
+				margin-top: 15px;
+			}
+		}
 		&.type-1{
 			background-color: @secondary-color;
 			border: 2px solid @secondary-color;
 			&:hover {
-				background-color: @white;
-				border: 2px solid @white;
+				background-color: @gray;
+				border: 2px solid @gray;
 			}
 		}
 		&.type-2{
@@ -568,51 +578,116 @@
 }
 /* TMC Event */
 .tmc-events-widget{
+	margin-bottom: 100px;
 	.tmc-events-wrap{
 		display: flex;
-		align-items: top;
+		align-items: flex-start;
 	}
 	.tmc-event-dots{
 		width: 33.33%;
+		position: relative;
+		&::before {
+			content: '';
+			width: 2px;
+			height: 100%;
+			background-color: #F5F5F5;
+			position: absolute;
+			left: -30px;
+			top: 0;
+		}
 		.slick-list {
-			position: relative;
-			&::before {
-				content: '';
-				width: 2px;
-				height: 100%;
-				background-color: #F5F5F5;
-				position: absolute;
-				left: -30px;
-				top: 0;
+			padding-left: 40px;
+			margin-left: -40px;
+			.slick-current{
+				background-color: @secondary-color;
 			}
-		}
-		.slick-current{
-			background-color: @secondary-color;
-		}
-		.tmc-dot{
-			display: flex;
-			align-items: flex-end;
-			padding: 25px;
-			.tmc-date{
-				font-size: 60px;
-				line-height: 60px;
-			}
-			.tmc-info{
-				padding-left: 30px;
-				span{
-					display: block;
+			.tmc-dot{
+				display: flex;
+				align-items: center;
+				padding: 25px;
+				&.slick-current{
+					position: relative;
+					&::before {
+						content: '';
+						width: 14px;
+						height: 14px;
+						background-color: #00E8B4;
+						border-radius: 50%;
+						position: absolute;
+						left: -37px;
+						top: 50%;
+						transform: translateY(-50%);
+					}
+					&::after {
+						content: '';
+						width: 22px;
+						height: 22px;
+						background-color: #00E8B4;
+						border-radius: 50%;
+						position: absolute;
+						left: -41px;
+						top: 50%;
+						transform: translateY(-50%);
+						opacity: .2;
+					}
+				}
+				.tmc-event-time {
+					text-align: center;
+					.tmc-date{
+						font-size: 60px;
+						line-height: 1;
+						font-weight: 900;
+					}
+					.tmc-month-year {
+						font-size: 22px;
+					}
+				}
+				.tmc-info{
+					padding-left: 30px;
+					.tmc-title {
+						font-size: 22px;
+						font-weight: bold;
+					}
+					span{
+						display: block;
+						font-size: 18px;
+					}
 				}
 			}
 		}
 	}
 	.tmc-event-content{
-		width: calc(67.67% - 120px);
-		margin-left: 120px;
+		width: calc(67.67% - 115px);
+		margin-left: 100px;
 		.tmc-event-item{
-			.tmc-event-img{
-				display: block;
-				img{
-					width: 100%;
+			position: absolute!important;
+			left: 0!important;
+			top: 0!important;
+			&.slick-current {
+				position: relative !important;
+			}
+			.tmc-event-info{
+				.tmc-event-title {
+					font-size: 24px;
+				}
+				.tmc-location {
+					color: #2F3A58;
+					font-size: 18px;
+					opacity: .4;
+					margin-top: 7px;
+					i {
+						padding-right: 5px;
+					}
+				}
+				.tmc-event-desc {
+					padding-top: 25px;
+				}
+			}
+			.tmc-event-coverphoto {
+				text-align: center;
+				margin-bottom: 15px;
+				img {
+					display: inline-block;
 				}
 			}
 		}
@@ -626,13 +701,51 @@
 	}
 	.tmc-team-item{
 		width: 33.33%;
-		padding: 40px 60px;
+		padding: 60px;
+		.member-avatar {
+			margin-bottom: 25px;
+			img {
+				display: block;
+			}
+		}
+		.team-info {
+			.team-name {
+				font-size: 24px;
+				font-weight: bold;
+			}
+			.team-position {
+				font-size: 18px;
+			}
+			.social {
+				padding: 0;
+				margin: 0;
+				display: flex;
+				list-style: none;
+			}
+		}
 	}
 }
 /* TMC Press */
 .tmc-press-widget{
 	.title-heading{
+		display: inline-block;
 		font-size: 60px;
+		line-height: 1;
+		position: relative;
+		font-weight: 900;
+		z-index: 1;
+		margin-bottom: 50px;
+		span{
+			content: '';
+			height: 30px;
+			display: block;
+			background-color: @secondary-color;
+			position: absolute;
+			z-index: -1;
+			width: 150px;
+			right: -50px;
+			bottom: 0;
+		}
 	}
 	.p-item{
 		img{
@@ -641,11 +754,13 @@
 		padding: 40px 60px;
 		.read-more{
 			font-weight: bold;
-			&:after{
-				content:'\f30b';
-				font-family: 'Font Awesome 5 Free';
-				margin-left: 20px;
-			}
+			color: #00E8B4;
+			text-decoration: underline;
+			// &:after{
+			// 	content:'\f30b';
+			// 	font-family: 'Font Awesome 5 Free';
+			// 	margin-left: 20px;
+			// }
 		}
 	}
 	.slick-dots{
@@ -653,75 +768,65 @@
 		li{
 			display: inline-block;
 			margin-right: 10px;
-			&.slick-active{
-				position: relative;
-				&::before {
-					content: '';
-					width: 16px;
-					height: 16px;
-					background-color: #00E8B4;
-					border-radius: 50%;
-					position: absolute;
-					left: -30px;
-					top: 50%;
-					transform: translateY(-50%);
-				}
+			.dot{
+				width: 8px;
+				height: 8px;
+				background-color: @border-color;
+				cursor: pointer;
+				display: block;
+			}
+			&.slick-active {
 				.dot{
 					background-color: @secondary-color;
-					&::before {
-						content: '';
-						width: 16px;
-						height: 16px;
-						background-color: #00E8B4;
-						border-radius: 50%;
-						position: absolute;
-						left: -30px;
-						top: 50%;
-						transform: translateY(-50%);
-					}
 				}
 			}
-		}
-		.dot{
-			width: 8px;
-			height: 8px;
-			background-color: @border-color;
-			cursor: pointer;
-			display: block;
-			&:hover{
-				background-color: @secondary-color;
-			}
-
 		}
 	}
 }
 /* TMC Contact */
 .tmc-contact-widget{
-	padding-left: 60px;
-	padding-right: 60px;
 	display: flex;
 	.tmc-contact-title{
 		position: relative;
 		width: 25%;
-		h2{
+		.title-heading{
+			color: #ffffff;
 			position: absolute;
-			font-size: 60px;
-			transform: translateY(-50%) rotate(-90deg);
+			font-size: 90px;
 			top: 50%;
+			right: 100px;
+			line-height: 1;
+			font-weight: 900;
+			z-index: 1;
+			transform: translateY(-50%) rotate(-90deg);
+			span{
+				content: '';
+				height: 30px;
+				display: block;
+				background-color: @secondary-color;
+				position: absolute;
+				z-index: -1;
+				width: 210px;
+				right: 0;
+				bottom: 0;
+			}
 		}
 	}
 	.tmc-contact-content{
 		width: 75%;
+		font-size: 22px;
 		.c-item{
 			display: flex;
 			padding: 20px 0;
 			.contact-title{
 				min-width: 45%;
 				font-weight: bold;
+				color: #ffffff;
 			}
 			.contact-info{
-				color: #3399ff;
+				padding-left: 50px;
 				a{
+					color: #00E8B4;
 					text-decoration: underline;
 				}
 			}

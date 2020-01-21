@@ -226,7 +226,9 @@ class Team_Member extends Widget_Base {
 					?>
 					<div class="tmc-team-item">
 						<div class="tmc-team-box">
-							<img src="<?php echo esc_url($image['url'])?>" alt="<?php echo esc_attr($value['title']);?>">
+							<div class="member-avatar">
+								<img src="<?php echo esc_url($image['url'])?>" alt="<?php echo esc_attr($value['title']);?>">
+							</div>
 							<div class="team-info">
 								<h3 class="team-name"><?php echo esc_html($value['title']);?></h3>
 								<span class="team-position"><?php echo esc_html($value['position']);?></span>

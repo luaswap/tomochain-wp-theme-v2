@@ -216,18 +216,23 @@ class Event extends Widget_Base{
                         $place = get_post_meta(get_the_ID(), 'event_place',true);?>
                         <div class="tmc-event-item">
                             <?php if ( has_post_thumbnail() ):?>
-                                <?php
-                                the_post_thumbnail(
-                                'event-image', array(
-                                    'class' => 'img-responsive',
-                                    'alt'   => get_the_title( get_post_thumbnail_id() ),
-                                )
-                                ); ?>
+                                <div class="tmc-event-coverphoto">
+                                    <?php
+                                    the_post_thumbnail(
+                                    'event-image', array(
+                                        'class' => 'img-responsive',
+                                        'alt'   => get_the_title( get_post_thumbnail_id() ),
+                                    )
+                                    ); ?>
+                                </div>
                             <?php endif;?>
                             <div class="tmc-event-info">
                                 <h2 class="tmc-event-title"><?php the_title();?></h2>
                                 <?php if(!empty($place)):?>
-                                    <span class="tmc-place"><i class="fas fa-map-marker-alt"></i> <?php echo esc_html($place);?></span>
+                                <div class="tmc-location">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    <span class="tmc-place"><?php echo esc_html($place);?></span>
+                                </div>
                                 <?php endif;?>
                                 <div class="tmc-event-desc">
                                     <?php the_content();?>

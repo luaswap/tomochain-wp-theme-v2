@@ -140,7 +140,18 @@ class Contact extends Widget_Base{
         <div class="tmc-contact-widget">
           <?php if(!empty($settings['title_heading'])):?>
             <div class="tmc-contact-title">
-              <h2 class="title-heading"><span><?php echo $settings['title_heading'];?></span></h2>
+              <h2 class="title-heading scrollme">
+                <?php echo $settings['title_heading'];?>
+                <span class="animateme"
+                  data-when="enter"
+                  data-from="1"
+                  data-to="0"
+                  data-opacity="0"
+                  data-translatex="-400"
+                  data-translatey=""
+                  data-rotatez="0">
+                </span>
+              </h2>
             </div>
           <?php endif;?>
 
