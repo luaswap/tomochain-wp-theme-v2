@@ -9,6 +9,7 @@ namespace TMC_Elementor_Widgets;
 use \Elementor\Widget_Base;
 use \Elementor\Controls_Manager;
 use \Elementor\Utils;
+use \Elementor\Repeater;
 
 class Team_Member extends Widget_Base {
 	/**
@@ -56,12 +57,143 @@ class Team_Member extends Widget_Base {
 				'label' => esc_html__( 'General Options', 'tmc' )
 			]
 		);
-	
+		$repeater = new Repeater();
+
+		$repeater->add_control(
+	        'image',
+	        [
+	          'type'      => Controls_Manager::MEDIA,
+	          'label'     => esc_html__( 'Image', 'tmc' ),
+	          'default'   => [
+	            'url'   => Utils::get_placeholder_image_src(),
+	          ],
+	        ]
+	    );
+	    $repeater->add_control(
+	        'title',
+	        [
+	          'type'      => Controls_Manager::TEXT,
+	          'label'     => esc_html__( 'Name', 'tmc' ),
+	        ]
+	    );
+	    $repeater->add_control(
+	        'position',
+	        [
+	          'type'      => Controls_Manager::TEXT,
+	          'label'     => esc_html__( 'Position', 'tmc' ),
+	        ]
+	    );
+	    $repeater->add_control(
+	    	'social1',
+		    [
+				'label' 	=> esc_html__( 'Social 1', 'tmc' ),
+				'type' 		=> Controls_Manager::HEADING,
+				'separator' => 'before',
+			]
+		);
+		$repeater->add_control(
+			'icon1',
+			[
+				'label' 	=> esc_html__( 'Icon', 'tmc' ),
+				'type' 		=> Controls_Manager::ICONS,
+				'default' 	=> [
+					'value' 	=> 'fab fa-facebook-square',
+				],
+			]
+		);
+		$repeater->add_control(
+			'link1',
+			[
+				'label' 		=> esc_html__( 'Link', 'tmc' ),
+				'type' 			=> Controls_Manager::URL,
+				'placeholder' 	=> esc_html__( 'https://your-link.com', 'tmc' ),
+			]
+		);
+		$repeater->add_control(
+			'social2',
+			[
+				'label' 	=> esc_html__( 'Social 2', 'tmc' ),
+				'type' 		=> Controls_Manager::HEADING,
+				'separator' => 'before',
+			]
+		);
+		$repeater->add_control(
+			'icon2',
+			[
+				'label' 	=> esc_html__( 'Icon', 'tmc' ),
+				'type' 		=> Controls_Manager::ICONS,
+				'default' 	=> [
+					'value' 	=> 'fab fa-twitter-square',
+				],
+			]
+		);
+		$repeater->add_control(
+			'link2',
+			[
+				'label' 		=> esc_html__( 'Link', 'tmc' ),
+				'type' 			=> Controls_Manager::URL,
+				'placeholder' 	=> esc_html__( 'https://your-link.com', 'tmc' ),
+			]
+		);
+		$repeater->add_control(
+			'social3',
+			[
+				'label' 	=> esc_html__( 'Social 3', 'tmc' ),
+				'type' 		=> Controls_Manager::HEADING,
+				'separator' => 'before',
+			]
+		);
+		$repeater->add_control(
+			'icon3',
+			[
+				'label' 	=> esc_html__( 'Icon', 'tmc' ),
+				'type' 		=> Controls_Manager::ICONS,
+				'default' 	=> [
+					'value' 	=> 'fab fa-linkedin',
+				],
+			]
+		);
+		$repeater->add_control(
+			'link3',
+			[
+				'label' 		=> esc_html__( 'Link', 'tmc' ),
+				'type' 			=> Controls_Manager::URL,
+				'placeholder' 	=> esc_html__( 'https://your-link.com', 'tmc' ),
+			]
+		);
+
+		$repeater->add_control(
+			'social4',
+			[
+				'label' 	=> esc_html__( 'Social 4', 'tmc' ),
+				'type' 		=> Controls_Manager::HEADING,
+				'separator' => 'before',
+			]
+		);
+		$repeater->add_control(
+			'icon4',
+			[
+				'label' 	=> esc_html__( 'Icon', 'tmc' ),
+				'type' 		=> Controls_Manager::ICONS,
+				'default' 	=> [
+					'value' 	=> 'fab fa-github',
+				],
+			]
+		);
+		$repeater->add_control(
+			'link4',
+			[
+				'label' 		=> esc_html__( 'Link', 'tmc' ),
+				'type' 			=> Controls_Manager::URL,
+				'placeholder' 	=> esc_html__( 'https://your-link.com', 'tmc' ),
+			]
+		);
 		$this->add_control(
 			'tmc_team',
 			[
 				'label'       => esc_html__( 'Team Item', 'tmc' ),
 				'type'        => Controls_Manager::REPEATER,
+				'fields' 	  => $repeater->get_controls(),
 				'default'	  => [
 					[
 						'title'		=> 'Member 1',
@@ -74,112 +206,7 @@ class Team_Member extends Widget_Base {
 					[
 						'title'		=> 'Member 3',
 						'position'	=> 'Frond-end'
-					],
-				],
-				'fields'      => [
-					[
-						'type' 			=> Controls_Manager::MEDIA,
-						'name'  		=> 'image',
-						'label' 		=> esc_html__( 'Choose Image', 'tmc' ),
-						'dynamic' 		=> [
-							'active' 	=> true,
-						],
-						'default' => [
-							'url' => Utils::get_placeholder_image_src(),
-						],
-					],
-					[
-						'type' 			=> Controls_Manager::TEXT,
-						'name'  		=> 'title',
-						'label' 		=> esc_html__( 'Name', 'tmc' ),
-					],
-					[
-						'type' 			=> Controls_Manager::TEXT,
-						'name'  		=> 'position',
-						'label' 		=> esc_html__( 'Position', 'tmc' ),
-					],
-					[
-						'label' 	=> esc_html__( 'Social 1', 'tmc' ),
-						'type' 		=> Controls_Manager::HEADING,
-						'name' 		=> 'social1',
-						'separator' => 'before',
-					],
-					[
-						'label' 	=> esc_html__( 'Icon', 'tmc' ),
-						'type' 		=> Controls_Manager::ICONS,
-						'name'		=> 'icon1',
-						'default' 	=> [
-							'value' 	=> 'fab fa-facebook-square',
-						],
-					],
-					[
-						'label' 		=> esc_html__( 'Link', 'tmc' ),
-						'type' 			=> Controls_Manager::URL,
-						'name' 			=> 'link1',
-						'placeholder' 	=> esc_html__( 'https://your-link.com', 'tmc' ),
-					],
-					
-					[
-						'label' 	=> esc_html__( 'Social 2', 'tmc' ),
-						'type' 		=> Controls_Manager::HEADING,
-						'name' 		=> 'social2',
-						'separator' => 'before',
-					],
-					[
-						'label' 	=> esc_html__( 'Icon', 'tmc' ),
-						'type' 		=> Controls_Manager::ICONS,
-						'name'		=> 'icon2',
-						'default' 	=> [
-							'value' 	=> 'fab fa-twitter-square',
-						],
-					],
-					[
-						'label' 		=> esc_html__( 'Link', 'tmc' ),
-						'type' 			=> Controls_Manager::URL,
-						'name' 			=> 'link2',
-						'placeholder' 	=> esc_html__( 'https://your-link.com', 'tmc' ),
-					],
-					[
-						'label' 	=> esc_html__( 'Social 3', 'tmc' ),
-						'type' 		=> Controls_Manager::HEADING,
-						'name' 		=> 'social3',
-						'separator' => 'before',
-					],
-					[
-						'label' 	=> esc_html__( 'Icon', 'tmc' ),
-						'type' 		=> Controls_Manager::ICONS,
-						'name'		=> 'icon3',
-						'default' 	=> [
-							'value' 	=> 'fab fa-linkedin',
-						],
-					],
-					[
-						'label' 		=> esc_html__( 'Link', 'tmc' ),
-						'type' 			=> Controls_Manager::URL,
-						'name' 			=> 'link3',
-						'placeholder' 	=> esc_html__( 'https://your-link.com', 'tmc' ),
-					],
-
-					[
-						'label' 	=> esc_html__( 'Social 4', 'tmc' ),
-						'type' 		=> Controls_Manager::HEADING,
-						'name' 		=> 'social4',
-						'separator' => 'before',
-					],
-					[
-						'label' 	=> esc_html__( 'Icon', 'tmc' ),
-						'type' 		=> Controls_Manager::ICONS,
-						'name'		=> 'icon4',
-						'default' 	=> [
-							'value' 	=> 'fab fa-github',
-						],
-					],
-					[
-						'label' 		=> esc_html__( 'Link', 'tmc' ),
-						'type' 			=> Controls_Manager::URL,
-						'name' 			=> 'link4',
-						'placeholder' 	=> esc_html__( 'https://your-link.com', 'tmc' ),
-					],
+					],				
 				],
 				'title_field' 	=> '{{title}}',
 			]
@@ -201,8 +228,8 @@ class Team_Member extends Widget_Base {
 						<div class="tmc-team-box">
 							<img src="<?php echo esc_url($image['url'])?>" alt="<?php echo esc_attr($value['title']);?>">
 							<div class="team-info">
-								<h4 class="team-name"><?php echo esc_html($value['title']);?></h4>
-								<p class="team-position"><?php echo esc_html($value['position']);?></p>
+								<h3 class="team-name"><?php echo esc_html($value['title']);?></h3>
+								<span class="team-position"><?php echo esc_html($value['position']);?></span>
 								<ul class="social">
 									<?php
 									if($value['link1']['url']){
