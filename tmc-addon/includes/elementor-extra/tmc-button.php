@@ -92,15 +92,15 @@ class Tmc_Button extends Widget_Base{
           foreach ($button_list as $value) {
             $i++;
             $title = $value['title'];
-            $url = !empty($p['url']['url']) ? $p['url']['url'] : '#';
-            $link = ' href="' . esc_url( $url ) . '" ';
-            if ( isset($value['url']['is_external']) && $value['url']['is_external'] === 'on' ) {
+            $url = !empty($value['url']['url']) ? $value['url']['url'] : '#';
+            $link = ' href="' .  esc_url($url) . '" ';
+            if ( isset($value['url']['is_external']) && $value['url']['is_external'] ) {
               $link .= ' target="_blank" ';
             }
-            if ( isset($value['url']['nofollow']) && $value['url']['nofollow'] === 'on' ) {
+            if ( isset($value['url']['nofollow']) && $value['url']['nofollow'] ) {
               $link .= ' rel="nofollow" ';
             }?>
-            <a class="button-link type-<?php echo $i;?>" <?php echo esc_attr($link);?>>
+            <a class="button-link type-<?php echo $i;?>" <?php echo $link;?>>
               <?php echo $title;?>
             </a>
           <?php }?>

@@ -236,39 +236,39 @@ class Team_Member extends Widget_Base {
 									<?php
 									if($value['link1']['url']){
 										$link_props1 = ' href="' . esc_url($value['link1']['url']) . '" ';
-										if ( $value['link1']['is_external'] === 'on' ) {
+										if ( $value['link1']['is_external'] ) {
 											$link_props1 .= ' target="_blank" ';
 										}
-										if ( $value['link1']['nofollow'] === 'on' ) {
+										if ( $value['link1']['nofollow'] ) {
 											$link_props1 .= ' rel="nofollow" ';
 										}
 									}
 									if($value['link2']['url']){
 
 										$link_props2 = ' href="' . esc_url($value['link2']['url']) . '" ';
-										if ( $value['link2']['is_external'] === 'on' ) {
+										if ( $value['link2']['is_external'] ) {
 											$link_props2 .= ' target="_blank" ';
 										}
-										if ( $value['link2']['nofollow'] === 'on' ) {
+										if ( $value['link2']['nofollow'] ) {
 											$link_props2 .= ' rel="nofollow" ';
 										}
 									}
 									if($value['link3']['url']){
 
 										$link_props3 = ' href="' . esc_url($value['link3']['url']) . '" ';
-										if ( $value['link3']['is_external'] === 'on' ) {
+										if ( $value['link3']['is_external'] ) {
 											$link_props3 .= ' target="_blank" ';
 										}
-										if ( $value['link3']['nofollow'] === 'on' ) {
+										if ( $value['link3']['nofollow'] ) {
 											$link_props3 .= ' rel="nofollow" ';
 										}
 									}
 									if($value['link4']['url']){
 										$link_props4 = ' href="' . esc_url($value['link4']['url']) . '" ';
-										if ( $value['link4']['is_external'] === 'on' ) {
+										if ( $value['link4']['is_external'] ) {
 											$link_props4 .= ' target="_blank" ';
 										}
-										if ( $value['link4']['nofollow'] === 'on' ) {
+										if ( $value['link4']['nofollow'] ) {
 											$link_props4 .= ' rel="nofollow" ';
 										}
 									}

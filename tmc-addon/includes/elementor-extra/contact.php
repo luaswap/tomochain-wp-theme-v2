@@ -172,10 +172,10 @@ class Contact extends Widget_Base{
                           <?php }else{
                             $c_url = !empty($c['url']['url']) ? $c['url']['url'] : '#';
                             $c_link_props = ' href="' . esc_url( $c_url ) . '" ';
-                            if ( isset($c['url']['is_external']) && $c['url']['is_external'] === 'on' ) {
+                            if ( isset($c['url']['is_external']) && $c['url']['is_external'] ) {
                               $c_link_props .= ' target="_blank" ';
                             }
-                            if ( isset($c['url']['nofollow']) && $c['url']['nofollow'] === 'on' ) {
+                            if ( isset($c['url']['nofollow']) && $c['url']['nofollow'] ) {
                               $link_props .= ' rel="nofollow" ';
                             }
                             $text = $c['text'];?>

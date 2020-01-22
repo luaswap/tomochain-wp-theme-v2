@@ -394,17 +394,17 @@ class Tabs extends Widget_Base{
                     foreach ( $p_list as $p ) {
                       $pt = isset($p['p_title']) ? $p['p_title'] : '';
                       $pi = isset($p['p_image']['url']) ? $p['p_image']['url'] : '';
-                      $p_url = !empty($p['url']['url']) ? $p['url']['url'] : '#';
+                      $p_url = !empty($p['p_url']['url']) ? $p['p_url']['url'] : '#';
                       $p_link_props = ' href="' . esc_url( $p_url ) . '" ';
-                      if ( isset($p['url']['is_external']) && $p['url']['is_external'] === 'on' ) {
+                      if ( isset($p['p_url']['is_external']) && $p['p_url']['is_external'] ) {
                         $p_link_props .= ' target="_blank" ';
                       }
-                      if ( isset($p['url']['nofollow']) && $p['url']['nofollow'] === 'on' ) {
-                        $link_props .= ' rel="nofollow" ';
+                      if ( isset($p['p_url']['nofollow']) && $p['p_url']['nofollow'] ) {
+                        $p_link_props .= ' rel="nofollow" ';
                       }
                       ?>
                       <div class="p-item col-4 col-md-3">
-                        <a class="link" <?php echo esc_attr($p_link_props);?>>
+                        <a class="link" <?php echo $p_link_props;?>>
                           <img src="<?php echo esc_url($pi);?>" alt="<?php echo esc_attr($pt);?>">
                         </a>
                       </div>
@@ -421,15 +421,15 @@ class Tabs extends Widget_Base{
                       $ei = isset($ex['image']['url']) ? $ex['image']['url'] : '';
                       $e_url = !empty($ex['url']['url']) ? $ex['url']['url'] : '#';
                       $link_props = ' href="' . esc_url( $e_url ) . '" ';
-                      if ( isset($ex['url']['nofollow']) && $ex['url']['is_external'] === 'on' ) {
+                      if ( isset($ex['url']['nofollow']) && $ex['url']['is_external'] ) {
                         $link_props .= ' target="_blank" ';
                       }
-                      if ( isset($ex['url']['nofollow']) && $ex['url']['nofollow'] === 'on' ) {
+                      if ( isset($ex['url']['nofollow']) && $ex['url']['nofollow']) {
                         $link_props .= ' rel="nofollow" ';
                       }
                       ?>
                       <div class="ex-item col-md-4 col-sm-6">
-                        <a class="link" <?php echo esc_attr($link_props);?>>
+                        <a class="link" <?php echo $link_props;?>>
                           <img src="<?php echo esc_url($ei);?>" alt="<?php echo esc_attr($et);?>">
                         </a>
                       </div>
@@ -444,17 +444,17 @@ class Tabs extends Widget_Base{
                     foreach ( $w_list as $w ) {
                       $wt = $w['w_title'];
                       $wi = isset($w['w_image']['url']) ? $w['w_image']['url'] : '';
-                      $w_url = isset($w['url']['url']) && !empty($w['url']['url']) ? $w['url']['url'] : '#';
+                      $w_url = isset($w['w_url']['url']) && !empty($w['w_url']['url']) ? $w['w_url']['url'] : '#';
                       $w_link_props = ' href="' . esc_url( $w_url ) . '" ';
-                      if ( isset($w['url']['is_external']) && $w['url']['is_external'] === 'on' ) {
+                      if ( isset($w['w_url']['is_external']) && $w['w_url']['is_external'] ) {
                         $w_link_props .= ' target="_blank" ';
                       }
-                      if ( isset($w['url']['nofollow']) && $w['url']['nofollow'] === 'on' ) {
+                      if ( isset($w['w_url']['nofollow']) && $w['w_url']['nofollow'] ) {
                         $w_link_props .= ' rel="nofollow" ';
                       }
                       ?>
                       <div class="w-item col-md-4 col-sm-6">
-                        <a class="link" <?php echo esc_attr($w_link_props);?>>
+                        <a class="link" <?php echo $w_link_props;?>>
                           <img src="<?php echo esc_url($wi);?>" alt="<?php echo esc_attr($wt);?>">
                         </a>
                       </div>
@@ -469,17 +469,17 @@ class Tabs extends Widget_Base{
                     foreach ( $c_list as $c ) {
                       $ct = isset($c['c_title']) ? $c['c_title'] : '';
                       $ci = isset($c['c_image']['url']) ? $c['c_image']['url'] : '';
-                      $c_url = !empty($c['url']['url']) ? $c['url']['url'] : '#';
+                      $c_url = !empty($c['c_url']['url']) ? $c['c_url']['url'] : '#';
                       $c_link_props = ' href="' . esc_url( $c_url ) . '" ';
-                      if ( isset($c['url']['is_external']) && $c['url']['is_external'] === 'on' ) {
+                      if ( isset($c['c_url']['is_external']) && $c['c_url']['is_external'] ) {
                         $c_link_props .= ' target="_blank" ';
                       }
-                      if ( isset($c['url']['nofollow']) && $c['url']['nofollow'] === 'on' ) {
+                      if ( isset($c['c_url']['nofollow']) && $c['c_url']['nofollow'] ) {
                         $c_link_props .= ' rel="nofollow" ';
                       }
                       ?>
                       <div class="c-item col-md-3 col-sm-4">
-                        <a class="link" <?php echo esc_attr($c_link_props);?>>
+                        <a class="link" <?php echo $c_link_props;?>>
                           <img src="<?php echo esc_url($ci);?>" alt="<?php echo esc_attr($ct);?>">
                         </a>
                       </div>
