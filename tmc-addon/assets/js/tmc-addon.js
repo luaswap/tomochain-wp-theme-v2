@@ -19,6 +19,26 @@
             arrows: false,
             // prevArrow:'<i class="fas fa-angle-double-up"></i>',
             // nextArrow: '<i class="fas fa-angle-double-down"></i>'
+            responsive: [
+                // {
+                //     breakpoint: 768,
+                //     settings: {
+                //         verticalSwiping: false,
+                //     }
+                // },
+                {
+                    breakpoint: 768,
+                    settings: {
+                        verticalSwiping: false,
+                        slidesToShow: 1,
+                        centerMode: true,
+                        arrows: true,
+                        vertical: false,
+                        prevArrow:'<div class="event-arrows-back fas fa-chevron-left"></div>',
+                        nextArrow: '<div class="event-arrows-next fas fa-chevron-right"></div>'
+                    }
+                }
+            ]
         });
         $scope.find('.tmc-event-content').slick({
             dots: false,
@@ -59,6 +79,21 @@
             },
             // prevArrow:'<i class="fas fa-angle-double-up"></i>',
             // nextArrow: '<i class="fas fa-angle-double-down"></i>'
+            responsive: [
+                // {
+                //     breakpoint: 768,
+                //     settings: {
+                //         verticalSwiping: false,
+                //     }
+                // },
+                {
+                    breakpoint: 768,
+                    settings: {
+                        slidesToShow: 1,
+                        slidesToScroll: 1,
+                    }
+                }
+            ]
         });
     };
     // Make sure you run this code under Elementor.

@@ -3,6 +3,9 @@
     background-color: @footer-bg;
     .footer-info{
         padding: 100px 0;
+        @media (max-width: 767px){
+            padding: 70px 0;
+        }
     }
     a{
         &:hover{
@@ -18,6 +21,10 @@
         ul{
             padding: 0;
             margin: 0;
+            @media (max-width: 767px){
+                display: flex;
+                flex-wrap: wrap;
+            }
             li{
                 list-style: square;
                 margin-left: 20px;

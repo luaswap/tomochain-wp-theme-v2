@@ -118,9 +118,7 @@ class Title extends Widget_Base{
         <div class="tmc-title-heading-widget">
           <?php if(!empty($settings['h_title'])):?>
             <h2 class="tmc-title-heading <?php echo esc_html($settings['tmc_title_type']);?>">
-              <span>
-                <?php echo $settings['h_title']?>
-              </span>
+              <?php echo $settings['h_title']?>
             </h2>
           <?php endif;?>
         </div>

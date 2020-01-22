@@ -1,7 +1,13 @@
+// .home {
+//     .site-header{
+//         position: fixed;
+//         transition: all .3s;
+//     }
+// }
 .site-header{
-    background-color: transparent;
+    background-color: @header-bg;
     width: 100%!important;
-	position: fixed;
+    position: fixed;
     left: 0;
     transition: all .3s;
     z-index: 9;
@@ -64,6 +70,7 @@
 
     &.scrollFixed {
         background-color: @header-bg;
+	    // position: fixed;
         .site-branding {
             a{
                 padding: 5px 0;
