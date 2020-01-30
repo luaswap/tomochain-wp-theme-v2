@@ -428,7 +428,7 @@ class Tabs extends Widget_Base{
                         $link_props .= ' rel="nofollow" ';
                       }
                       ?>
-                      <div class="ex-item col-md-4 col-sm-6">
+                      <div class="ex-item col-4 col-md-3">
                         <a class="link" <?php echo $link_props;?>>
                           <img src="<?php echo esc_url($ei);?>" alt="<?php echo esc_attr($et);?>">
                         </a>
@@ -453,7 +453,7 @@ class Tabs extends Widget_Base{
                         $w_link_props .= ' rel="nofollow" ';
                       }
                       ?>
-                      <div class="w-item col-md-4 col-sm-6">
+                      <div class="w-item col-4 col-md-3">
                         <a class="link" <?php echo $w_link_props;?>>
                           <img src="<?php echo esc_url($wi);?>" alt="<?php echo esc_attr($wt);?>">
                         </a>
@@ -478,7 +478,7 @@ class Tabs extends Widget_Base{
                         $c_link_props .= ' rel="nofollow" ';
                       }
                       ?>
-                      <div class="c-item col-md-3 col-sm-4">
+                      <div class="c-item col-4 col-md-3">
                         <a class="link" <?php echo $c_link_props;?>>
                           <img src="<?php echo esc_url($ci);?>" alt="<?php echo esc_attr($ct);?>">
                         </a>
@@ -486,7 +486,7 @@ class Tabs extends Widget_Base{
                   <?php }?>
                 </div>
               </div>
-            <?php endif;?>            
+            <?php endif;?>
         </div>
         <?php
     }
