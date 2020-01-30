@@ -409,14 +409,16 @@
   .panel {
 	height: 100%;
 	width: 100%;
-	margin-top: 130px;
+	display: flex;
+	align-items: center;
+	padding: 170px 0 100px;
 	position: absolute;
 	@media (min-width: 768px) and (max-width: 1024px){
-		margin-top: 30%;
+		padding: 150px 0;
 	}
-	@media (max-width: 767px){
-		margin-top: 110px;
-	}
+	// @media (max-width: 767px){
+	// 	margin-top: 110px;
+	// }
   }
   .panel:not(:first-of-type) {
 	transform: translateX(100%);
@@ -443,9 +445,12 @@
 			}
 			@media (max-width: 767px){
 				position: absolute;
-				top: 0;
+				top: 56%;
 				z-index: -1;
-				opacity: .5;
+				transform: translateY(-50%);
+				img {
+					height: 400px;
+				}
 			}
 		}
 		.tmc-tab-right{
