@@ -59,7 +59,7 @@ $form_id        = tmc_get_footer_option( 'form_subscribe' );
                             <?php
                                 $i = 0;
                                 switch ( $num ) {
-                                    case 3 : $class = 'col-sm-4 mt-5';
+                                    case 3 : $class = 'col-sm-4 mt-4 mt-md-5';
                                     break;
                                     case 2 : $class = 'col-md-6 col-sm-12 mt-lg-0';  break;
                                     case 1 : $class = 'col-md-12 mt-lg-0'; break;

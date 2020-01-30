@@ -52,7 +52,14 @@
 		line-height: 30px;
 	    width: 30px;
 	    text-align: center;
-	    cursor: pointer;
+		cursor: pointer;
+		opacity: 0;
+		transition: all .3s;
+	}
+	&:hover{
+		.close{
+			opacity: 1;
+		}
 	}
 }
 .tmc-report-widget{

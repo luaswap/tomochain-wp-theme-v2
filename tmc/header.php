@@ -24,6 +24,14 @@
 <body <?php body_class(); ?>>
 <?php if (!is_404()): ?>
 <div class="site-mobile-menu-wrapper">
+	<div class="site-branding">
+		<?php if(has_custom_logo()){
+			the_custom_logo();
+		}else{?>
+			<h2><a  href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>"><?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?></a></h2>
+		<?php }
+		?>
+	</div><!-- .site-branding -->
 	<?php
 	wp_nav_menu( array(
 		'theme_location' => 'primary',
