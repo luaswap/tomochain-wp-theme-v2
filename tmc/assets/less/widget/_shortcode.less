@@ -416,9 +416,9 @@
 	@media (min-width: 768px) and (max-width: 1024px){
 		padding: 150px 0;
 	}
-	// @media (max-width: 767px){
-	// 	margin-top: 110px;
-	// }
+	@media (max-width: 767px){
+		padding: 0px 0 100px;
+	}
   }
   .panel:not(:first-of-type) {
 	transform: translateX(100%);
@@ -445,16 +445,17 @@
 			}
 			@media (max-width: 767px){
 				position: absolute;
-				top: 56%;
+				top: 60%;
 				z-index: -1;
 				transform: translateY(-50%);
+				opacity: .1;
 				img {
 					height: 400px;
 				}
 			}
 		}
 		.tmc-tab-right{
-			background-color: rgba(#ffffff, 0.8);
+			background-color: rgba(#ffffff, 0.9);
 			box-shadow: 0 10px 50px 0 rgba(16, 69, 91, 0.1);
 			padding: 15px;
 			@media (min-width: 768px){
@@ -469,7 +470,10 @@
 		    .c-title{
 		    	font-size: 30px;
 		    	margin-top: 0;
-		    	margin-bottom: 0;
+				margin-bottom: 0;
+				@media (max-width: 767px){
+					font-size: 24px;
+				}
 		    }
 		    .c-subtitle{
 		    	margin: 30px 0;
@@ -478,9 +482,24 @@
 		    	display: inline-block;
 		    	padding: 8px 40px;
 		    	font-weight: bold;
-		    	background-color: #607ECA;
+		    	background-color: #2F3A58;
 		    	color: @white;
-		    }
+			}
+			&.alpha-p {
+				.link{
+					background-color: #2B88F9;
+				}
+			}
+			&.alpha-s {
+				.link{
+					background-color: #FF7C4D;
+				}
+			}
+			&.alpha-g {
+				.link{
+					background-color: #FFCA4D;
+				}
+			}
 		}
 	}
 	.tmc-alpha-tab-filter{
@@ -491,6 +510,9 @@
 		padding: 0;
 		margin: 0;
 		list-style: none;
+		@media (max-width: 767px){
+			right: 0;
+		}
 		li{
 			position: relative;
 			border-top: 1px solid @border-color;
@@ -516,6 +538,9 @@
 				display: block;
 				transition: all 0.35s ease;
 				font-size: 20px;
+				@media (max-width: 767px){
+					padding: 10px 37px;
+				}
 			}
 			&.active{
 				&:before{
@@ -556,8 +581,8 @@
 			background-color: @secondary-color;
 			border: 2px solid @secondary-color;
 			&:hover {
-				background-color: @gray;
-				border: 2px solid @gray;
+				background-color: #44FFD5;
+				border: 2px solid #44FFD5;
 			}
 		}
 		&.type-2{
@@ -598,6 +623,7 @@
 .rev-btn {
 	i {
 		transition: all .3s;
+		font-size: 16px;
 	}
 	&:hover {
 		i {
@@ -613,6 +639,13 @@
 	top: 50%;
 	right: -20%;
 	transform: translateY(-50%);
+	@media (max-width: 767px){
+		width: 250px!important;
+		height: 250px!important;
+		top: 30%;
+		right: 0%;
+		opacity: .5;
+	}
 	.box-layer {
 		*{
 			height: 100%;
@@ -630,9 +663,21 @@
 		}
 	}
 }
+
+@keyframes DelayFadeIn{
+    from{ opacity: 0;}
+    to{ opacity: 1;}
+}
+
 /* TMC Event */
 .tmc-events-widget{
 	margin-bottom: 100px;
+	opacity: 0;
+	animation-name: DelayFadeIn;
+    animation-duration: .5s;
+	animation-delay: 1s;
+	animation-direction: normal;
+	animation-fill-mode: forwards;
 	@media (max-width: 767px){
 		margin-bottom: 50px;
 	}
@@ -798,9 +843,24 @@
 }
 /*  TMC Team Member */
 .tmc-team-widget{
+	overflow: hidden;
 	.tmc-team-wrap{
 		display: flex;
 		flex-wrap: wrap;
+		margin-left: -60px;
+		margin-right: -60px;
+		@media (max-width: 1024px){
+			margin-left: -35px;
+			margin-right: -35px;
+		}
+		@media (max-width: 991px){
+			margin-left: -25px;
+			margin-right: -25px;
+		}
+		@media (max-width: 767px){
+			margin-left: 0;
+			margin-right: 0;
+		}
 	}
 	.tmc-team-item{
 		width: 33.33%;
@@ -918,8 +978,11 @@
 	}
 	.tmc-contact-title{
 		position: relative;
-		@media (min-width: 768px){
+		@media (min-width: 992px){
 			width: 25%;
+		}
+		@media (min-width: 768px) and (max-width: 991px){
+			width: 20%;
 		}
 		.title-heading{
 			color: #ffffff;
@@ -927,18 +990,28 @@
 			font-size: 90px;
 			line-height: 1;
 			z-index: 1;
-			@media (max-width: 1366px){
+			@media (max-width: 1399px){
+				font-size: 70px;
+			}
+			@media (max-width: 1024px){
+				font-size: 60px;
+			}
+			@media (max-width: 767px){
 				font-size: 50px;
+				margin-bottom: 50px;
 			}
 			@media (min-width: 768px) {
 				position: absolute;
 				top: 50%;
-				right: 100px;
+				right: 80px;
 				font-weight: 900;
 				transform: translateY(-50%) rotate(-90deg);
 			}
-			@media (min-width: 768px) and (max-width: 1024px){
-				right: -50px;
+			@media (min-width: 992px) and (max-width: 1024px){
+				right: 30px;
+			}
+			@media (min-width: 768px) and (max-width: 991px){
+				right: -15px;
 			}
 			span{
 				content: '';
@@ -959,13 +1032,19 @@
 	}
 	.tmc-contact-content{
 		font-size: 22px;
-		@media (min-width: 768px){
+		@media (max-width: 991px) {
+			font-size: 18px;
+		}
+		@media (min-width: 992px){
 			width: 75%;
 		}
 		.c-item{
 			padding: 20px 0;
 			@media (min-width: 768px) {
 				display: flex;
+			}
+			@media (min-width: 768px) {
+				padding: 15px 0;
 			}
 			.contact-title{
 				min-width: 45%;
