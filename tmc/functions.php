@@ -153,6 +153,11 @@ function tmc_enqueue_libs() {
         TMC_ASSET_URI . '/fonts/font-awesome/css/all.min.css',
         array(),
         null,
+		false );
+	wp_enqueue_style( 'fonttomochain',
+        TMC_ASSET_URI . '/fonts/font-tomochain/style.css',
+        array(),
+        null,
         false );
 	wp_register_style('tmc-style',TMC_THEME_URI . '/assets/css/tomochain.css');
 	wp_enqueue_style('tmc-style');

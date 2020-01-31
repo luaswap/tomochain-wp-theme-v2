@@ -27,8 +27,11 @@
             }
             li{
                 list-style: square;
-                margin-left: 20px;
+                margin-left: 15px;
                 font-size: 14px;
+                @media (max-width: 767px){
+                    margin: 0 15px;
+                }
                 a {
                     padding: 5px 0;
                     display: block;
@@ -43,7 +46,7 @@
     .lg-sc-fr {
         .footer-logo {
             img {
-                max-width: 135px;
+                max-width: 180px;
             }
         }
         .tmc-newletter{
@@ -55,10 +58,13 @@
             .form-subcribe{
                 display: flex;
             }
+            input {
+                font-family: @body-font-family;
+                font-size: 16px;
+            }
             input[type="email"]{
                 width: 100%;
                 padding-right: 93px;
-                font-size: @font-size-min;
                 &::-webkit-input-placeholder { /* Edge */
                     color: #D8D8D8;
                 }
@@ -77,7 +83,6 @@
                 position: absolute;
                 right: 0;
                 top: 0;
-                font-size: @font-size-min;
             }
             .ajax-loader{
                 position: absolute;

@@ -1,9 +1,8 @@
-// .home {
-//     .site-header{
-//         position: fixed;
-//         transition: all .3s;
-//     }
-// }
+.home {
+    .site-header{
+        background-color: transparent;
+    }
+}
 .site-header{
     background-color: @header-bg;
     width: 100%!important;
@@ -69,7 +68,7 @@
     }
 
     &.scrollFixed {
-        background-color: @header-bg;
+        background-color: @header-bg!important;
 	    // position: fixed;
         .site-branding {
             a{
@@ -84,7 +83,7 @@
             }
         }
         .tmc-report-item{
-            padding: 5px 0;
+            padding: 3px 0!important;
             a {
                 font-size: 12px;
             }
