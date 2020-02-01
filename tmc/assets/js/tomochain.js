@@ -45,7 +45,7 @@
                         }
                     };
                     var navTopScroll = 0;
-                    var navScrollEl = $('#masthead');
+                    var navScrollEl = $('.site');
                     if (navScrollEl.length) {
                         navTopScroll = navScrollEl.offset().top;
                         navScrollListener(navScrollEl, navTopScroll);
@@ -53,7 +53,7 @@
                             navScrollListener(navScrollEl, navTopScroll);
                         });
                     }
-                }, 1000);
+                });
             });
         },
         mainMenu: function() {
