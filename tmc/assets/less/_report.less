@@ -22,6 +22,7 @@
 			color: @white;
 			padding: 10px 0;
 			transition: all .3s;
+			color: #A49F9F;
 			@media only screen and (max-width: 767px) {
 				padding: 7px 0;
 			}
@@ -30,9 +31,10 @@
 				overflow: hidden;
 				text-overflow: ellipsis;
 				display: block;
-				border-right: 1px solid @white;
+				border-right: 1px solid #A49F9F;
 				font-size: 14px;
 				padding: 0 30px;
+				line-height: 1;
 				@media only screen and (max-width: 767px) {
 					padding: 0;
 					border-right: 0;
@@ -48,7 +50,7 @@
 	.close{
 		position: absolute;
 		right: 0;
-		top: 50%;
+		top: -100%;
 		transform: translate(0, -50%);
 		-webkit-transform: translate(0, -50%);
 		-moz-transform: translate(0, -50%);
@@ -57,15 +59,26 @@
 	    width: 30px;
 	    text-align: center;
 		cursor: pointer;
-		opacity: 0;
 		transition: all .3s;
+		display: none;
 	}
 	&:hover{
 		.close{
-			opacity: 1;
+			top: 50%;
 		}
 	}
 }
+
+.site-header{
+	&.scrollFixed {
+		.tmc-report-item{
+			a {
+				font-size: 13px;
+			}
+		}
+	}
+}
+
 .tmc-report-widget{
 	.tmc-report-content{
 		display: flex;

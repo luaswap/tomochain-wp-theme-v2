@@ -511,7 +511,9 @@
 		margin: 0;
 		list-style: none;
 		@media (max-width: 767px){
-			right: 0;
+			left: 50%;
+			right: inherit;
+			transform: translateX(-50%);
 		}
 		li{
 			position: relative;
@@ -623,7 +625,11 @@
 .rev-btn {
 	i {
 		transition: all .3s;
-		font-size: 16px;
+		font-size: 14px;
+		padding-top: 4px;
+		@media (max-width: 767px){
+			font-size: 12px;
+		}
 	}
 	&:hover {
 		i {
@@ -664,20 +670,9 @@
 	}
 }
 
-@keyframes DelayFadeIn{
-    from{ opacity: 0;}
-    to{ opacity: 1;}
-}
-
 /* TMC Event */
 .tmc-events-widget{
 	margin-bottom: 100px;
-	opacity: 0;
-	animation-name: DelayFadeIn;
-    animation-duration: .5s;
-	animation-delay: 1s;
-	animation-direction: normal;
-	animation-fill-mode: forwards;
 	@media (max-width: 767px){
 		margin-bottom: 50px;
 	}
@@ -690,40 +685,49 @@
 	.tmc-event-dots{
 		width: 33.33%;
 		position: relative;
+		overflow: hidden;
 		@media (max-width: 767px){
-
+			overflow: initial;
 		}
 		@media (max-width: 767px){
 			width: 100%;
 		}
 		.event-arrows-back {
 			position: absolute;
-			background-color: rgba(16, 69, 91, 0.1);
-			left: -10px;
+			background-color: rgba(235, 235, 235, 0.9);
+			left: -15px;
 			top: 0;
 			height: 100%;
-			width: 25px;
+			width: 40px;
 			display: flex;
 			align-items: center;
 			justify-content: center;
 			z-index: 1;
+			&.slick-disabled {
+				opacity: .2;
+			}
 		}
 		.event-arrows-next {
 			position: absolute;
-			background-color: rgba(16, 69, 91, 0.1);
-			right: -10px;
+			background-color: rgba(235, 235, 235, 0.9);
+			right: -15px;
 			top: 0;
 			height: 100%;
-			width: 25px;
+			width: 40px;
 			display: flex;
 			align-items: center;
 			justify-content: center;
 			z-index: 1;
+			&.slick-disabled {
+				opacity: .2;
+			}
 		}
 		.slick-list {
 			@media (min-width: 768px){
-				padding-left: 40px;
-				margin-left: -40px;
+				overflow-y: auto;
+				.slick-track {
+					transform: translate3d(0, 0, 0)!important;
+				}
 			}
 			.slick-current{
 				background-color: @secondary-color;
@@ -732,12 +736,15 @@
 				display: flex;
 				align-items: center;
 				padding: 15px 25px;
+				border-top: 1px solid #E9E9E9;
 				@media (max-width: 1366px){
-					padding: 10px 15px;
-					margin: 0 0 10px;
+					padding: 15px;
+				}
+				@media (max-width: 767px){
+					margin: 0;
+					border-top: 0;
 				}
 				.tmc-event-time {
-					text-align: center;
 					.tmc-date{
 						font-size: 60px;
 						line-height: 1;
@@ -762,6 +769,9 @@
 				.tmc-info{
 					padding-left: 30px;
 					overflow: hidden;
+					@media (max-width: 1024px){
+						padding-left: 20px;
+					}
 					@media (max-width: 767px){
 						padding-left: 15px;
 					}
@@ -793,6 +803,7 @@
 	.tmc-event-content{
 		width: calc(67.67% - 115px);
 		margin-left: 100px;
+		overflow: hidden;
 		@media (max-width: 1366px){
 			width: calc(67.67% - 65px);
 			margin-left: 50px;
