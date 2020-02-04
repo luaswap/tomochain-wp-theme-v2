@@ -20,12 +20,12 @@
 		}
 		.tmc-report-item{
 			color: @white;
-			padding: 10px 0;
+			height: 35px;
+			overflow: hidden;
+			display: flex;
+			align-items: center;
 			transition: all .3s;
 			color: #A49F9F;
-			@media only screen and (max-width: 767px) {
-				padding: 7px 0;
-			}
 			a{
 				white-space: nowrap;
 				overflow: hidden;
@@ -69,15 +69,15 @@
 	}
 }
 
-.site-header{
-	&.scrollFixed {
-		.tmc-report-item{
-			a {
-				font-size: 13px;
-			}
-		}
-	}
-}
+// .site-header{
+// 	&.scrollFixed {
+// 		.tmc-report-item{
+// 			a {
+// 				font-size: 13px;
+// 			}
+// 		}
+// 	}
+// }
 
 .tmc-report-widget{
 	.tmc-report-content{
