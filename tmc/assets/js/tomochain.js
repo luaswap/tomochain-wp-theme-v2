@@ -17,6 +17,7 @@
             TMC.video();
             TMC.click();
             TMC.tomoScrollMagic();
+            TMC.tomoProduct();
             
         },
         header: function(){
@@ -305,6 +306,18 @@
                 });
             }
         },
+        tomoProduct: function(){
+            if($('.tmc-layer-widget').length > 0 && $('.tmc-layer-content-widget').length > 0){
+                $('.tmc-layer-widget').on('click', 'a', function(e){
+                    e.preventDefault();
+                    $('.tmc-layer-widget a').removeClass('active');
+                    $(this).addClass('active');
+                    var id = $($(this).attr('href'));
+                    $('.section-layer').hide();
+                    id.show();
+                });
+            }
+        }
 
     }
 

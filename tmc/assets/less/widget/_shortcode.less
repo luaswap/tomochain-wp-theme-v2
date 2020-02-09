@@ -324,29 +324,19 @@
 	}
 	span{
 		height: 30px;
-		display: block;
-		background-color: @secondary-color;
-		position: absolute;
-		z-index: -1;
-	}
-	&.type-1{
-		span{
-			&:after{
-				width: 210px;
-				right: -98px;
-				top: 20px;
-			}
+	    display: block;
+	    background-color: @secondary-color;
+	    position: absolute;
+	    z-index: -1;
+	    width: 200px;
+	    bottom: 0px;
+	    &.type-1{
+			left: 0;
 		}
-	}
-	&.type-2{
-		span{
-			&:after{
-				width: 200px;
-				left: -45px;
-    			bottom: 0px;
-			}
+		&.type-2{
+			right: 0;
 		}
-	}
+	}	
 }
 /* TMC text info */
 .tmc-service-widget{
@@ -569,6 +559,7 @@
 		font-weight: 900;
 		text-align: center;
 		color: inherit;
+		border: 2px solid;
 		@media (max-width: 767px){
 			display: block;
 		}
@@ -577,22 +568,6 @@
 			@media (max-width: 767px){
 				margin-left: 0px;
 				margin-top: 15px;
-			}
-		}
-		&.type-1{
-			background-color: @secondary-color;
-			border: 2px solid @secondary-color;
-			&:hover {
-				background-color: #44FFD5;
-				border: 2px solid #44FFD5;
-			}
-		}
-		&.type-2{
-			border: 2px solid @white;
-			color: @white;
-			&:hover {
-				background-color: @white;
-				color: inherit;
 			}
 		}
 	}
@@ -1086,41 +1061,32 @@
 	}
 }
 /* TMC Layer */
-.tmc-layer-widget{
-	.tmc-grid-item{
-		display: flex;
+.section-layer{
+	display: none;
+}
+.tmc-layer-widget{	
+	svg{
 		width: 100%;
-		.layer-header{
-			width: 70%;
-			position: relative;
-		}
-		.tmc-cube{
-			width: 180px;
-		    height: 180px;
-		    -webkit-transform: skew(45deg);
-		    -ms-transform: skew(45deg);
-		    transform: rotate(45deg) skew(-20deg, -20deg);
-		    position: absolute;
-		    z-index: 2;
-		}
-		.layer-number{
+	}
+}
+/* TMC Layer Content */
+.tmc-layer-content-widget{
+	.layer-content-item{
+		position: relative;
+		min-height: 380px;
+		transition: transform 0.6s ease;
+  		transform-style: preserve-3d;
+  		cursor: pointer;
+		.layer-header,.layer-info{
 			position: absolute;
-			right: 0;
-			color: #fff;
-			padding-left: 10px;
-			padding-right: 10px;
-			z-index: 2;
-			top: 46px;
+			-webkit-backface-visibility: hidden;
+    		backface-visibility: hidden;
 		}
-		.line{
-			position: absolute;
-		    height: 2px;
-		    width: 70%;
-		    display: block;
-		    background: red;
-		    right: 0;
-		    top: 60px;
-		    z-index: 1;
+		.layer-info{
+		  transform: rotateY(180deg);
+		}
+		&:hover{
+			transform: rotateY(180deg);
 		}
 	}
 }
