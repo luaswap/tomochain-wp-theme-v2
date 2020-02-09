@@ -166,7 +166,7 @@ class Alpha_Tabs extends Widget_Base{
                       <div class="tmc-tab-right alpha-<?php echo $this->convert_to_slug($value['tab']);?>">
                         <h3 class="c-title"><?php echo esc_html($value['title']);?></h3>
                         <p class="c-subtitle"><?php echo esc_html($value['subtitle']);?></p>
-                        <a class="link" <?php echo esc_attr($link);?>>
+                        <a class="link" <?php echo $link;?>>
                           <?php echo esc_html__('View more','tmc');?>
                         </a>
                       </div>

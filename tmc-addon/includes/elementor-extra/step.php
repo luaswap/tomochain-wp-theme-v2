@@ -154,7 +154,7 @@ class Step extends Widget_Base{
                         $s_link_props .= ' target="_blank" ';
                       }
                       if ( isset($s['url']['nofollow']) && $s['url']['nofollow'] ) {
-                        $link_props .= ' rel="nofollow" ';
+                        $s_link_props .= ' rel="nofollow" ';
                       }
                       ?>
                       <div class="tmc-grid-item">
