@@ -176,7 +176,7 @@ class Press extends Widget_Base{
                         $p_link_props .= ' target="_blank" ';
                       }
                       if ( isset($p['url']['nofollow']) && $p['url']['nofollow'] ) {
-                        $link_props .= ' rel="nofollow" ';
+                        $p_link_props .= ' rel="nofollow" ';
                       }
                       ?>
                       <div class="p-item">

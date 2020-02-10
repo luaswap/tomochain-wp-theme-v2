@@ -8,10 +8,10 @@ use Elementor\Scheme_Typography;
 use Elementor\Repeater;
 use Elementor\Utils;
 
-class Step extends Widget_Base{
+class Layer_Content extends Widget_Base{
     public function get_name()
     {
-      return 'tmc-step';
+      return 'tmc-layer-content';
     }
     public function get_icon()
     {
@@ -19,7 +19,7 @@ class Step extends Widget_Base{
     }
     public function get_title()
     {
-        return esc_html__('TMC Step', 'tmc');
+        return esc_html__('TMC Layer Content', 'tmc');
     }
 
     public function get_categories()
@@ -29,11 +29,11 @@ class Step extends Widget_Base{
     protected function _register_controls()
     {
       // Tab Content
-      $this->tmc_step_option();      
+      $this->tmc_layer_content_option();      
     }
-    private function tmc_step_option(){
+    private function tmc_layer_content_option(){
       $this->start_controls_section(
-        'tmc_step',
+        'tmc_layer_content',
         [
             'label' => esc_html__('General', 'tmc')
         ]
@@ -58,11 +58,14 @@ class Step extends Widget_Base{
       );
       $repeater = new Repeater();
       $repeater->add_control(
-        'add_step',
-        [
-          'type'      => Controls_Manager::TEXT,
-          'label'     => esc_html__( 'Step', 'tmc' ),
-        ]
+          'image',
+          [
+            'type'      => Controls_Manager::MEDIA,
+            'label'     => esc_html__( 'Image', 'tmc' ),
+            'default'   => [
+              'url'   => Utils::get_placeholder_image_src(),
+            ],
+          ]
       );
       $repeater->add_control(
         'title',
@@ -71,21 +74,21 @@ class Step extends Widget_Base{
           'label'     => esc_html__( 'Title', 'tmc' ),
         ]
       );
+      $repeater->add_control(
+        'subtitle',
+        [
+          'label'     => __( 'Sub Title', 'tmc' ),
+          'type'      => Controls_Manager::TEXTAREA,
+          'rows'      => 3,
+          'placeholder'   => __( 'Type your description', 'tmc' ),
+        ]
+      );
 
       $repeater->add_control(
         'desc',
         [
           'label'     => __( 'Description', 'tmc' ),
           'type'      => Controls_Manager::TEXTAREA,
-          'placeholder'   => __( 'Type your description', 'tmc' ),
-        ]
-      );
-      $repeater->add_control(
-        'button_text',
-        [
-          'label'     => __( 'Button text', 'tmc' ),
-          'type'      => Controls_Manager::TEXT,
-          'default'   => __('Read the article','tmc'),
           'placeholder'   => __( 'Type your description', 'tmc' ),
         ]
       );
@@ -105,20 +108,19 @@ class Step extends Widget_Base{
       );
 
       $this->add_control(
-        'step_list',
+        'layer_content_list',
         [
-          'label' => __( 'Step List', 'tmc' ),
           'type' => Controls_Manager::REPEATER,
           'fields' => $repeater->get_controls(),
           'default' => [
             [
-              'title' => __( 'Step 1', 'tmc' ),
+              'title' => __( 'Tomo Wallet', 'tmc' ),
             ],
             [
-              'title' => __( 'Step 2', 'tmc' ),
+              'title' => __( 'Tomo Stats', 'tmc' ),
             ],
             [
-              'title' => __( 'Step 3', 'tmc' ),
+              'title' => __( 'Tomo Scan', 'tmc' ),
             ]
           ],
           'title_field' => '{{{ title }}}',
@@ -131,43 +133,51 @@ class Step extends Widget_Base{
     protected function render()
     {
       $settings = $this->get_settings();
-      $step = $settings['step_list'];
+      $layer_content = $settings['layer_content_list'];
       $mobile_class = ( ! empty( $settings['columns_mobile'] ) ? ' tmc-mobile-' . $settings['columns_mobile'] : '' );
       $tablet_class = ( ! empty( $settings['columns_tablet'] ) ? ' tmc-tablet-' . $settings['columns_tablet'] : '' );
       $desktop_class = ( ! empty( $settings['columns'] ) ? ' tmc-desktop-' . $settings['columns'] : '' );
       $grid_class = 'tmc-grid-col'.$desktop_class . $tablet_class . $mobile_class;
       ?>
-        <div class="tmc-step-widget">
+        <div class="tmc-layer-content-widget">
 
-            <?php if(!empty($step) && is_array($step)):?>
-              <div class="tmc-step-content <?php echo esc_attr($grid_class)?>">
+            <?php if(!empty($layer_content) && is_array($layer_content)):?>
+              <div class="tmc-layer-content <?php echo esc_attr($grid_class)?>">
                   <?php
-                    foreach ( $step as $s ) {
-                      $number_st = isset($s['add_step']) ? $s['add_step'] : '';
-                      $st = isset($s['title']) ? $s['title'] : '';
-                      $si = isset($s['image']['url']) ? $s['image']['url'] : '';
-                      $sd = isset($s['desc']) ? $s['desc'] : '';
-                      $sb = isset($s['button_text']) ? $s['button_text'] : '';
-                      $s_url = !empty($s['url']['url']) ? $s['url']['url'] : '#';
-                      $s_link_props = ' href="' . esc_url( $s_url ) . '" ';
+                    foreach ( $layer_content as $s ) {
+                      
+                      $image = isset($s['image']['url']) ? $s['image']['url'] : '';
+                      $title = isset($s['title']) ? $s['title'] : '';
+                      $subtitle = isset($s['subtitle']) ? $s['subtitle'] : '';
+                      $desc = isset($s['desc']) ? $s['desc'] : '';
+                      $url = !empty($s['url']['url']) ? $s['url']['url'] : '#';
+                      $link_props = ' href="' . esc_url( $url ) . '" ';
                       if ( isset($s['url']['is_external']) && $s['url']['is_external'] ) {
-                        $s_link_props .= ' target="_blank" ';
+                        $link_props .= ' target="_blank" ';
                       }
                       if ( isset($s['url']['nofollow']) && $s['url']['nofollow'] ) {
-                        $s_link_props .= ' rel="nofollow" ';
+                        $link_props .= ' rel="nofollow" ';
                       }
                       ?>
-                      <div class="tmc-grid-item">
-                          <div class="step-header">
-                            <span class="number"><?php esc_html_e($number_st);?></span>
-                            <span class="step-title"><?php echo $st;?></span>
+                      <div class="layer-content-item tmc-grid-item">
+                          <div class="layer-header">
+                            <?php if($image):?>
+                              <img src="<?php echo esc_url($image)?>" alt="<?php echo esc_attr($title);?>">
+                            <?php endif;?>
+                            <h3 class="layer-title"><a <?php echo $link_props;?>><?php echo esc_html($title);?></a></h3>
+                            <?php if($subtitle):?>
+                              <p class="sub-title"><?php echo esc_html($subtitle);?></p>
+                            <?php endif;?>
                           </div>
-                          <?php if($sd):?>
-                            <p class="desc"><?php echo $sd;?></p>
-                          <?php endif;?>
-                          <?php if($sb):?>
-                            <a class="read-more" <?php echo esc_attr($s_link_props);?>><?php echo $sb?></a>
-                          <?php endif;?>
+                          <div class="layer-info">
+                            <h3 class="layer-title"><a <?php echo $link_props;?>><?php echo esc_html($title);?></a></h3>
+                            <?php if($subtitle):?>
+                              <p class="sub-title"><?php echo esc_html($subtitle);?></p>
+                            <?php endif;?>
+                            <?php if($desc):?>
+                              <p class="desc"><?php echo esc_html($desc);?></p>
+                            <?php endif;?>
+                          </div>                          
                       </div>
                   <?php }?>
               </div>
