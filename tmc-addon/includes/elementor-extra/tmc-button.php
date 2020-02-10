@@ -64,6 +64,39 @@ class Tmc_Button extends Widget_Base{
           ],
         ]
       );
+      $repeater->add_control(
+        'color',
+        [
+          'label' => __( 'Color', 'tmc' ),
+          'type' => Controls_Manager::COLOR,
+          'scheme' => [
+            'type' => Scheme_Color::get_type(),
+            'value' => Scheme_Color::COLOR_3,
+          ]
+        ]
+      );
+      $repeater->add_control(
+        'bgcolor',
+        [
+          'label' => __( 'Background Color', 'tmc' ),
+          'type' => Controls_Manager::COLOR,
+          'scheme' => [
+            'type' => Scheme_Color::get_type(),
+            'value' => Scheme_Color::COLOR_1,
+          ],
+        ]
+      );
+      $repeater->add_control(
+        'bordercolor',
+        [
+          'label' => __( 'Border Color', 'tmc' ),
+          'type' => Controls_Manager::COLOR,
+          'scheme' => [
+            'type' => Scheme_Color::get_type(),
+            'value' => Scheme_Color::COLOR_2,
+          ],
+        ]
+      );      
       $this->add_control(
         'button_list',
         [
@@ -72,10 +105,46 @@ class Tmc_Button extends Widget_Base{
           'fields'  => $repeater->get_controls(),
           'default' => [
             [
-              'title'       => __( 'D', 'tmc' ),
+              'title'       => __( 'Button 1', 'tmc' ),
             ]
           ],
           'title_field' => '{{{ title }}}',
+        ]
+      );
+      $this->add_control(
+        'padding',
+        [
+          'label' => __( 'Padding', 'tmc' ),
+          'type' => Controls_Manager::DIMENSIONS,
+          'size_units' => [ 'px', '%', 'em' ],
+          'selectors' => [
+            '{{WRAPPER}} .tmc-button-widget .button-link' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+          ],
+        ]
+      );
+      $this->add_control(
+        'text_align',
+        [
+          'label' => esc_html__( 'Alignment', 'tmc' ),
+          'type' => Controls_Manager::CHOOSE,
+          'options' => [
+            'left' => [
+              'title' => esc_html__( 'Left', 'tmc' ),
+              'icon' => 'fa fa-align-left',
+            ],
+            'center' => [
+              'title' => esc_html__( 'Center', 'tmc' ),
+              'icon' => 'fa fa-align-center',
+            ],
+            'right' => [
+              'title' => esc_html__( 'Right', 'tmc' ),
+              'icon' => 'fa fa-align-right',
+            ],
+          ],
+          'default' => 'left',
+          'selectors'      => [
+            '{{WRAPPER}} .tmc-button-widget' => 'text-align: {{VALUE}};',
+          ],
         ]
       );
 
@@ -99,8 +168,21 @@ class Tmc_Button extends Widget_Base{
             }
             if ( isset($value['url']['nofollow']) && $value['url']['nofollow'] ) {
               $link .= ' rel="nofollow" ';
-            }?>
-            <a class="button-link type-<?php echo $i;?>" <?php echo $link;?>>
+            }
+            $style = 'style="';
+
+            if(isset($value['color']) && !empty($value['color'])){
+              $style .= 'color:'. $value['color'] . ';';
+            }
+            if(isset($value['bgcolor']) && !empty($value['bgcolor'])){
+              $style .= 'background-color:'. $value['bgcolor'] . ';';
+            }
+            if(isset($value['bordercolor']) && !empty($value['bordercolor'])){
+              $style .= 'border-color:'. $value['bordercolor'] . ';';
+            }
+            $style .= '"';
+            ?>
+            <a class="button-link type-<?php echo $i;?>" <?php echo $link;?> <?php echo $style;?>>
               <?php echo $title;?>
             </a>
           <?php }?>

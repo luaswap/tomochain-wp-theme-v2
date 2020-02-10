@@ -7,6 +7,7 @@ use Elementor\Scheme_Color;
 use Elementor\Scheme_Typography;
 use Elementor\Repeater;
 use Elementor\Utils;
+use Elementor\Icons_Manager;
 
 class Layer extends Widget_Base{
     public function get_name()
@@ -38,19 +39,34 @@ class Layer extends Widget_Base{
             'label' => esc_html__('General', 'tmc')
         ]
       );
-      $repeater = new Repeater();
-      $repeater->add_control(
-        'layer',
+      // Columns.
+      $this->add_responsive_control(
+        'columns',
         [
-          'type'      => Controls_Manager::TEXT,
-          'label'     => esc_html__( 'Layer', 'tmc' ),
+          'type'           => Controls_Manager::SELECT,
+          'label'          => '<i class="fa fa-columns"></i> ' . esc_html__( 'Columns', 'tmc' ),
+          'default'        => 3,
+          'tablet_default' => 2,
+          'mobile_default' => 1,
+          'options'        => [
+            1 => 1,
+            2 => 2,
+            3 => 3,
+            4 => 4,
+            5 => 5,
+          ]
         ]
       );
+      $repeater = new Repeater();      
       $repeater->add_control(
-        'color',
+        'icon',
         [
-          'label' => __( 'Color', 'tmc' ),
-          'type' => Controls_Manager::COLOR,
+          'label' => __( 'Icon', 'tmc' ),
+          'type' => Controls_Manager::ICONS,
+          'default' => [
+            'value' => 'fas fa-star',
+            'library' => 'solid',
+          ],
         ]
       );
       $repeater->add_control(
@@ -60,13 +76,12 @@ class Layer extends Widget_Base{
           'label'     => esc_html__( 'Title', 'tmc' ),
         ]
       );
-
       $repeater->add_control(
-        'desc',
+        'id_content',
         [
-          'label'     => __( 'Description', 'tmc' ),
-          'type'      => Controls_Manager::TEXTAREA,
-          'placeholder'   => __( 'Type your description', 'tmc' ),
+          'type'        => Controls_Manager::TEXT,
+          'label'       => esc_html__( 'ID Section', 'tmc' ),
+          'description' => esc_html__('Including lowercase letters and dashes. Eg: product-setion','tmc')
         ]
       );
 
@@ -78,7 +93,13 @@ class Layer extends Widget_Base{
           'fields' => $repeater->get_controls(),
           'default' => [
             [
-              'layer' => __( 'layer 1', 'tmc' ),
+              'layer' => __( 'Product', 'tmc' ),
+            ],
+            [
+              'layer' => __( 'Protocol', 'tmc' ),
+            ],
+            [
+              'layer' => __( 'Core Blockchain', 'tmc' ),
             ],
           ],
           'title_field' => '{{{ layer }}}',
@@ -92,33 +113,30 @@ class Layer extends Widget_Base{
     {
       $settings = $this->get_settings();
       $layer = $settings['layer_list'];
+      $item_class = '';
       $mobile_class = ( ! empty( $settings['columns_mobile'] ) ? ' tmc-mobile-' . $settings['columns_mobile'] : '' );
       $tablet_class = ( ! empty( $settings['columns_tablet'] ) ? ' tmc-tablet-' . $settings['columns_tablet'] : '' );
       $desktop_class = ( ! empty( $settings['columns'] ) ? ' tmc-desktop-' . $settings['columns'] : '' );
+      
       $grid_class = 'tmc-grid-col'.$desktop_class . $tablet_class . $mobile_class;
       ?>
         <div class="tmc-layer-widget">
 
             <?php if(!empty($layer) && is_array($layer)):?>
-              <div class="tmc-layer-content <?php echo esc_attr($grid_class)?>">
+              <div class="tmc-layer-content <?php echo esc_attr($grid_class);?>">
                   <?php
-                    foreach ( $layer as $s ) {
-                      $sn = isset($s['layer']) ? $s['layer'] : '';
+                    foreach ( $layer as $s ) {                      
                       $st = isset($s['title']) ? $s['title'] : '';
-                      $sd = isset($s['desc']) ? $s['desc'] : '';
-                      $color = isset($s['color']) ? $s['color'] : '#00E8B4';
-                       ?>
-                      <div class="tmc-grid-item">
-                          <div class="layer-header">
-                            <div class="tmc-cube" style="background-color:<?php echo $color;?>"></div>
-                            <span class="layer-number" style="background-color:<?php echo $color;?>"><?php echo $sn;?></span>
-                            <span class="line" style="background-color:<?php echo $color;?>"></span>
-                          </div>
+                      $id = isset($s['id_content']) ? $s['id_content'] : '';
+                      ?>
+                      <a class="layer-item tmc-grid-item" href="#<?php echo esc_attr($id);?>">
                           <div class="layer-info">
-                            <h3 class="layer-title"><?php echo $st;?></h3>
-                            <p class="desc"><?php echo $sd;?></p>
+                            <div class="layer-icon">
+                              <?php Icons_Manager::render_icon( $s['icon'], [ 'aria-hidden' => 'true' ], 'i' );?>
+                            </div>
+                            <h3 class="layer-title"><?php echo esc_html($st);?></h3>
                           </div>
-                      </div>
+                      </a>
                   <?php }?>
               </div>
             <?php endif;?>

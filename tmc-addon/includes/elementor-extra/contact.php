@@ -176,7 +176,7 @@ class Contact extends Widget_Base{
                               $c_link_props .= ' target="_blank" ';
                             }
                             if ( isset($c['url']['nofollow']) && $c['url']['nofollow'] ) {
-                              $link_props .= ' rel="nofollow" ';
+                              $c_link_props .= ' rel="nofollow" ';
                             }
                             $text = $c['text'];?>
                             <a <?php echo $c_link_props;?>><?php esc_html_e($text);?></a>
