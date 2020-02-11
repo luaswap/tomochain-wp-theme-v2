@@ -1,6 +1,8 @@
 <?php
 if(!function_exists('tmc_report_list')){
 	function tmc_report_list(){
+		wp_enqueue_style('slick');
+		wp_enqueue_script('slick');
 		$lists = tmc_get_option('tmc_report_list');
 		$show = tmc_get_option('show_report');
 		if(!empty($show) && !empty($lists) && is_array($lists)){
