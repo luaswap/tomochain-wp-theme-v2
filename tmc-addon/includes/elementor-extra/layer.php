@@ -134,7 +134,9 @@ class Layer extends Widget_Base{
                             <div class="layer-icon">
                               <?php Icons_Manager::render_icon( $s['icon'], [ 'aria-hidden' => 'true' ], 'i' );?>
                             </div>
-                            <h3 class="layer-title"><?php echo esc_html($st);?></h3>
+                            <div class="layer-title">
+                              <span><?php echo esc_html($st);?><i class="ftomo tomo-long-arrow-right"></i></span>
+                            </div>
                           </div>
                       </a>
                   <?php }?>

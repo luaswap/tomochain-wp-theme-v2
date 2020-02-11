@@ -145,7 +145,6 @@ class Layer_Content extends Widget_Base{
               <div class="tmc-layer-content <?php echo esc_attr($grid_class)?>">
                   <?php
                     foreach ( $layer_content as $s ) {
-                      
                       $image = isset($s['image']['url']) ? $s['image']['url'] : '';
                       $title = isset($s['title']) ? $s['title'] : '';
                       $subtitle = isset($s['subtitle']) ? $s['subtitle'] : '';
@@ -160,24 +159,26 @@ class Layer_Content extends Widget_Base{
                       }
                       ?>
                       <div class="layer-content-item tmc-grid-item">
-                          <div class="layer-header">
-                            <?php if($image):?>
-                              <img src="<?php echo esc_url($image)?>" alt="<?php echo esc_attr($title);?>">
-                            <?php endif;?>
-                            <h3 class="layer-title"><a <?php echo $link_props;?>><?php echo esc_html($title);?></a></h3>
-                            <?php if($subtitle):?>
-                              <p class="sub-title"><?php echo esc_html($subtitle);?></p>
-                            <?php endif;?>
+                        <div class="st-ct-infor">
+                            <div class="layer-header">
+                              <?php if($image):?>
+                                <img src="<?php echo esc_url($image)?>" alt="<?php echo esc_attr($title);?>">
+                              <?php endif;?>
+                              <h3 class="layer-title"><a <?php echo $link_props;?>><?php echo esc_html($title);?></a></h3>
+                              <?php if($subtitle):?>
+                                <p class="sub-title"><?php echo esc_html($subtitle);?></p>
+                              <?php endif;?>
+                            </div>
+                            <div class="layer-info">
+                              <h3 class="layer-title"><a <?php echo $link_props;?>><?php echo esc_html($title);?></a></h3>
+                              <?php if($subtitle):?>
+                                <p class="sub-title"><?php echo esc_html($subtitle);?></p>
+                              <?php endif;?>
+                              <?php if($desc):?>
+                                <p class="desc"><?php echo esc_html($desc);?></p>
+                              <?php endif;?>
+                            </div>
                           </div>
-                          <div class="layer-info">
-                            <h3 class="layer-title"><a <?php echo $link_props;?>><?php echo esc_html($title);?></a></h3>
-                            <?php if($subtitle):?>
-                              <p class="sub-title"><?php echo esc_html($subtitle);?></p>
-                            <?php endif;?>
-                            <?php if($desc):?>
-                              <p class="desc"><?php echo esc_html($desc);?></p>
-                            <?php endif;?>
-                          </div>                          
                       </div>
                   <?php }?>
               </div>
