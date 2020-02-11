@@ -164,18 +164,18 @@ class Layer_Content extends Widget_Base{
                               <?php if($image):?>
                                 <img src="<?php echo esc_url($image)?>" alt="<?php echo esc_attr($title);?>">
                               <?php endif;?>
-                              <h3 class="layer-title"><a <?php echo $link_props;?>><?php echo esc_html($title);?></a></h3>
+                              <h3 class="layer-title"><?php echo esc_html($title);?></h3>
                               <?php if($subtitle):?>
-                                <p class="sub-title"><?php echo esc_html($subtitle);?></p>
+                                <div class="sub-title"><?php echo esc_html($subtitle);?></div>
                               <?php endif;?>
                             </div>
                             <div class="layer-info">
                               <h3 class="layer-title"><a <?php echo $link_props;?>><?php echo esc_html($title);?></a></h3>
                               <?php if($subtitle):?>
-                                <p class="sub-title"><?php echo esc_html($subtitle);?></p>
+                                <div class="sub-title"><?php echo esc_html($subtitle);?></div>
                               <?php endif;?>
                               <?php if($desc):?>
-                                <p class="desc"><?php echo esc_html($desc);?></p>
+                                <div class="desc"><?php echo esc_html($desc);?></div>
                               <?php endif;?>
                             </div>
                           </div>
