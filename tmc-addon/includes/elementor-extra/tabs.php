@@ -385,7 +385,7 @@ class Tabs extends Widget_Base{
               <?php endif;?>
               <?php if(!empty($c_title)):?>
                 <li class="tab-title c-tab"><a href="#c-tab"><?php echo esc_html($c_title);?></a></li>
-              <?php endif;?>              
+              <?php endif;?>
             </ul>
             <?php if(!empty($p_list) && is_array($p_list)):?>
               <div id="p-tab" class="tab-content">
@@ -404,9 +404,9 @@ class Tabs extends Widget_Base{
                       }
                       ?>
                       <div class="p-item col-4 col-md-3">
-                        <a class="link" <?php echo $p_link_props;?>>
-                          <img src="<?php echo esc_url($pi);?>" alt="<?php echo esc_attr($pt);?>">
-                        </a>
+                        <div class="common-logo-item"><img src="<?php echo esc_url($pi);?>" alt="<?php echo esc_attr($pt);?>"></div>
+                        <!-- <a class="link" <?php //echo $p_link_props;?>>
+                        </a> -->
                       </div>
                   <?php }?>
                 </div>
@@ -429,9 +429,9 @@ class Tabs extends Widget_Base{
                       }
                       ?>
                       <div class="ex-item col-4 col-md-3">
-                        <a class="link" <?php echo $link_props;?>>
-                          <img src="<?php echo esc_url($ei);?>" alt="<?php echo esc_attr($et);?>">
-                        </a>
+                        <div class="common-logo-item"><img src="<?php echo esc_url($ei);?>" alt="<?php echo esc_attr($et);?>"></div>
+                        <!-- <a class="link" <?php //echo $link_props;?>>
+                        </a> -->
                       </div>
                   <?php }?>
                 </div>
@@ -454,9 +454,9 @@ class Tabs extends Widget_Base{
                       }
                       ?>
                       <div class="w-item col-4 col-md-3">
-                        <a class="link" <?php echo $w_link_props;?>>
-                          <img src="<?php echo esc_url($wi);?>" alt="<?php echo esc_attr($wt);?>">
-                        </a>
+                        <div class="common-logo-item"><img src="<?php echo esc_url($wi);?>" alt="<?php echo esc_attr($wt);?>"></div>
+                        <!-- <a class="link" <?php //echo $w_link_props;?>>
+                        </a> -->
                       </div>
                   <?php }?>
                 </div>
@@ -479,9 +479,9 @@ class Tabs extends Widget_Base{
                       }
                       ?>
                       <div class="c-item col-4 col-md-3">
-                        <a class="link" <?php echo $c_link_props;?>>
-                          <img src="<?php echo esc_url($ci);?>" alt="<?php echo esc_attr($ct);?>">
-                        </a>
+                        <div class="common-logo-item"><img src="<?php echo esc_url($ci);?>" alt="<?php echo esc_attr($ct);?>"></div>
+                        <!-- <a class="link" <?php //echo $c_link_props;?>>
+                        </a> -->
                       </div>
                   <?php }?>
                 </div>
