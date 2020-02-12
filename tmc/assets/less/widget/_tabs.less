@@ -87,22 +87,23 @@
 		width: 100%!important;
 		.row{
 			align-items: center;
-			a{
+			img{
+				max-width: 150px;
+				max-height: 60px;
+				@media(max-width: 991px){
+					max-width: 115px;
+				}
+				@media(max-width: 767px){
+					max-width: 100%;
+				}
+			}
+			a,
+			.common-logo-item{
 				display: block;
 				// text-align: center;
 				margin-bottom: 50px;
 				@media(max-width: 767px){
 					margin-bottom: 25px;
-				}
-				img{
-					max-width: 150px;
-					max-height: 60px;
-					@media(max-width: 991px){
-						max-width: 115px;
-					}
-					@media(max-width: 767px){
-						max-width: 100%;
-					}
 				}
 			}
 		}
