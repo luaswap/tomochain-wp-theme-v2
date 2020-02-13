@@ -23,12 +23,6 @@
             // prevArrow:'<i class="fas fa-angle-double-up"></i>',
             // nextArrow: '<i class="fas fa-angle-double-down"></i>'
             responsive: [
-                // {
-                //     breakpoint: 768,
-                //     settings: {
-                //         verticalSwiping: false,
-                //     }
-                // },
                 {
                     breakpoint: 768,
                     settings: {
@@ -84,12 +78,25 @@
             // prevArrow:'<i class="fas fa-angle-double-up"></i>',
             // nextArrow: '<i class="fas fa-angle-double-down"></i>'
             responsive: [
-                // {
-                //     breakpoint: 768,
-                //     settings: {
-                //         verticalSwiping: false,
-                //     }
-                // },
+                {
+                    breakpoint: 768,
+                    settings: {
+                        slidesToShow: 1,
+                        slidesToScroll: 1,
+                    }
+                }
+            ]
+        });
+    };
+    var BuildSlick = function( $scope, $ ) {
+        $scope.find('.tmc-build-slider').slick({
+            slidesToShow: 3,
+            slidesToScroll: 3,
+            speed: 1000,
+            arrows: true,
+            prevArrow:'<i class="fas fa-angle-left"></i>',
+            nextArrow: '<i class="fas fa-angle-right"></i>',
+            responsive: [
                 {
                     breakpoint: 768,
                     settings: {
@@ -106,5 +113,6 @@
         // elementorFrontend.hooks.addAction( 'frontend/element_ready/tmc-post-layout.default', TMCCarousel );
         elementorFrontend.hooks.addAction( 'frontend/element_ready/tmc-event.default', EventSlick );
         elementorFrontend.hooks.addAction( 'frontend/element_ready/tmc-press.default', PressSlick );
+        elementorFrontend.hooks.addAction( 'frontend/element_ready/tmc-build.default', BuildSlick );
     } );
 })( jQuery );
