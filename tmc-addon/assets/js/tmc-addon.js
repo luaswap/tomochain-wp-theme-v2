@@ -89,14 +89,21 @@
         });
     };
     var BuildSlick = function( $scope, $ ) {
-        $scope.find('.tmc-build-slider').slick({
+        $scope.find('.tmc-build-ontmc-slider').slick({
             slidesToShow: 3,
             slidesToScroll: 3,
             speed: 1000,
             arrows: true,
-            prevArrow:'<i class="fas fa-angle-left"></i>',
-            nextArrow: '<i class="fas fa-angle-right"></i>',
+            prevArrow:'<i class="tmc-arrow-left fas fa-angle-left"></i>',
+            nextArrow: '<i class="tmc-arrow-right fas fa-angle-right"></i>',
             responsive: [
+                {
+                    breakpoint: 1025,
+                    settings: {
+                        slidesToShow: 2,
+                        slidesToScroll: 2,
+                    }
+                },
                 {
                     breakpoint: 768,
                     settings: {

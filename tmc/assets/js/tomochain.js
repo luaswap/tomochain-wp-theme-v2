@@ -308,6 +308,8 @@
         },
         tomoProduct: function(){
             if($('.tmc-layer-widget').length > 0 && $('.tmc-layer-content-widget').length > 0){
+                $('.tmc-layer-content a:nth-child(2)').addClass('active');
+                $('.section-layer').eq(1).show();
                 $('.tmc-layer-widget').on('click', 'a', function(e){
                     e.preventDefault();
                     $('.tmc-layer-widget a').removeClass('active');

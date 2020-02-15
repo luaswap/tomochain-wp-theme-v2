@@ -47,7 +47,7 @@ class Tmc_Build extends Widget_Base{
     protected function _register_controls()
     {
       // Tab Content
-      $this->tmc_build_option();      
+      $this->tmc_build_option();
     }
     private function tmc_build_option(){
       $this->start_controls_section(
@@ -56,7 +56,7 @@ class Tmc_Build extends Widget_Base{
             'label' => esc_html__('General', 'tmc')
         ]
       );
-      
+
       $repeater = new Repeater();
       $repeater->add_control(
           'image',
@@ -120,20 +120,19 @@ class Tmc_Build extends Widget_Base{
       );
 
       $this->end_controls_section();
-      
+
     }
     protected function render()
     {
       $settings = $this->get_settings();
       $build = $settings['build_list'];
       ?>
-        <div class="tmc-build-widget">
+        <div class="tmc-build-ontmc-widget">
 
             <?php if(!empty($build) && is_array($build)):?>
-              <div class="tmc-build-slider">
+              <div class="tmc-build-ontmc-slider">
                   <?php
                     foreach ( $build as $s ) {
-                      
                       $image = isset($s['image']['url']) ? $s['image']['url'] : '';
                       $title = isset($s['title']) ? $s['title'] : '';
                       $desc = isset($s['desc']) ? $s['desc'] : '';
@@ -151,14 +150,13 @@ class Tmc_Build extends Widget_Base{
                             <?php if($image):?>
                               <img src="<?php echo esc_url($image)?>" alt="<?php echo esc_attr($title);?>">
                             <?php endif;?>
-                            <h3 class="build-title"><a <?php echo $link_props;?>><?php echo esc_html($title);?></a></h3>
                           </div>
                           <div class="build-info">
+                            <h3 class="build-title"><a <?php echo $link_props;?>><?php echo esc_html($title);?></a></h3>
                             <?php if($desc):?>
-                              <p class="desc"><?php echo esc_html($desc);?></p>
+                              <div class="desc"><?php echo esc_html($desc);?></div>
                             <?php endif;?>
-                            
-                          </div>                          
+                          </div>
                       </div>
                   <?php }?>
               </div>
