@@ -107,7 +107,7 @@ class Layer extends Widget_Base{
       );
 
       $this->end_controls_section();
-      
+
     }
     protected function render()
     {
@@ -117,7 +117,7 @@ class Layer extends Widget_Base{
       $mobile_class = ( ! empty( $settings['columns_mobile'] ) ? ' tmc-mobile-' . $settings['columns_mobile'] : '' );
       $tablet_class = ( ! empty( $settings['columns_tablet'] ) ? ' tmc-tablet-' . $settings['columns_tablet'] : '' );
       $desktop_class = ( ! empty( $settings['columns'] ) ? ' tmc-desktop-' . $settings['columns'] : '' );
-      
+
       $grid_class = 'tmc-grid-col'.$desktop_class . $tablet_class . $mobile_class;
       ?>
         <div class="tmc-layer-widget">
@@ -125,17 +125,17 @@ class Layer extends Widget_Base{
             <?php if(!empty($layer) && is_array($layer)):?>
               <div class="tmc-layer-content <?php echo esc_attr($grid_class);?>">
                   <?php
-                    foreach ( $layer as $s ) {                      
+                    foreach ( $layer as $s ) {
                       $st = isset($s['title']) ? $s['title'] : '';
                       $id = isset($s['id_content']) ? $s['id_content'] : '';
                       ?>
-                      <a class="layer-item tmc-grid-item" href="#<?php echo esc_attr($id);?>">
+                      <a class="layer-item tmc-grid-item tmc-<?php echo esc_attr($id);?>" href="#<?php echo esc_attr($id);?>">
                           <div class="layer-info">
                             <div class="layer-icon">
                               <?php Icons_Manager::render_icon( $s['icon'], [ 'aria-hidden' => 'true' ], 'i' );?>
                             </div>
                             <div class="layer-title">
-                              <span><?php echo esc_html($st);?><i class="ftomo tomo-long-arrow-right"></i></span>
+                              <div class="txt"><span><?php echo esc_html($st);?></span><i class="ftomo tomo-long-arrow-right"></i></div>
                             </div>
                           </div>
                       </a>
