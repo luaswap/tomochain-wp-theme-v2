@@ -89,21 +89,14 @@
         });
     };
     var BuildSlick = function( $scope, $ ) {
-        $scope.find('.tmc-build-ontmc-slider').slick({
+        $scope.find('.tmc-build-slider').slick({
             slidesToShow: 3,
             slidesToScroll: 3,
             speed: 1000,
             arrows: true,
-            prevArrow:'<i class="tmc-arrow-left fas fa-angle-left"></i>',
-            nextArrow: '<i class="tmc-arrow-right fas fa-angle-right"></i>',
+            prevArrow:'<i class="fas fa-angle-left"></i>',
+            nextArrow: '<i class="fas fa-angle-right"></i>',
             responsive: [
-                {
-                    breakpoint: 1025,
-                    settings: {
-                        slidesToShow: 2,
-                        slidesToScroll: 2,
-                    }
-                },
                 {
                     breakpoint: 768,
                     settings: {
@@ -114,6 +107,91 @@
             ]
         });
     };
+    var AlphaTab   = function($scope, $ ){
+        var controller = new ScrollMagic.Controller();
+        var sections = document.querySelectorAll(".tmc-alpha-tab-content");
+        var tl = new TimelineMax();
+        var offset = window.innerHeight;
+        var w = window.innerWidth;
+
+        var tabs = document.querySelectorAll(".tmc-tab-item");
+        tabs[0].classList.add("active");
+
+        var slides = sections.length;
+
+
+        // tl.to(sections[0], .5, { x: "-100%", ease: Linear.easeNone }, '-=.5')
+        // for (var i = 0; i < slides - 1; i++) {
+          tl.to('#tab-1', 1, { x: "-80%", onComplete:addActive,onCompleteParams:[1],onReverseComplete:addActive,onReverseCompleteParams:[0] });
+          tl.to('#tab-2', 1, { x: "-80%", onComplete:addActive,onCompleteParams:[2],onReverseComplete:addActive,onReverseCompleteParams:[1] });
+          tl.to('#tab-3', 1, { x: "-80%", onComplete:addActive,onCompleteParams:[3],onReverseComplete:addActive,onReverseCompleteParams:[2] });
+        // }
+
+        // console.log(sections[sections.length - 1])
+
+        tl.to('#tab-4', .5, { x: "0%", onComplete:addActive,onCompleteParams:[3],onReverseComplete:addActive,onReverseCompleteParams:[2] });
+
+        new ScrollMagic.Scene({
+          triggerElement: "#pinContainer",
+          triggerHook: "onLeave",
+          duration: (w * (sections.length - 1))
+        })
+          .setPin("#pinContainer")
+          .setTween(tl)
+          .addTo(controller);
+
+        $(".tmc-alpha-tab-content").each(function(i) {
+            var target1 = $(this).find(".tmc-tab-left");
+            var target2 = $(this).find(".tmc-tab-right");
+            var tl = new TimelineMax();
+            tl.staggerFrom(target1, 0.3, { ease: "bounce.inOut" });
+            tl.staggerFrom(target2, 0.3, { ease: "bounce.inOut"});
+
+          new ScrollMagic.Scene({
+            triggerElement: "#pinContainer",
+            triggerHook: 0,
+            offset: i * w
+          })
+            .setTween(tl)
+            .addTo(controller)
+        });
+    };
+    function addActive(index){
+        var sections = document.querySelectorAll(".tmc-alpha-tab-content");
+        var tabs = document.querySelectorAll(".tmc-tab-item");
+        for(var i = 0;i < sections.length;i++){     
+            if(i === index) {
+                tabs[i].classList.add("active");
+            }else{
+                tabs[i].classList.remove("active");
+            }
+        }
+    }
+    var SliderSwiper = function( $scope, $ ){
+        new Swiper(".tmc-slider-widget", {
+            loop: !0,
+            effect: "fade",
+            speed: 1e3,
+            fadeEffect: {
+                crossFade: !0
+            },
+            autoplay: {
+                delay: 3e3
+            },
+            pagination: {
+                el: ".swiper-pagination",
+                type: "bullets",
+                clickable: !0,
+                renderBullet: function(e, t) {
+                    var a = document.getElementById("tab-" + (e + 1));
+                    return '<span class="' + t + '" style="color: ' + a.getAttribute("data-color") + ';"><span class="swiper-pagination-bg" style="background: ' + a.getAttribute("data-color") + '"></span><span class="swiper-pagination-letter">' + a.getAttribute("data-letter") + "</span></span>"
+                }
+            }
+        });
+        for (var e = document.querySelectorAll(".swiper-pagination-bullet"), t = 0; t < e.length; t++) e[t].addEventListener("click", (function() {
+            this.classList.add("swiper-pagination-bullet-active-click")
+        }));
+    };    
     // Make sure you run this code under Elementor.
     $( window ).on( 'elementor/frontend/init', function() {
 
@@ -121,5 +199,7 @@
         elementorFrontend.hooks.addAction( 'frontend/element_ready/tmc-event.default', EventSlick );
         elementorFrontend.hooks.addAction( 'frontend/element_ready/tmc-press.default', PressSlick );
         elementorFrontend.hooks.addAction( 'frontend/element_ready/tmc-build.default', BuildSlick );
+        elementorFrontend.hooks.addAction( 'frontend/element_ready/tmc-slider.default', SliderSwiper );
+        elementorFrontend.hooks.addAction( 'frontend/element_ready/tmc_alpha_tabs.default', AlphaTab );
     } );
 })( jQuery );

@@ -3431,5 +3431,33 @@ textarea{
   color: #fff !important;
 }
 
-
+/* Animate Keyframe */
+@-webkit-keyframes timer{
+  0%{
+    -webkit-transform:scaleX(1);
+    transform:scaleX(1);
+    -webkit-transform-origin:right;
+    transform-origin:right;
+  }
+  to{
+    -webkit-transform:scaleX(0);
+    transform:scaleX(0);
+    -webkit-transform-origin:right;
+    transform-origin:right;
+    }
+  }
+@keyframes timer{
+  0%{
+    -webkit-transform:scaleX(1);
+    transform:scaleX(1);
+    -webkit-transform-origin:right;
+    transform-origin:right
+  }
+  to{
+    -webkit-transform:scaleX(0);
+    transform:scaleX(0);
+    -webkit-transform-origin:right;
+    transform-origin:right
+  }
+}
 /*# sourceMappingURL=bootstrap-grid.css.map */
