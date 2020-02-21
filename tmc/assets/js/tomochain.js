@@ -16,7 +16,6 @@
             TMC.mobileMenu();
             TMC.video();
             TMC.click();
-            // TMC.tomoScrollMagic();
             TMC.tomoProduct();
             
         },
@@ -260,56 +259,8 @@
                 });
             }
         },
-        tomoScrollMagic: function(){
-            if($('.tmc-alpha-tab-content').length > 0){
-                var controller = new ScrollMagic.Controller();
-                var sections = document.querySelectorAll(".tmc-alpha-tab-content");
-                var tl = new TimelineMax();
-                var offset = window.innerHeight;
-                var w = window.innerWidth;
-
-                var slides = sections.length
-
-
-                // tl.to(sections[0], .5, { x: "-100%", ease: Linear.easeNone }, '-=.5')
-                for (var i = 0; i < slides - 1; i++) {
-                  tl.to(sections[i], 1, { x: "-100%", ease: Linear.easeNone }, '-=.5')
-                }
-
-                // console.log(sections[sections.length - 1])
-
-                tl.to(sections[sections.length - 1], .5, { x: "0%", ease: Linear.easeNone }, '-=.5')
-
-                new ScrollMagic.Scene({
-                  triggerElement: "#pinContainer",
-                  triggerHook: "onLeave",
-                  duration: (w * (sections.length - 1))
-                })
-                  .setPin("#pinContainer")
-                  .setTween(tl)
-                  .addTo(controller);
-
-                $(".tmc-alpha-tab-content").each(function(i) {
-                    var target1 = $(this).find(".tmc-tab-left");
-                    var target2 = $(this).find(".tmc-tab-right");
-                    var tl = new TimelineMax();
-                    tl.staggerFrom(target1, 0.3, { ease: "bounce.inOut" });
-                    tl.staggerFrom(target2, 0.3, { ease: "bounce.inOut"});
-
-                  new ScrollMagic.Scene({
-                    triggerElement: "#pinContainer",
-                    triggerHook: 0,
-                    offset: i * w
-                  })
-                    .setTween(tl)
-                    .addTo(controller)
-                });
-            }
-        },
         tomoProduct: function(){
             if($('.tmc-layer-widget').length > 0 && $('.tmc-layer-content-widget').length > 0){
-                $('.tmc-layer-content a:nth-child(2)').addClass('active');
-                $('.section-layer').eq(1).show();
                 $('.tmc-layer-widget').on('click', 'a', function(e){
                     e.preventDefault();
                     $('.tmc-layer-widget a').removeClass('active');
@@ -325,6 +276,8 @@
 
     $(document).ready(function() {
         TMC.init();
+    })
+    $(document).ready(function() {
         $('.reportFade').slick({
             dots: false,
             infinite: true,
@@ -341,66 +294,8 @@
                 }
             ]
         });
-
-        if($('.tmc-alpha-tab-content').length > 0){
-            var controller = new ScrollMagic.Controller();
-            var sections = document.querySelectorAll(".tmc-alpha-tab-content");
-            var tl = new TimelineMax();
-            var offset = window.innerHeight;
-            var w = window.innerWidth;
-
-            var tabs = document.querySelectorAll(".tmc-tab-item");
-            tabs[0].classList.add("active");
-
-            var slides = sections.length;
-
-
-            // tl.to(sections[0], .5, { x: "-100%", ease: Linear.easeNone }, '-=.5')
-            // for (var i = 0; i < slides - 1; i++) {
-              tl.to('#tab-1', 1, { x: "-100%", onComplete:addActive,onCompleteParams:[1],onReverseComplete:addActive,onReverseCompleteParams:[0] });
-              tl.to('#tab-2', 1, { x: "-100%", onComplete:addActive,onCompleteParams:[2],onReverseComplete:addActive,onReverseCompleteParams:[1] });
-              tl.to('#tab-3', 1, { x: "-100%", onComplete:addActive,onCompleteParams:[3],onReverseComplete:addActive,onReverseCompleteParams:[2] });
-            // }
-
-            // console.log(sections[sections.length - 1])
-
-            tl.to('#tab-4', .5, { x: "0%", onComplete:addActive,onCompleteParams:[3],onReverseComplete:addActive,onReverseCompleteParams:[2] });
-
-            new ScrollMagic.Scene({
-              triggerElement: "#pinContainer",
-              triggerHook: "onLeave",
-              duration: (w * (sections.length - 1))
-            })
-              .setPin("#pinContainer")
-              .setTween(tl)
-              .addTo(controller);
-
-            $(".tmc-alpha-tab-content").each(function(i) {
-                var target1 = $(this).find(".tmc-tab-left");
-                var target2 = $(this).find(".tmc-tab-right");
-                var tl = new TimelineMax();
-                tl.staggerFrom(target1, 0.3, { ease: "bounce.inOut" });
-                tl.staggerFrom(target2, 0.3, { ease: "bounce.inOut"});
-
-              new ScrollMagic.Scene({
-                triggerElement: "#pinContainer",
-                triggerHook: 0,
-                offset: i * w
-              })
-                .setTween(tl)
-                .addTo(controller)
-            });
-        }
-        function addActive(index){
-            for(var i = 0;i < sections.length;i++){     
-                if(i === index) {
-                    tabs[i].classList.add("active");
-                }else{
-                    tabs[i].classList.remove("active");
-                }
-            }
-        }
-
     })
+
+
 })(jQuery);
 
