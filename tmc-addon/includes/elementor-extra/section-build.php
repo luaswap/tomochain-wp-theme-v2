@@ -68,7 +68,7 @@ class Section_Build extends Widget_Base{
                   data-from="1"
                   data-to="0"
                   data-opacity="0"
-                  data-translatex="-600"
+                  data-translatex="-400"
                   data-translatey="0"
                   data-rotatez="0"
                 ></span>

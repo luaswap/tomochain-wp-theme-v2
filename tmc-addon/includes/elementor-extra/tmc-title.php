@@ -113,9 +113,9 @@ class Tmc_Title extends Widget_Base{
       $settings = $this->get_settings();
       $title = isset($settings['title']) ? $settings['title'] : '';
       $type = isset($settings['type']) ? $settings['type'] : 'type-1';
-      $translate = -300;
+      $translate = -200;
       if($type == 'type-2'){
-        $translate = 300;
+        $translate = 200;
       }
       ?>
         <div class="tmc-title-heading-widget">
