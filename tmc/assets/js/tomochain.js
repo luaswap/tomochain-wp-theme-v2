@@ -357,9 +357,9 @@
 
             // tl.to(sections[0], .5, { x: "-100%", ease: Linear.easeNone }, '-=.5')
             // for (var i = 0; i < slides - 1; i++) {
-              tl.to('#tab-1', 1, { x: "-80%", onComplete:addActive,onCompleteParams:[1],onReverseComplete:addActive,onReverseCompleteParams:[0] });
-              tl.to('#tab-2', 1, { x: "-80%", onComplete:addActive,onCompleteParams:[2],onReverseComplete:addActive,onReverseCompleteParams:[1] });
-              tl.to('#tab-3', 1, { x: "-80%", onComplete:addActive,onCompleteParams:[3],onReverseComplete:addActive,onReverseCompleteParams:[2] });
+              tl.to('#tab-1', 1, { x: "-100%", onComplete:addActive,onCompleteParams:[1],onReverseComplete:addActive,onReverseCompleteParams:[0] });
+              tl.to('#tab-2', 1, { x: "-100%", onComplete:addActive,onCompleteParams:[2],onReverseComplete:addActive,onReverseCompleteParams:[1] });
+              tl.to('#tab-3', 1, { x: "-100%", onComplete:addActive,onCompleteParams:[3],onReverseComplete:addActive,onReverseCompleteParams:[2] });
             // }
 
             // console.log(sections[sections.length - 1])

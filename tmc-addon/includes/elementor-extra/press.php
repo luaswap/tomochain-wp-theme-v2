@@ -155,7 +155,7 @@ class Press extends Widget_Base{
                 data-from="1"
                 data-to="0"
                 data-opacity="0"
-                data-translatex="-400"
+                data-translatex="-200"
                 data-translatey="0"
                 data-rotatez="0">
               </span>
