@@ -200,14 +200,6 @@ function tmc_enqueue_libs() {
         null,
         true );
 
-    wp_enqueue_script( 'debugIndicatior',
-        TMC_LIBS_URI . '/scrollmagic/debug.addIndicators.js',
-        array(),
-        null,
-        true );
-
-
-		
     wp_enqueue_script( 'tmc-js',
         TMC_THEME_URI . '/assets/js/tomochain' . $suffix . '.js',
             array('jquery'),

@@ -44,11 +44,11 @@ if(!class_exists('TMC_Elementor_Widgets')){
 				array(),
 				null
 			);
-			wp_register_style( 'swiper',
-				TMC_ADDON_ASSETS. '/vendor/swiper/swiper.min.css',
-				array(),
-				null
-			);
+			// wp_register_style( 'swiper',
+			// 	TMC_ADDON_ASSETS. '/vendor/swiper/swiper.min.css',
+			// 	array(),
+			// 	null
+			// );
 		}
 		public function register_frontend_scripts() {
 			wp_register_script( 'slick',

@@ -127,10 +127,10 @@ class Tmc_Build extends Widget_Base{
       $settings = $this->get_settings();
       $build = $settings['build_list'];
       ?>
-        <div class="tmc-build-ontmc-widget">
+        <div class="tmc-developerhub-technology-widget">
 
             <?php if(!empty($build) && is_array($build)):?>
-              <div class="tmc-build-ontmc-slider">
+              <div class="tmc-developerhub-technology-slider">
                   <?php
                     foreach ( $build as $s ) {
                       $image = isset($s['image']['url']) ? $s['image']['url'] : '';

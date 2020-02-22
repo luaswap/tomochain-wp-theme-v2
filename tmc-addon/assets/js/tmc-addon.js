@@ -88,15 +88,24 @@
             ]
         });
     };
-    var BuildSlick = function( $scope, $ ) {
-        $scope.find('.tmc-build-slider').slick({
+
+    //slider developer-hub
+    var DeveloperSlick = function( $scope, $ ) {
+        $scope.find('.tmc-developerhub-technology-slider').slick({
             slidesToShow: 3,
             slidesToScroll: 3,
             speed: 1000,
             arrows: true,
-            prevArrow:'<i class="fas fa-angle-left"></i>',
-            nextArrow: '<i class="fas fa-angle-right"></i>',
+            prevArrow:'<i class="tmc-arrow-left fas fa-angle-left"></i>',
+            nextArrow: '<i class="tmc-arrow-right fas fa-angle-right"></i>',
             responsive: [
+                {
+                    breakpoint: 1025,
+                    settings: {
+                        slidesToShow: 2,
+                        slidesToScroll: 2,
+                    }
+                },
                 {
                     breakpoint: 768,
                     settings: {
@@ -107,6 +116,7 @@
             ]
         });
     };
+
     var AlphaTab   = function($scope, $ ){
         var controller = new ScrollMagic.Controller();
         var sections = document.querySelectorAll(".tmc-alpha-tab-content");
@@ -159,7 +169,7 @@
     function addActive(index){
         var sections = document.querySelectorAll(".tmc-alpha-tab-content");
         var tabs = document.querySelectorAll(".tmc-tab-item");
-        for(var i = 0;i < sections.length;i++){     
+        for(var i = 0;i < sections.length;i++){
             if(i === index) {
                 tabs[i].classList.add("active");
             }else{
@@ -167,6 +177,8 @@
             }
         }
     }
+
+    //slider homepage Build-On-TomoChain
     var SliderSwiper = function( $scope, $ ){
         new Swiper(".tmc-slider-widget", {
             loop: !0,
@@ -191,15 +203,17 @@
         for (var e = document.querySelectorAll(".swiper-pagination-bullet"), t = 0; t < e.length; t++) e[t].addEventListener("click", (function() {
             this.classList.add("swiper-pagination-bullet-active-click")
         }));
-    };    
+    };
+
     // Make sure you run this code under Elementor.
     $( window ).on( 'elementor/frontend/init', function() {
 
         // elementorFrontend.hooks.addAction( 'frontend/element_ready/tmc-post-layout.default', TMCCarousel );
         elementorFrontend.hooks.addAction( 'frontend/element_ready/tmc-event.default', EventSlick );
         elementorFrontend.hooks.addAction( 'frontend/element_ready/tmc-press.default', PressSlick );
-        elementorFrontend.hooks.addAction( 'frontend/element_ready/tmc-build.default', BuildSlick );
+        elementorFrontend.hooks.addAction( 'frontend/element_ready/tmc-build.default', DeveloperSlick );
         elementorFrontend.hooks.addAction( 'frontend/element_ready/tmc-slider.default', SliderSwiper );
         elementorFrontend.hooks.addAction( 'frontend/element_ready/tmc_alpha_tabs.default', AlphaTab );
     } );
+
 })( jQuery );

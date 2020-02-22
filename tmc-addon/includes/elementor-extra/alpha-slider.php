@@ -165,14 +165,14 @@ class Alpha_Slider extends Widget_Base{
         }
         $i = $j = 0;
         ?>
-        <div class="tmc-slider-widget">            
+        <div class="tmc-slider-widget">
             <div class="tmc-slider-wrap swiper-wrapper">
               <?php foreach($settings['tab_list'] as $value):
                   $i++;
                   $image = !empty($value['image']['url']) ? $value['image']['url'] : '';
                   $tab = !empty($value['tab']) ? $value['tab'] : '';
                   $color = !empty($value['color']) ? $value['color'] : '';
-                  $title = !empty($value['title']) ? $value['title'] : '';                  
+                  $title = !empty($value['title']) ? $value['title'] : '';
                   $subtitle = !empty($value['subtitle']) ? $value['subtitle'] : '';
                   $subtitle = !empty($value['subtitle']) ? $value['subtitle'] : '';
                   $url = !empty($value['url']['url']) ? $value['url']['url'] : '#';
@@ -198,9 +198,9 @@ class Alpha_Slider extends Widget_Base{
                     </div>
                   </div>
                 </div>
-              <?php endforeach;?>              
+              <?php endforeach;?>
             </div>
-            <div class="swiper-pagination"></div>
+            <div class="swiper-pagination tmc-slider-pagination"></div>
         </div>
         <?php
       endif;
