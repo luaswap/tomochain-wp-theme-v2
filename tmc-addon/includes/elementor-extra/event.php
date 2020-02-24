@@ -94,7 +94,7 @@ class Event extends Widget_Base{
             'default' => 'default',
             'options' => [
                 'default'       => esc_html__( 'Default', 'tmc' ),
-                'upcomming'     => esc_html__( 'Upcomming Event', 'tmc' ),
+                'upcomming'     => esc_html__( 'Upcoming Event', 'tmc' ),
                 'past'          => esc_html__( 'Past Event', 'tmc' ),
             ],
             ]
@@ -205,7 +205,7 @@ class Event extends Widget_Base{
                             <?php if($current_time > $open_date):?>
                                 <span class="tmc-status"><?php echo esc_html__('Past Event','tmc')?></span>
                             <?php else:?>
-                                <span class="tmc-status"><?php echo esc_html__('Upcomming Event','tmc')?></span>
+                                <span class="tmc-status"><?php echo esc_html__('Upcoming Event','tmc')?></span>
                             <?php endif;?>
                         </div>
                     </div>

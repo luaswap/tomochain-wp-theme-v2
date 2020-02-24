@@ -305,7 +305,7 @@
 		height: 400px!important;
 		width: 1500px!important;
 		.animateme {
-			background: #EDEDED;
+			background: #FAFAFA;
 		}
 	}
 }
@@ -345,7 +345,7 @@
 		}
 	}
 	.tmc-build-subtitle{
-		font-size: 24px;
+		font-size: 20px;
 		@media (max-width: 1366px){
 			font-size: 18px;
 		}
@@ -414,6 +414,7 @@
 		}
 	}
 }
+
 /* TMC Alpha Tabs */
 .custom-section {
 	position: relative;
@@ -567,8 +568,14 @@
 		    	display: inline-block;
 		    	padding: 8px 40px;
 		    	font-weight: bold;
-		    	background-color: #242828;
-		    	color: @white;
+				background-color: #ffffff;
+				border: 2px solid #00E8B4;
+				color: #00E8B4;
+				transition: all .3s;
+				&:hover {
+					background-color: #00E8B4;
+					color: #242828!important;
+				}
 			}
 			&.alpha-p {
 				.link{
@@ -664,6 +671,9 @@
 		@media screen and (min-width: 1025px) {
 			right: 18%;
 		}
+		@media (min-width: 1025px) and (max-width: 1300px) {
+			bottom: 50px;
+		}
 		@media screen and (max-width: 1024px) {
 			bottom: 15vh;
 		}
@@ -681,7 +691,8 @@
 			position: absolute;
 			width: 100%;
 			height: 1px;
-			background: #d0d0d0;
+			background: #000;
+			opacity: .1;
 			top: 50%;
 			left: 0;
 		}
@@ -707,7 +718,10 @@
 				width: 40%;
 				margin-right: 100px;
 			}
-			@media (min-width: 1366px) {
+			@media (min-width: 1025px) {
+				margin-top: -280px;
+			}
+			@media (min-width: 1300px) {
 				margin-top: -300px;
 			}
 			@media (min-width: 768px) and (max-width: 991px) {
@@ -720,70 +734,70 @@
 					height: 200px;
 				}
 			}
-			&.alpha-d {
-				&::before {
-					content: '';
-					height: 100px;
-					width: 100px;
-					background-color: #00E8B4;
-					position: absolute;
-					bottom: -25px;
-					right: 0px;
-					z-index: -1;
-					@media (max-width: 767px) {
-						height: 50px;
-						width: 50px;
-					}
-				}
-			}
-			&.alpha-p {
-				&::before {
-					content: '';
-					height: 100px;
-					width: 100px;
-					background-color: #00E8B4;
-					position: absolute;
-					bottom: -25px;
-					left: -25px;
-					z-index: -1;
-					@media (max-width: 767px) {
-						height: 50px;
-						width: 50px;
-					}
-				}
-			}
-			&.alpha-s {
-				&::before {
-					content: '';
-					height: 100px;
-					width: 100px;
-					background-color: #00E8B4;
-					position: absolute;
-					top: 0;
-					right: 0;
-					z-index: -1;
-					@media (max-width: 767px) {
-						height: 50px;
-						width: 50px;
-					}
-				}
-			}
-			&.alpha-g {
-				&::before {
-					content: '';
-					height: 100px;
-					width: 100px;
-					background-color: #00E8B4;
-					position: absolute;
-					bottom: -25px;
-					left: 0;
-					z-index: -1;
-					@media (max-width: 767px) {
-						height: 50px;
-						width: 50px;
-					}
-				}
-			}
+			// &.alpha-d {
+			// 	&::before {
+			// 		content: '';
+			// 		height: 100px;
+			// 		width: 100px;
+			// 		background-color: #00E8B4;
+			// 		position: absolute;
+			// 		bottom: -25px;
+			// 		right: 0px;
+			// 		z-index: -1;
+			// 		@media (max-width: 767px) {
+			// 			height: 50px;
+			// 			width: 50px;
+			// 		}
+			// 	}
+			// }
+			// &.alpha-p {
+			// 	&::before {
+			// 		content: '';
+			// 		height: 100px;
+			// 		width: 100px;
+			// 		background-color: #00E8B4;
+			// 		position: absolute;
+			// 		bottom: -25px;
+			// 		left: -25px;
+			// 		z-index: -1;
+			// 		@media (max-width: 767px) {
+			// 			height: 50px;
+			// 			width: 50px;
+			// 		}
+			// 	}
+			// }
+			// &.alpha-s {
+			// 	&::before {
+			// 		content: '';
+			// 		height: 100px;
+			// 		width: 100px;
+			// 		background-color: #00E8B4;
+			// 		position: absolute;
+			// 		top: 0;
+			// 		right: 0;
+			// 		z-index: -1;
+			// 		@media (max-width: 767px) {
+			// 			height: 50px;
+			// 			width: 50px;
+			// 		}
+			// 	}
+			// }
+			// &.alpha-g {
+			// 	&::before {
+			// 		content: '';
+			// 		height: 100px;
+			// 		width: 100px;
+			// 		background-color: #00E8B4;
+			// 		position: absolute;
+			// 		bottom: -25px;
+			// 		left: 0;
+			// 		z-index: -1;
+			// 		@media (max-width: 767px) {
+			// 			height: 50px;
+			// 			width: 50px;
+			// 		}
+			// 	}
+			// }
 		}
 		.tmc-tab-right {
 			opacity: 0;
@@ -802,6 +816,7 @@
 			}
 			@media (min-width: 768px) and (max-width: 1366px) {
 				padding: 25px 30px;
+				width: 66%;
 			}
 		    .c-title{
 		    	font-size: 30px;
@@ -821,24 +836,30 @@
 		    	display: inline-block;
 		    	padding: 8px 40px;
 		    	font-weight: bold;
-		    	background-color: #242828;
-		    	color: @white;
-			}
-			&.alpha-p {
-				.link{
-					background-color: #2B88F9;
+		    	background-color: #ffffff;
+				border: 2px solid #00E8B4;
+				color: #00E8B4;
+				transition: all .3s;
+				&:hover {
+					background-color: #00E8B4;
+					color: #242828!important;
 				}
 			}
-			&.alpha-s {
-				.link{
-					background-color: #FF7C4D;
-				}
-			}
-			&.alpha-g {
-				.link{
-					background-color: #FFCA4D;
-				}
-			}
+			// &.alpha-p {
+			// 	.link{
+			// 		background-color: #2B88F9;
+			// 	}
+			// }
+			// &.alpha-s {
+			// 	.link{
+			// 		background-color: #FF7C4D;
+			// 	}
+			// }
+			// &.alpha-g {
+			// 	.link{
+			// 		background-color: #FFCA4D;
+			// 	}
+			// }
 		}
 	}
 
@@ -874,12 +895,14 @@
 	}
 
 	.swiper-pagination-bullet-active {
+		color: #00e8b4!important;
 		.swiper-pagination-bg{
 			height: 4px;
 			width: 100%;
 			top: calc(50% - 4px);
 			position: relative;
 			display: block;
+			background-color: #00e8b4!important;
 			&:before {
 				content: "";
 				position: absolute;
@@ -1013,12 +1036,21 @@
 /*section launch*/
 .bg-animation-logo {
 	position: absolute!important;
-	width: 400px!important;
-	height: 400px!important;
-	top: 50%;
-	right: -20%;
-	transform: translateY(-50%);
+	width: 620px!important;
+	height: 620px!important;
+	top: -50px;
+	right: -50%;
 	z-index: 0;
+	@media (max-width: 1600px){
+		right: -20%;
+		width: 500px!important;
+		height: 500px!important;
+	}
+	@media (max-width: 1366px){
+		width: 450px!important;
+		height: 450px!important;
+		right: -20%;
+	}
 	@media (max-width: 767px){
 		width: 250px!important;
 		height: 250px!important;
