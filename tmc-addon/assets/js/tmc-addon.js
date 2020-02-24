@@ -96,6 +96,7 @@
             slidesToScroll: 3,
             speed: 1000,
             arrows: true,
+            autoplay: true,
             prevArrow:'<i class="tmc-arrow-left fas fa-angle-left"></i>',
             nextArrow: '<i class="tmc-arrow-right fas fa-angle-right"></i>',
             responsive: [
