@@ -46,7 +46,7 @@ class Alpha_Slider extends Widget_Base{
     protected function _register_controls()
     {
       // Tab Content
-      $this->tmc_alpha_tabs_option();      
+      $this->tmc_alpha_tabs_option();
     }
     public function convert_to_slug($str) {
       $str = strtolower(trim($str));
@@ -89,7 +89,7 @@ class Alpha_Slider extends Widget_Base{
             'label'  => esc_html__('Color', 'tmc'),
             'type'   => Controls_Manager::COLOR
           ]
-      );   
+      );
 
       $repeater->add_control(
         'title', [
@@ -108,7 +108,7 @@ class Alpha_Slider extends Widget_Base{
           'default' => __( 'Dive on Tomochain technoloty, and start building.' , 'tmc' ),
           'placeholder'   => __( 'Type your sub title', 'tmc' ),
         ]
-      );      
+      );
 
       $repeater->add_control(
         'url',
@@ -122,6 +122,15 @@ class Alpha_Slider extends Widget_Base{
             'is_external' => true,
             'nofollow' => true,
           ],
+        ]
+      );
+      $repeater->add_control(
+        'button_text',
+        [
+          'label' => __( 'Button text', 'tmc' ),
+          'type' => Controls_Manager::TEXT,
+          'default' => __( 'View more' , 'tmc' ),
+          'label_block' => true,
         ]
       );
       $this->add_control(
@@ -175,6 +184,7 @@ class Alpha_Slider extends Widget_Base{
                   $title = !empty($value['title']) ? $value['title'] : '';
                   $subtitle = !empty($value['subtitle']) ? $value['subtitle'] : '';
                   $subtitle = !empty($value['subtitle']) ? $value['subtitle'] : '';
+                  $button_text = !empty($value['button_text']) ? $value['button_text'] : '';
                   $url = !empty($value['url']['url']) ? $value['url']['url'] : '#';
                   $link = ' href="' . esc_url( $url ) . '" ';
                   if ( isset($value['url']['is_external']) && $value['url']['is_external'] === 'on' ) {
@@ -193,7 +203,7 @@ class Alpha_Slider extends Widget_Base{
                       <h3 class="c-title"><?php echo esc_html($value['title']);?></h3>
                       <p class="c-subtitle"><?php echo esc_html($value['subtitle']);?></p>
                       <a class="link" <?php echo $link;?>>
-                        <?php echo esc_html__('View more','tmc');?>
+                        <?php echo esc_html($button_text);?>
                       </a>
                     </div>
                   </div>

@@ -69,6 +69,12 @@ class TMC_Theme_Options {
 		) );
 
 		$options->add_group_field( $group_field_id, array(
+			'name' => __('Target Blank','tmc'),
+			'id'   => 'target_blank',
+			'type' => 'checkbox',
+		) );
+
+		$options->add_group_field( $group_field_id, array(
 		    'name' => __('Url','tmc'),
 		    'desc' => __('Enter url to the report','tmc'),
 		    'id'   => 'rp_url',
