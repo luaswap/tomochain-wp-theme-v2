@@ -9,9 +9,14 @@ if(!function_exists('tmc_report_list')){
 			echo '<div class="tmc-top-report">';
 			echo '<div class="container">';
 			echo '<div class="tmc-report-list reportFade">';
-			foreach ($lists as $value) {?>
+			foreach ($lists as $value) {
+				$target_blank = '';
+				if(isset($value['target_blank']) && !empty($value['target_blank'])){
+					$target_blank = 'target="_blank"';
+				}
+				?>
 				<div class="tmc-report-item">
-					<a href="<?php echo esc_url($value['rp_url']);?>"><?php echo esc_html($value['rp_title']);?></a>
+					<a href="<?php echo esc_url($value['rp_url']);?>" <?php echo $target_blank;?>><?php echo esc_html($value['rp_title']);?></a>
 				</div>
 			<?php }
 			echo '</div>';
