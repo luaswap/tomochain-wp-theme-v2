@@ -191,7 +191,7 @@ class Event extends Widget_Base{
                     $day = $month = '';
                     if(!empty($open_date)){
                         $day = date('d',$open_date);
-                        $month = date('M/Y',$open_date);
+                        $month = date('M Y',$open_date);
                     }?>
                     <div class="tmc-dot">
                         <?php if(!empty($day)):?>

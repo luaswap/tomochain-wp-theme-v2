@@ -152,7 +152,8 @@ class Tmc_Build extends Widget_Base{
                             <?php endif;?>
                           </div>
                           <div class="build-info">
-                            <h3 class="build-title"><a <?php echo $link_props;?>><?php echo esc_html($title);?></a></h3>
+                            <!-- <h3 class="build-title"><a <?php //echo $link_props;?>><?php //echo esc_html($title);?></a></h3> -->
+                            <h3 class="build-title"><?php echo esc_html($title);?></h3>
                             <?php if($desc):?>
                               <div class="desc"><?php echo esc_html($desc);?></div>
                             <?php endif;?>

@@ -170,13 +170,12 @@ class Layer_Content extends Widget_Base{
                               <?php endif;?>
                             </div>
                             <div class="layer-info">
-                              <!-- <h3 class="layer-title"><a <?php //echo $link_props;?>><?php //echo esc_html($title);?></a></h3>
-                              <?php //if($subtitle):?>
-                                <div class="sub-title"><?php //echo esc_html($subtitle);?></div>
-                              <?php //endif;?> -->
-                              <?php if($desc):?>
-                                <div class="desc"><?php echo esc_html($desc);?></div>
-                              <?php endif;?>
+                              <a <?php echo $link_props;?>>
+                                <?php if($desc):?>
+                                  <div class="desc"><?php echo esc_html($desc);?></div>
+                                  <p class="m-0 mt-3 btn-read-more"><?php echo esc_html__('Read More','tmc');?></p>
+                                <?php endif;?>
+                              </a>
                             </div>
                           </div>
                       </div>
