@@ -83,7 +83,7 @@ class Section_Features extends Widget_Base{
             <?php endif;?>
           </div>
           <div class="tmc-feature-right">
-            <div class="scrollme">
+            <!-- <div class="scrollme">
               <div
                 class="animateme"
                 data-when="enter"
@@ -92,7 +92,7 @@ class Section_Features extends Widget_Base{
                 data-opacity="0"
                 data-translatex="-400">
               </div>
-            </div>
+            </div> -->
           </div>
         </div>
     <?php

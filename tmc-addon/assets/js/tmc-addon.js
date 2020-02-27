@@ -29,7 +29,7 @@
                         verticalSwiping: false,
                         slidesToShow: 1,
                         centerMode: true,
-                        centerPadding: '50px',
+                        centerPadding: '25px',
                         arrows: true,
                         vertical: false,
                         prevArrow:'<div class="event-arrows-back fas fa-chevron-left"></div>',
