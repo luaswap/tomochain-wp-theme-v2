@@ -23,12 +23,15 @@
 <?php if (!is_404()): ?>
 <div class="site-mobile-menu-wrapper">
 	<div class="site-branding">
-		<?php if(has_custom_logo()){
-			the_custom_logo();
+		<?php $home_url = tmc_get_option('home_custom_url',home_url('/'));
+		if(has_custom_logo()){
+			$logo_id = get_theme_mod( 'custom_logo' );
+			$logo = wp_get_attachment_image_src( $logo_id , 'full' );
+			// the_custom_logo();
+			echo '<a href="' . esc_url($home_url) . '"><img src="' . esc_url( $logo[0] ) . '" alt="' . get_bloginfo( 'name' ) . '"></a>';
 		}else{?>
-			<h2><a  href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>"><?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?></a></h2>
-		<?php }
-		?>
+			<h2><a  href="<?php echo esc_url($home_url); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>"><?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?></a></h2>
+		<?php }?>
 	</div><!-- .site-branding -->
 	<?php
 	wp_nav_menu( array(
@@ -47,11 +50,13 @@
 				<div class="navbar-header">
 					<div class="site-branding">
 						<?php if(has_custom_logo()){
-							the_custom_logo();
+							$logo_id = get_theme_mod( 'custom_logo' );
+							$logo = wp_get_attachment_image_src( $logo_id , 'full' );
+							// the_custom_logo();
+							echo '<a href="' . esc_url($home_url) . '"><img src="' . esc_url( $logo[0] ) . '" alt="' . get_bloginfo( 'name' ) . '"></a>';
 						}else{?>
-							<h2><a  href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>"><?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?></a></h2>
-						<?php }
-						?>
+							<h2><a  href="<?php echo esc_url($home_url); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>"><?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?></a></h2>
+						<?php }?>
 					</div><!-- .site-branding -->
 					<nav id="site-menu" class="main-menu hidden-md-down">
 						<?php
