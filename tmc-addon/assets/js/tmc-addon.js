@@ -5,6 +5,7 @@
      * @param $ The jQuery alias
      */
     var EventSlick = function( $scope, $ ) {
+        $scope.find('.tmc-events-widget').css( 'opacity','1' );
         var items = $scope.find('.tmc-event-dots').data('item');
         $scope.find('.tmc-event-dots').slick({
             vertical: true,

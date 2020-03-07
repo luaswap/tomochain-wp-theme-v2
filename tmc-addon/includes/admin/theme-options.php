@@ -36,7 +36,17 @@ class TMC_Theme_Options {
 			$args['display_cb'] = array($this,'tmc_options_display_with_tabs');
 		}
 		$options = new_cmb2_box( $args );
-
+		$options->add_field( array(
+			'name' => esc_html__('Home URL','tmc'),
+			'type' => 'title',
+			'id'   => 'tmc_home_custom_url'
+		) );
+		$options->add_field( array(
+			'name' => __('Url','tmc'),
+		    'desc' => __('Enter url','tmc'),
+		    'id'   => 'home_custom_url',
+		    'type' => 'text_url',
+		) );
 		$options->add_field( array(
 			'name' => esc_html__('Tomochain Report','tmc'),
 			'type' => 'title',
