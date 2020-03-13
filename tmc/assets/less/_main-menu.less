@@ -11,6 +11,7 @@
             position: relative;
             display: inline-block;
             color: @white;
+            margin-top: 0;
             > a{
                 line-height: 50px;
                 padding: 0px 25px;
@@ -156,6 +157,40 @@
         .sub-menu {
             top: 0;
             left: 100%;
+        }
+    }
+    .menu li {
+        &.wpml-ls-item {
+            a {
+                padding-right: 0!important;
+                &::after {
+                    display: none;
+                }
+                &::before {
+                    content: '';
+                    width: 1px;
+                    height: 10px;
+                    background: #fff;
+                    opacity: .5;
+                    position: absolute;
+                    top: 50%;
+                    right: -15px;
+                    transform: translateY(-50%);
+                }
+            }
+        }
+        &:last-child {
+            a {
+                &::before {
+                    display: none;
+                }
+            }
+        }
+        &.wpml-ls-current-language {
+            opacity: .5;
+            a {
+                color: #fff!important;
+            }
         }
     }
 }
