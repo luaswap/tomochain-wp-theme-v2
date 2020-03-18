@@ -106,6 +106,14 @@ class Layer_Content extends Widget_Base{
           ],
         ]
       );
+      $repeater->add_control(
+        'button_text',
+        [
+          'type'      => Controls_Manager::TEXT,
+          'label'     => esc_html__( 'Button Text', 'tmc' ),
+          'default'   => esc_html__('Read more','tmc')
+        ]
+      );
 
       $this->add_control(
         'layer_content_list',
@@ -151,6 +159,7 @@ class Layer_Content extends Widget_Base{
                       $desc = isset($s['desc']) ? $s['desc'] : '';
                       $url = !empty($s['url']['url']) ? $s['url']['url'] : '#';
                       $link_props = ' href="' . esc_url( $url ) . '" ';
+                      $button_text = $s['button_text'];
                       if ( isset($s['url']['is_external']) && $s['url']['is_external'] ) {
                         $link_props .= ' target="_blank" ';
                       }
@@ -173,7 +182,7 @@ class Layer_Content extends Widget_Base{
                               <a <?php echo $link_props;?>>
                                 <?php if($desc):?>
                                   <div class="desc"><?php echo esc_html($desc);?></div>
-                                  <p class="m-0 mt-3 btn-read-more"><?php echo esc_html__('Read More','tmc');?></p>
+                                  <p class="m-0 mt-3 btn-read-more"><?php echo $button_text;?></p>
                                 <?php endif;?>
                               </a>
                             </div>
