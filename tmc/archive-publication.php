@@ -1,6 +1,6 @@
 <?php
 /**
- * The main template file
+ * Archive page
  *
  * This is the most generic template file in a WordPress theme
  * and one of the two required files for a theme (the other being style.css).
@@ -14,7 +14,7 @@
 get_header();
 ?>
 <main id="main" class="site-main">
-    <div class="container">
+    <div class="container">        
         <div class="row">
             <div class="site-content col-md-12">
                 <div class="content-wrap">

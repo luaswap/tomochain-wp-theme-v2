@@ -94,6 +94,7 @@ if ( ! function_exists( 'tmc_setup' ) ) :
 			'flex-height' => true,
         ) );
         add_image_size('event-image', 1200, 628, true);
+        add_image_size('enterprise-image', 400, 400, true);
 	}
 endif;
 add_action( 'after_setup_theme', 'tmc_setup' );
@@ -118,6 +119,24 @@ function tomochain_widgets_init() {
     register_sidebar( array(
 		'name'          => esc_html__( 'Sidebar', 'tmc' ),
 		'id'            => 'sidebar-1',
+		'description'   => esc_html__( 'Add widgets here.', 'tmc' ),
+		'before_widget' => '<section id="%1$s" class="widget %2$s">',
+		'after_widget'  => '</section>',
+		'before_title'  => '<h2 class="widget-title">',
+		'after_title'   => '</h2>',
+	) );
+	register_sidebar( array(
+		'name'          => esc_html__( 'Publication', 'tmc' ),
+		'id'            => 'p-sidebar',
+		'description'   => esc_html__( 'Add widgets here.', 'tmc' ),
+		'before_widget' => '<section id="%1$s" class="widget %2$s">',
+		'after_widget'  => '</section>',
+		'before_title'  => '<h2 class="widget-title">',
+		'after_title'   => '</h2>',
+	) );
+	register_sidebar( array(
+		'name'          => esc_html__( 'Use Case', 'tmc' ),
+		'id'            => 'u-sidebar',
 		'description'   => esc_html__( 'Add widgets here.', 'tmc' ),
 		'before_widget' => '<section id="%1$s" class="widget %2$s">',
 		'after_widget'  => '</section>',

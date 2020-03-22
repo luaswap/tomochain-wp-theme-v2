@@ -14,6 +14,9 @@ if ( ! have_posts() ) {
     $page_title = single_cat_title( '', false );
 } elseif (is_tag()) {
     $page_title       = single_tag_title(esc_html__( 'Tags: ', 'tmc'), false);
+} elseif (is_tax('publication_cat')) {
+
+    $page_title       = get_queried_object()->name;
 } elseif (is_search()) {
     $page_title       = sprintf(esc_html__( 'Search results for: %s', 'tmc'), get_search_query());
 } elseif (is_author()) {
@@ -41,7 +44,11 @@ if ( ! have_posts() ) {
     <div class="container">
         <div class="tmc-page-inner">
             <h2><?php echo esc_html($page_title);?></h2>
-            <?php echo tmc_breadcrumbs();?>
         </div>
+    </div>
+</div>
+<div class="tmc-breadcrumb-wrap">
+    <div class="container">
+        <?php do_action('tmc_enterprise_breadcrumb');?>
     </div>
 </div>

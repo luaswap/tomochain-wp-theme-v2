@@ -81,24 +81,6 @@ if(!class_exists('TMC_Elementor_Widgets')){
 				null,
 				true
 			);
-			// wp_register_script( 'imageloaded',
-			// 	TMC_ADDON_ASSETS. '/vendor/imageloaded/imageloaded.pkgd.min.js',
-			// 	array('jquery'),
-			// 	null,
-			// 	true
-			// );
-			// wp_register_script( 'isotope',
-			// 	TMC_ADDON_ASSETS. '/vendor/isotope/isotope.pkgd.min.js',
-			// 	array('jquery'),
-			// 	null,
-			// 	true
-			// );
-			// wp_register_script( 'jquery-countdown',
-			// 	TMC_ADDON_ASSETS. '/vendor/countdown/jquery.countdown.min.js',
-			// 	array('jquery'),
-			// 	null,
-			// 	true
-			// );
 			wp_register_script( 'tmc-addon',
 				TMC_ADDON_ASSETS. '/js/tmc-addon.js',
 				array('jquery'),
