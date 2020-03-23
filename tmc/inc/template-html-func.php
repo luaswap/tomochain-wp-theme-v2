@@ -69,12 +69,10 @@ if(!function_exists('tmc_related_post')){
 		              $title_post  = get_the_title();
 		              ?>
 		              <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-		                <div class="entry-img">
-		                  <?php if(has_post_thumbnail()):
-		                      tmc_post_thumbnail('post-large-thumb');
-		                    endif;
-		                  ?>
-		                </div>
+		                <?php if(has_post_thumbnail()):?>
+			                <div class="entry-img" style="background-image:url(<?php echo get_the_post_thumbnail_url(get_the_ID(), 'medium')?>);">
+			                </div>
+			            <?php endif;?>
 		                <div class="box-content">
 		                  	<div class="entry-header">
 		                    	<?php the_title('<h3 class="entry-title"><a href="' . get_permalink(). '">', '</a></h3>');?>
