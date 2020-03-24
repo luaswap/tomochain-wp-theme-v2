@@ -16,8 +16,8 @@ get_header();
 <main id="main" class="site-main">
     <div class="container">
         <div class="row">
-            <div class="site-content col-md-9">
-                <div class="blog-wrap">
+            <div class="site-content col-md-12">
+                <div class="content-wrap">
                     <?php if ( have_posts() ) :
                         /* Start the Loop */
                         while ( have_posts() ) :
@@ -31,7 +31,6 @@ get_header();
                 </div>
                 <?php tmc_pagination(); ?>
             </div>
-            <?php get_sidebar(); ?>
         </div>
         
     </div>

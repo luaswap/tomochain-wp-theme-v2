@@ -60,7 +60,6 @@
 					</div><!-- .site-branding -->
 					<nav id="site-menu" class="main-menu hidden-md-down">
 						<?php
-						$a = tmc_get_option('tmc_report_list');
 						wp_nav_menu( array(
 							'theme_location' => 'primary',
 							'menu_id'        => 'primary-menu',

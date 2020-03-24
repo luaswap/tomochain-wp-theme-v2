@@ -15,8 +15,9 @@
 
 		<div class="entry-meta">
             <?php
-            tmc_posted_by();
             tmc_post_date();
+            tmc_posted_by();
+            
             ?>
         </div><!-- .entry-meta -->
 	</header><!-- .entry-header -->

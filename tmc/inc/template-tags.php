@@ -39,7 +39,7 @@ if ( ! function_exists( 'tmc_post_date' ) ) :
     function tmc_post_date() {
             $date = get_the_date(get_option( 'date_format' ));
 
-        echo '<span class="posted-on"><i class="far fa-clock"></i>' . $date . '</span>';
+        echo '<span class="posted-on">' . $date . '</span>';
     }
 endif;
 
@@ -51,7 +51,7 @@ if ( ! function_exists( 'tmc_posted_by' ) ) :
 		$byline = sprintf(
 			/* translators: %s: post author. */
 			esc_html_x( '%s', 'post author', 'tmc' ),
-			'<span class="author vcard"><a class="url fn n" href="' . esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ) . '"><i class="fa fa-user"></i>' . esc_html( get_the_author_meta( 'display_name' ) ) . '</a></span>'
+			'<span class="author vcard">' . esc_html__( '- by ','tmc') .'<a class="url fn n" href="' . esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ) . '">' .  get_the_author_meta( 'display_name' ) . '</a></span>'
 		);
 
 		echo '<span class="byline"> ' . $byline . '</span>'; // WPCS: XSS OK.
@@ -65,6 +65,21 @@ if ( ! function_exists( 'tmc_categories' ) ) :
             <span class="categories"><?php echo get_the_category_list( ', ' ); ?></span>
         <?php
         endif;
+    }
+endif;
+
+if ( ! function_exists( 'tmc_terms' ) ) :
+    function tmc_terms($tax = 'category') {
+    	$terms = get_the_terms( get_the_ID(), $tax );
+    	
+		if ( ! empty( $terms ) && ! is_wp_error( $terms ) ) {
+		    $terms = wp_list_pluck( $terms, 'name','term_id' );
+		    echo '<span class="'. $tax .'">'. esc_html__( 'Category: ','tmc');
+		    foreach ($terms as $key => $term) {
+		    	echo '<a href="'. get_term_link($key).'">'. $term .'</a>';
+		    }
+		    echo '</span>';
+		}
     }
 endif;
 

@@ -66,6 +66,8 @@ if ( ! class_exists( 'TMC_Addon' ) ) {
 			}
 			/* Register Custom Post type */
 	    	require_once TMC_ADDON_INCLUDES_DIR . '/post-type/event.php';
+	    	require_once TMC_ADDON_INCLUDES_DIR . '/post-type/publication.php';
+	    	require_once TMC_ADDON_INCLUDES_DIR . '/post-type/usecase.php';
 
 	    	/* Include Elementor Widget */
 	    	require_once TMC_ADDON_INCLUDES_DIR . '/class-elementor-extra-widgets.php';

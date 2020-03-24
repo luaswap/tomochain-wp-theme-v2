@@ -1,6 +1,6 @@
 <?php
 /**
- * The main template file
+ * Archive page
  *
  * This is the most generic template file in a WordPress theme
  * and one of the two required files for a theme (the other being style.css).
@@ -17,7 +17,7 @@ get_header();
     <div class="container">
         <div class="row">
             <div class="site-content col-md-12">
-                <div class="content-wrap">
+                <div class="usecase-content">
                     <?php if ( have_posts() ) :
                         /* Start the Loop */
                         while ( have_posts() ) :
