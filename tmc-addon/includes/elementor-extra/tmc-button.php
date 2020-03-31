@@ -111,6 +111,34 @@ class Tmc_Button extends Widget_Base{
           'title_field' => '{{{ title }}}',
         ]
       );
+
+      $this->add_control(
+        'min_width',
+        [
+          'label' => __( 'Min Width', 'tmc' ),
+          'type' => Controls_Manager::SLIDER,
+          'size_units' => [ 'px', '%' ],
+          'range' => [
+            'px' => [
+              'min' => 10,
+              'max' => 1000,
+              'step' => 5,
+            ],
+            '%' => [
+              'min' => 0,
+              'max' => 100,
+            ],
+          ],
+          'default' => [
+            'unit' => 'px',
+            'size' => 250,
+          ],
+          'selectors' => [
+            '{{WRAPPER}} .tmc-button-widget .button-link' => 'min-width: {{SIZE}}{{UNIT}};',
+          ],
+        ]
+      );
+      
       $this->add_control(
         'padding',
         [

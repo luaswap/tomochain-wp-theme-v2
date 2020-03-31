@@ -63,24 +63,6 @@ if(!class_exists('TMC_Elementor_Widgets')){
 				null,
 				true
 			);
-			wp_register_script( 'tweenMax',
-				TMC_ADDON_ASSETS. '/vendor/scrollmagic/TweenMax.min.js',
-				array('jquery'),
-				null,
-				true
-			);
-			wp_register_script( 'scrollMagic',
-				TMC_ADDON_ASSETS. '/vendor/scrollmagic/ScrollMagic.min.js',
-				array('jquery'),
-				null,
-				true
-			);
-			wp_register_script( 'animationGsap',
-				TMC_ADDON_ASSETS. '/vendor/scrollmagic/animation.gsap.js',
-				array('jquery'),
-				null,
-				true
-			);
 			wp_register_script( 'tmc-addon',
 				TMC_ADDON_ASSETS. '/js/tmc-addon.js',
 				array('jquery'),

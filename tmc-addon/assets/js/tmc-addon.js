@@ -90,6 +90,61 @@
         });
     };
 
+    var PublicationSlick = function( $scope, $ ) {
+        $scope.find('.tmc-publication-widget').css( 'opacity','1' );
+        $scope.find('.tmc-publication-content').slick({
+            slidesToShow: 4,
+            slidesToScroll: 4,
+            speed: 1000,
+            arrows: false,
+            // prevArrow:'<span class="tmc-prev"><i class="fas fa-angle-left"></i></span>',
+            // nextArrow: '<span class="tmc-next"><i class="fas fa-angle-right"></i></span>',
+            responsive: [
+                {
+                    breakpoint: 768,
+                    settings: {
+                        slidesToShow: 2,
+                        slidesToScroll: 2,
+                    }
+                },
+                {
+                    breakpoint: 560,
+                    settings: {
+                        slidesToShow: 1,
+                        slidesToScroll: 1,
+                    }
+                }
+            ]
+        });
+    };
+
+    var UsecaseSlick = function( $scope, $ ) {
+        $scope.find('.tmc-usecase-widget').css( 'opacity','1' );
+        $scope.find('.tmc-usecase-content').slick({
+            rows: 2,
+            dots: true,
+            slidesToShow: 2,
+            slidesToScroll: 2,
+            speed: 1000,
+            arrows: false,
+            customPaging: function(slider, i) {
+              // this example would render "tabs" with titles
+              return '<span class="dot"></span>';
+            },
+            // prevArrow:'<i class="fas fa-angle-double-up"></i>',
+            // nextArrow: '<i class="fas fa-angle-double-down"></i>'
+            responsive: [
+                {
+                    breakpoint: 768,
+                    settings: {
+                        slidesToShow: 1,
+                        slidesToScroll: 1,
+                    }
+                }
+            ]
+        });
+    };
+
     //slider developer-hub
     var DeveloperSlick = function( $scope, $ ) {
         $scope.find('.tmc-developerhub-technology-slider').slick({
@@ -118,67 +173,6 @@
             ]
         });
     };
-
-    var AlphaTab   = function($scope, $ ){
-        var controller = new ScrollMagic.Controller();
-        var sections = document.querySelectorAll(".tmc-alpha-tab-content");
-        var tl = new TimelineMax();
-        var offset = window.innerHeight;
-        var w = window.innerWidth;
-
-        var tabs = document.querySelectorAll(".tmc-tab-item");
-        tabs[0].classList.add("active");
-
-        var slides = sections.length;
-
-
-        // tl.to(sections[0], .5, { x: "-100%", ease: Linear.easeNone }, '-=.5')
-        // for (var i = 0; i < slides - 1; i++) {
-          tl.to('#tab-1', 1, { x: "-80%", onComplete:addActive,onCompleteParams:[1],onReverseComplete:addActive,onReverseCompleteParams:[0] });
-          tl.to('#tab-2', 1, { x: "-80%", onComplete:addActive,onCompleteParams:[2],onReverseComplete:addActive,onReverseCompleteParams:[1] });
-          tl.to('#tab-3', 1, { x: "-80%", onComplete:addActive,onCompleteParams:[3],onReverseComplete:addActive,onReverseCompleteParams:[2] });
-        // }
-
-        // console.log(sections[sections.length - 1])
-
-        tl.to('#tab-4', .5, { x: "0%", onComplete:addActive,onCompleteParams:[3],onReverseComplete:addActive,onReverseCompleteParams:[2] });
-
-        new ScrollMagic.Scene({
-          triggerElement: "#pinContainer",
-          triggerHook: "onLeave",
-          duration: (w * (sections.length - 1))
-        })
-          .setPin("#pinContainer")
-          .setTween(tl)
-          .addTo(controller);
-
-        $(".tmc-alpha-tab-content").each(function(i) {
-            var target1 = $(this).find(".tmc-tab-left");
-            var target2 = $(this).find(".tmc-tab-right");
-            var tl = new TimelineMax();
-            tl.staggerFrom(target1, 0.3, { ease: "bounce.inOut" });
-            tl.staggerFrom(target2, 0.3, { ease: "bounce.inOut"});
-
-          new ScrollMagic.Scene({
-            triggerElement: "#pinContainer",
-            triggerHook: 0,
-            offset: i * w
-          })
-            .setTween(tl)
-            .addTo(controller)
-        });
-    };
-    function addActive(index){
-        var sections = document.querySelectorAll(".tmc-alpha-tab-content");
-        var tabs = document.querySelectorAll(".tmc-tab-item");
-        for(var i = 0;i < sections.length;i++){
-            if(i === index) {
-                tabs[i].classList.add("active");
-            }else{
-                tabs[i].classList.remove("active");
-            }
-        }
-    }
 
     //slider homepage Build-On-TomoChain
     var SliderSwiper = function( $scope, $ ){
@@ -213,9 +207,10 @@
         // elementorFrontend.hooks.addAction( 'frontend/element_ready/tmc-post-layout.default', TMCCarousel );
         elementorFrontend.hooks.addAction( 'frontend/element_ready/tmc-event.default', EventSlick );
         elementorFrontend.hooks.addAction( 'frontend/element_ready/tmc-press.default', PressSlick );
+        elementorFrontend.hooks.addAction( 'frontend/element_ready/tmc-publication.default', PublicationSlick );
+        elementorFrontend.hooks.addAction( 'frontend/element_ready/tmc-usecase.default', UsecaseSlick );
         elementorFrontend.hooks.addAction( 'frontend/element_ready/tmc-build.default', DeveloperSlick );
         elementorFrontend.hooks.addAction( 'frontend/element_ready/tmc-slider.default', SliderSwiper );
-        elementorFrontend.hooks.addAction( 'frontend/element_ready/tmc_alpha_tabs.default', AlphaTab );
     } );
 
 })( jQuery );

@@ -3,10 +3,7 @@ namespace TMC_Elementor_Widgets;
 
 use Elementor\Controls_Manager;
 use Elementor\Widget_Base;
-use Elementor\Scheme_Color;
-use Elementor\Scheme_Typography;
 use Elementor\Repeater;
-use Elementor\Utils;
 use Elementor\Icons_Manager;
 
 class Layer extends Widget_Base{
@@ -37,6 +34,18 @@ class Layer extends Widget_Base{
         'tmc_layer',
         [
             'label' => esc_html__('General', 'tmc')
+        ]
+      );
+      $this->add_control(
+        'style',
+        [
+          'type'           => Controls_Manager::SELECT,
+          'label'          => '<i class="fa fa-columns"></i> ' . esc_html__( 'Columns', 'tmc' ),
+          'default'        => 'default',
+          'options'        => [
+            'default'      => __('Default','tmc'),
+            'enterprise'   => __('Enterprise','tmc'),
+          ]
         ]
       );
       // Columns.
@@ -93,16 +102,16 @@ class Layer extends Widget_Base{
           'fields' => $repeater->get_controls(),
           'default' => [
             [
-              'layer' => __( 'Product', 'tmc' ),
+              'title' => __( 'Product', 'tmc' ),
             ],
             [
-              'layer' => __( 'Protocol', 'tmc' ),
+              'title' => __( 'Protocol', 'tmc' ),
             ],
             [
-              'layer' => __( 'Core Blockchain', 'tmc' ),
+              'title' => __( 'Core Blockchain', 'tmc' ),
             ],
           ],
-          'title_field' => '{{{ layer }}}',
+          'title_field' => '{{{ title }}}',
         ]
       );
 
@@ -112,6 +121,7 @@ class Layer extends Widget_Base{
     protected function render()
     {
       $settings = $this->get_settings();
+      $style = $settings['style'];
       $layer = $settings['layer_list'];
       $item_class = '';
       $mobile_class = ( ! empty( $settings['columns_mobile'] ) ? ' tmc-mobile-' . $settings['columns_mobile'] : '' );
@@ -120,7 +130,7 @@ class Layer extends Widget_Base{
 
       $grid_class = 'tmc-grid-col'.$desktop_class . $tablet_class . $mobile_class;
       ?>
-        <div class="tmc-layer-widget">
+        <div class="tmc-layer-widget <?php echo esc_attr($style);?>">
 
             <?php if(!empty($layer) && is_array($layer)):?>
               <div class="tmc-layer-content <?php echo esc_attr($grid_class);?>">
@@ -129,13 +139,20 @@ class Layer extends Widget_Base{
                       $st = isset($s['title']) ? $s['title'] : '';
                       $id = isset($s['id_content']) ? $s['id_content'] : '';
                       ?>
-                      <a class="layer-item tmc-grid-item tmc-<?php echo esc_attr($id);?>" href="#<?php echo esc_attr($id);?>">
+                      <a id="tmc-<?php echo esc_attr($id);?>" class="layer-item tmc-grid-item" href="#<?php echo esc_attr($id);?>">
                           <div class="layer-info">
-                            <div class="layer-icon">
-                              <?php Icons_Manager::render_icon( $s['icon'], [ 'aria-hidden' => 'true' ], 'i' );?>
-                            </div>
+                            <?php if($style == 'default'):?>
+                              <div class="layer-icon">
+                                <?php Icons_Manager::render_icon( $s['icon'], [ 'aria-hidden' => 'true' ], 'i' );?>
+                              </div>
+                            <?php endif;?>
                             <div class="layer-title">
-                              <div class="txt"><span><?php echo esc_html($st);?></span><i class="ftomo tomo-long-arrow-right"></i></div>
+                              <div class="txt">
+                                <span><?php echo esc_html($st);?></span>
+                                <?php if($style == 'default'):?>
+                                  <i class="ftomo tomo-long-arrow-right"></i>
+                                <?php endif;?>
+                              </div>
                             </div>
                           </div>
                       </a>

@@ -94,7 +94,6 @@ if ( ! function_exists( 'tmc_setup' ) ) :
 			'flex-height' => true,
         ) );
         add_image_size('event-image', 1200, 628, true);
-        add_image_size('enterprise-image', 400, 400, true);
 	}
 endif;
 add_action( 'after_setup_theme', 'tmc_setup' );
