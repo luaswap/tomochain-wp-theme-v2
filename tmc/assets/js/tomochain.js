@@ -260,70 +260,26 @@
             }
         },
 
-        // tomoProduct: function(){
-        //     $('.developer-hub-tab-paging a:nth-child(1)').click(function(){
-        //         $('.developer-hub-tab-layer a').removeClass('active');
-        //         $('.developer-hub-tab-layer a:nth-child(1)').addClass('active');
-        //     });
-        //     $('.developer-hub-tab-paging a:nth-child(2)').click(function(){
-        //         $('.developer-hub-tab-layer a').removeClass('active');
-        //         $('.developer-hub-tab-layer a:nth-child(2)').addClass('active');
-        //     });
-        //     $('.developer-hub-tab-paging a:nth-child(3)').click(function(){
-        //         $('.developer-hub-tab-layer a').removeClass('active');
-        //         $('.developer-hub-tab-layer a:nth-child(3)').addClass('active');
-        //     });
-
-        //     $('.developer-hub-tab-layer a:nth-child(1)').click(function(){
-        //         $('.developer-hub-tab-paging a').removeClass('active');
-        //         $('.developer-hub-tab-paging a:nth-child(1)').addClass('active');
-        //     });
-        //     $('.developer-hub-tab-layer a:nth-child(2)').click(function(){
-        //         $('.developer-hub-tab-paging a').removeClass('active');
-        //         $('.developer-hub-tab-paging a:nth-child(2)').addClass('active');
-        //     });
-        //     $('.developer-hub-tab-layer a:nth-child(3)').click(function(){
-        //         $('.developer-hub-tab-paging a').removeClass('active');
-        //         $('.developer-hub-tab-paging a:nth-child(3)').addClass('active');
-        //     });
-
-        //     if($('.developer-hub-tab-paging .tmc-layer-widget').length > 0 && $('.tmc-layer-content-widget').length > 0){
-        //         $('.tmc-layer-content a:nth-child(2)').addClass('active');
-        //         $('.section-layer').eq(1).show();
-        //         $('.developer-hub-tab-paging .tmc-layer-widget').on('click', 'a', function(e){
-        //             e.preventDefault();
-        //             $('.developer-hub-tab-paging .tmc-layer-widget a').removeClass('active');
-        //             $(this).addClass('active');
-        //             var id = $($(this).attr('href'));
-        //             $('.section-layer').hide();
-        //             id.show();
-        //         });
-        //     }
-        //     if($('.developer-hub-tab-layer .tmc-layer-widget').length > 0 && $('.tmc-layer-content-widget').length > 0){
-        //         $('.tmc-layer-content a:nth-child(2)').addClass('active');
-        //         $('.section-layer').eq(1).show();
-        //         $('.developer-hub-tab-layer .tmc-layer-widget').on('click', 'a', function(e){
-        //             e.preventDefault();
-        //             $('.developer-hub-tab-layer .tmc-layer-widget a').removeClass('active');
-        //             $(this).addClass('active');
-        //             var id = $($(this).attr('href'));
-        //             $('.section-layer').hide();
-        //             id.show();
-        //         });
-        //     }
-        // },
         tomoProduct: function(){
             if($('.tmc-layer-widget').length > 0){
-                $('.tmc-layer-content a:nth-child(2)').addClass('active');
-                $('.section-layer').eq(1).show();
+                if($('.tmc-layer-widget.default').length > 0){
+                    $('.tmc-layer-content a:nth-child(2)').addClass('active');
+                    $('.section-layer').eq(1).show();
+                }else{
+                    $('.tmc-layer-content a').first().addClass('active');
+                    $('.section-layer').first().show();
+                }
                 $('.tmc-layer-widget').on('click', 'a', function(e){
                     e.preventDefault();
+                    if($('.tmc-layer-widget.enterprise').length > 0){
+                        e.stopPropagation();
+                    }
                     var a = $(this).attr('id');
                     $('.tmc-layer-widget a').removeClass('active');
                     $('.tmc-layer-widget').find('#'+a).addClass('active');
                     var id = $($(this).attr('href'));
-                    $('.section-layer').hide();
-                    id.show();
+                    $('.section-layer').hide(200);
+                    id.show(200);
                 });
             }
 

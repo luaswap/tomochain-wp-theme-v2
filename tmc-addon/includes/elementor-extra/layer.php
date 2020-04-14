@@ -40,7 +40,7 @@ class Layer extends Widget_Base{
         'style',
         [
           'type'           => Controls_Manager::SELECT,
-          'label'          => '<i class="fa fa-columns"></i> ' . esc_html__( 'Columns', 'tmc' ),
+          'label'          => '<i class="fa fa-columns"></i> ' . esc_html__( 'Style', 'tmc' ),
           'default'        => 'default',
           'options'        => [
             'default'      => __('Default','tmc'),
