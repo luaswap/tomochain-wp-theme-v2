@@ -7,6 +7,7 @@ if(!class_exists('TMC_Use_Case')){
         
         function __construct(){
             add_action('init', array($this,'tmc_usecase'));
+            add_filter('template_include', array($this,'template_loader'));
         }
         function tmc_usecase(){
 
@@ -79,6 +80,12 @@ if(!class_exists('TMC_Use_Case')){
                 'use-case'
             ) , $category_args);
 
+        }
+        function template_loader($template){
+            if(is_tax('use-case-cat')){
+                $template = locate_template('archive-use-case.php');
+            }
+            return $template;
         }
     }
     new TMC_Use_Case();

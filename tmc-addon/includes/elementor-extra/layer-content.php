@@ -173,15 +173,15 @@ class Layer_Content extends Widget_Base{
                               <?php if($image):?>
                                 <img src="<?php echo esc_url($image)?>" alt="<?php echo esc_attr($title);?>">
                               <?php endif;?>
-                              <h3 class="layer-title"><?php echo esc_html($title);?></h3>
+                              <h3 class="layer-title"><?php echo wp_kses_post($title);?></h3>
                               <?php if($subtitle):?>
-                                <div class="sub-title"><?php echo esc_html($subtitle);?></div>
+                                <div class="sub-title"><?php echo wp_kses_post($subtitle);?></div>
                               <?php endif;?>
                             </div>
                             <div class="layer-info">
                               <a <?php echo $link_props;?>>
                                 <?php if($desc):?>
-                                  <div class="desc"><?php echo esc_html($desc);?></div>
+                                  <div class="desc"><?php echo wp_kses_post($desc);?></div>
                                   <p class="m-0 mt-3 btn-read-more"><?php echo $button_text;?></p>
                                 <?php endif;?>
                               </a>

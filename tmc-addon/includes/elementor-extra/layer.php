@@ -148,7 +148,7 @@ class Layer extends Widget_Base{
                             <?php endif;?>
                             <div class="layer-title">
                               <div class="txt">
-                                <span><?php echo esc_html($st);?></span>
+                                <span><?php echo wp_kses_post($st);?></span>
                                 <?php if($style == 'default'):?>
                                   <i class="ftomo tomo-long-arrow-right"></i>
                                 <?php endif;?>

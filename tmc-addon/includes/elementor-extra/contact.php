@@ -163,7 +163,7 @@ class Contact extends Widget_Base{
                     $type = isset($c['contact_type']) ? $c['contact_type'] : '';                    
                     ?>
                     <div class="c-item">
-                        <div class="contact-title"><?php esc_html_e($ct);?></div>
+                        <div class="contact-title"><?php wp_kses_post($ct);?></div>
                         <div class="contact-info">
                           <?php if($type == 'email'){
                             $email = $c['email'];
@@ -179,7 +179,7 @@ class Contact extends Widget_Base{
                               $c_link_props .= ' rel="nofollow" ';
                             }
                             $text = $c['text'];?>
-                            <a <?php echo $c_link_props;?>><?php esc_html_e($text);?></a>
+                            <a <?php echo $c_link_props;?>><?php wp_kses_post($text);?></a>
                           <?php }?>                          
                         </div>
                     </div>

@@ -76,7 +76,7 @@ class Section_Build extends Widget_Base{
             <?php endif;?>
             <?php if($settings['b_subtitle']):?>
               <p class="tmc-build-subtitle">
-                <?php echo $settings['b_subtitle'];?>
+                <?php echo wp_kses_post($settings['b_subtitle']);?>
               </p>
             <?php endif;?>
           </div>

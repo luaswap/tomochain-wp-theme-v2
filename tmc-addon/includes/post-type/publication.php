@@ -7,6 +7,7 @@ if(!class_exists('TMC_Publication')){
         
         function __construct(){
             add_action('init', array($this,'tmc_publication'));
+            add_filter('template_include', array($this,'template_loader'));
         }
         function tmc_publication(){
 
@@ -79,6 +80,12 @@ if(!class_exists('TMC_Publication')){
                 'publication'
             ) , $category_args);
 
+        }
+        function template_loader($template){
+            if(is_tax('publication_cat')){
+                $template = locate_template('archive-publication.php');
+            }
+            return $template;
         }
     }
     new TMC_Publication();
