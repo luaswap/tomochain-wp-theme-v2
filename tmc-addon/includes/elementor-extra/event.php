@@ -231,7 +231,7 @@ class Event extends Widget_Base{
                                 <?php if(!empty($place)):?>
                                 <div class="tmc-location">
                                     <i class="fas fa-map-marker-alt"></i>
-                                    <span class="tmc-place"><?php echo esc_html($place);?></span>
+                                    <span class="tmc-place"><?php echo wp_kses_post($place);?></span>
                                 </div>
                                 <?php endif;?>
                                 <div class="tmc-event-desc">

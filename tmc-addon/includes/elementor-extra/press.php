@@ -181,7 +181,7 @@ class Press extends Widget_Base{
                       ?>
                       <div class="p-item">
                           <img src="<?php echo esc_url($pi);?>" alt="<?php echo esc_attr($pt);?>">
-                          <p class="desc"><?php esc_html_e($pd);?></p>
+                          <p class="desc"><?php wp_kses_post($pd);?></p>
                           <a class="read-more" <?php echo $p_link_props;?>><?php echo $pb?></a>
                       </div>
                   <?php }?>

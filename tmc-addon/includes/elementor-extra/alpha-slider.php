@@ -164,7 +164,6 @@ class Alpha_Slider extends Widget_Base{
     }
     protected function render()
     {
-      global $allowedposttags;
       $settings = $this->get_settings();
       $tabs = $content_tabs = array();
 
@@ -201,8 +200,8 @@ class Alpha_Slider extends Widget_Base{
                       <img src="<?php echo esc_url($image);?>">
                     </div>
                     <div class="tmc-tab-right alpha-<?php echo $this->convert_to_slug($value['tab']);?>">
-                      <h3 class="c-title"><?php echo esc_html($value['title']);?></h3>
-                      <p class="c-subtitle"><?php echo wp_kses($value['subtitle'],$allowedposttags);?></p>
+                      <h3 class="c-title"><?php echo wp_kses_post($value['title']);?></h3>
+                      <p class="c-subtitle"><?php echo wp_kses_post($value['subtitle']);?></p>
                       <a class="link" <?php echo $link;?>>
                         <?php echo esc_html($button_text);?>
                       </a>
