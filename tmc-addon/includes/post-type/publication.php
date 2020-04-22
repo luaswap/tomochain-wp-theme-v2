@@ -93,9 +93,9 @@ if(!class_exists('TMC_Publication')){
         function change_term_request($query){
             $tax_name = 'publication_cat'; // specify you taxonomy name here, it can be also 'category' or 'post_tag'
             // Request for child terms differs, we should make an additional check
-            if( isset($query_vars['name'])):
+            if( isset($query['name'])):
                     $include_children = false;
-                    $name = $query_vars['name'];
+                    $name = $query['name'];
             endif;
          
             if(isset($name)):
@@ -133,7 +133,7 @@ if(!class_exists('TMC_Publication')){
             if( strpos( $_SERVER['REQUEST_URI'], $taxonomy_name ) === FALSE)
                 return;
          
-            if( ( is_tax( $taxonomy_name ) ) :
+            if( is_tax( $taxonomy_name ) ) :
                     wp_redirect( site_url( str_replace($taxonomy_name, '', $_SERVER['REQUEST_URI']) ), 301 );
                 exit();
          

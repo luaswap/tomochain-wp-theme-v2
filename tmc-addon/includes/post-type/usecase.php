@@ -93,9 +93,9 @@ if(!class_exists('TMC_Use_Case')){
         function change_term_request($query){
             $tax_name = 'use-case-cat'; // specify you taxonomy name here, it can be also 'category' or 'post_tag'
             // Request for child terms differs, we should make an additional check
-            if( isset($query_vars['name'])):
+            if( isset($query['name'])):
                     $include_children = false;
-                    $name = $query_vars['name'];
+                    $name = $query['name'];
             endif;
          
             if(isset($name)):
