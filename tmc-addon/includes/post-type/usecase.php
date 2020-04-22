@@ -8,6 +8,9 @@ if(!class_exists('TMC_Use_Case')){
         function __construct(){
             add_action('init', array($this,'tmc_usecase'));
             add_filter('template_include', array($this,'template_loader'));
+            add_filter('request', array($this, 'change_term_request'), 1, 1 );
+            add_filter( 'term_link', array($this, 'term_permalink'), 10, 3 );
+            add_action('template_redirect', array($this, 'old_term_redirect'));
         }
         function tmc_usecase(){
 
@@ -86,6 +89,55 @@ if(!class_exists('TMC_Use_Case')){
                 $template = locate_template('archive-use-case.php');
             }
             return $template;
+        }
+        function change_term_request($query){
+            $tax_name = 'use-case-cat'; // specify you taxonomy name here, it can be also 'category' or 'post_tag'
+            // Request for child terms differs, we should make an additional check
+            if( isset($query_vars['name'])):
+                    $include_children = false;
+                    $name = $query_vars['name'];
+            endif;
+         
+            if(isset($name)):
+                $term = get_term_by('slug', $name, $tax_name); // get the current term to make sure it exists
+             
+                if (isset($name) && $term && !is_wp_error($term)): // check it here
+             
+                    if( !$include_children ) {
+                        unset($query['name']);
+                    }
+                    $query[$tax_name] = $name;
+             
+                endif;
+            endif;
+            
+            return $query;
+         
+        }
+        function term_permalink( $url, $term, $taxonomy ){
+            $taxonomy_name = 'use-case-cat'; // your taxonomy name here
+            
+            // exit the function if taxonomy slug is not in URL
+            if ( strpos($url, $taxonomy_name) === FALSE || $taxonomy != $taxonomy_name ) return $url;
+            // var_dump($url);
+            $url = str_replace('/' . $taxonomy_name, '', $url);
+         
+            return $url;
+        }        
+     
+        function old_term_redirect() {
+         
+            $taxonomy_name = 'use-case-cat';
+         
+            // exit the redirect function if taxonomy slug is not in URL
+            if( strpos( $_SERVER['REQUEST_URI'], $taxonomy_name ) === FALSE)
+                return;
+            if( is_tax( $taxonomy_name ) ) :
+                wp_redirect( site_url( str_replace($taxonomy_name, '', $_SERVER['REQUEST_URI']) ), 301 );
+                exit();
+         
+            endif;
+         
         }
     }
     new TMC_Use_Case();

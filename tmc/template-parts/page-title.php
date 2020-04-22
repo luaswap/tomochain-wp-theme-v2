@@ -14,7 +14,7 @@ if ( ! have_posts() ) {
     $page_title = single_cat_title( '', false );
 } elseif (is_tag()) {
     $page_title       = single_tag_title(esc_html__( 'Tags: ', 'tmc'), false);
-} elseif (is_tax('publication_cat')) {
+} elseif (is_tax('publication_cat') || is_tax('use-case-cat')) {
 
     $page_title       = get_queried_object()->name;
 } elseif (is_search()) {
