@@ -112,7 +112,7 @@ class Tmc_Button extends Widget_Base{
         ]
       );
 
-      $this->add_control(
+      $this->add_responsive_control(
         'min_width',
         [
           'label' => __( 'Min Width', 'tmc' ),
@@ -139,7 +139,7 @@ class Tmc_Button extends Widget_Base{
         ]
       );
       
-      $this->add_control(
+      $this->add_responsive_control(
         'padding',
         [
           'label' => __( 'Padding', 'tmc' ),
