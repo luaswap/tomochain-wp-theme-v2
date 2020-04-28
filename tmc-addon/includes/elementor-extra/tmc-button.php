@@ -138,7 +138,6 @@ class Tmc_Button extends Widget_Base{
           ],
         ]
       );
-
       $this->add_responsive_control(
         'padding',
         [
