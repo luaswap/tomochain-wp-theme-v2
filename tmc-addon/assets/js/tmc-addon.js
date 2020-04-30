@@ -200,12 +200,27 @@
             this.classList.add("swiper-pagination-bullet-active-click")
         }));
     };
+    var Countdown = function( $scope, $ ){
+        var clock = $scope.find('#tmc-clock').attr('data-date');
+        var data_text = $scope.find('#tmc-clock').attr('data-text');
+        data_text = JSON.parse(data_text);
+        if(clock){
+            $scope.find('#tmc-clock').countdown(clock, function(event) {
+                var $this = $(this).html(event.strftime(''
+                    + '<div><span class="item day">%D</span> <span class="text">'+ data_text['day'] +'</span></div>'
+                    + '<div><span class="item hour">%H</span> <span class="text">'+ data_text['hour'] +'</span></div> '
+                    + '<div><span class="item min">%M</span> <span class="text">'+ data_text['min'] +'</span></div> '
+                    + '<div><span class="item sec">%S</span> <span class="text">'+ data_text['sec'] +'</span></div>'));
+            });
+        }
+    }
 
     // Make sure you run this code under Elementor.
     $( window ).on( 'elementor/frontend/init', function() {
 
         // elementorFrontend.hooks.addAction( 'frontend/element_ready/tmc-post-layout.default', TMCCarousel );
         elementorFrontend.hooks.addAction( 'frontend/element_ready/tmc-event.default', EventSlick );
+        elementorFrontend.hooks.addAction( 'frontend/element_ready/tmc-countdown.default', Countdown );
         elementorFrontend.hooks.addAction( 'frontend/element_ready/tmc-press.default', PressSlick );
         elementorFrontend.hooks.addAction( 'frontend/element_ready/tmc-publication.default', PublicationSlick );
         elementorFrontend.hooks.addAction( 'frontend/element_ready/tmc-usecase.default', UsecaseSlick );

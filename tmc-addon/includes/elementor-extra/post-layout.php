@@ -7,7 +7,6 @@ namespace TMC_Elementor_Widgets;
 
 use \Elementor\Widget_Base;
 use \Elementor\Controls_Manager;
-use \Elementor\Scheme_Color;
 
 class Post_Layout extends Widget_Base {
 

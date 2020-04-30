@@ -3,10 +3,8 @@ namespace TMC_Elementor_Widgets;
 
 use Elementor\Controls_Manager;
 use Elementor\Widget_Base;
-use Elementor\Scheme_Color;
-use Elementor\Utils;
 use Elementor\Group_Control_Typography;
-use Elementor\Scheme_Typography;
+
 class Layer_Heading extends Widget_Base{
     public function get_name()
     {
