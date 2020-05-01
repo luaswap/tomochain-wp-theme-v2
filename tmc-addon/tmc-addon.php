@@ -68,6 +68,7 @@ if ( ! class_exists( 'TMC_Addon' ) ) {
 	    	require_once TMC_ADDON_INCLUDES_DIR . '/post-type/event.php';
 	    	require_once TMC_ADDON_INCLUDES_DIR . '/post-type/publication.php';
 	    	require_once TMC_ADDON_INCLUDES_DIR . '/post-type/usecase.php';
+	    	require_once TMC_ADDON_INCLUDES_DIR . '/post-type/press.php';
 
 	    	/* Include Elementor Widget */
 	    	require_once TMC_ADDON_INCLUDES_DIR . '/class-elementor-extra-widgets.php';
