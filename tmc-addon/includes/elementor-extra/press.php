@@ -40,6 +40,33 @@ class Press extends Widget_Base{
     {
         return [ 'tmc-element-widgets' ];
     }
+
+    /**
+     * Get categories.
+     */
+    private function get_press_categories() {
+      $options = array();
+
+      // Get categories for post type.
+      $terms = get_terms(
+        array(
+          'taxonomy'   => 'press_cat',
+          'hide_empty' => true,
+        )
+      );
+      if ( ! empty( $terms ) ) {
+        foreach ( $terms as $term ) {
+          if ( isset( $term ) ) {
+            if ( isset( $term->slug ) && isset( $term->name ) ) {
+              $options[ $term->slug ] = $term->name;
+            }
+          }
+        }
+      }
+
+      return $options;
+    }
+
     protected function _register_controls()
     {
       // Tab Content
@@ -52,6 +79,7 @@ class Press extends Widget_Base{
             'label' => esc_html__('General', 'tmc')
         ]
       );
+      
       $this->add_control(
         'title_heading',
         [
@@ -61,6 +89,58 @@ class Press extends Widget_Base{
           'placeholder'   => __( 'Type your title', 'tmc' ),
         ]
       );
+
+      $this->add_control(
+        'source',
+        [
+          'label'     => __( 'Type', 'tmc' ),
+          'type'      => Controls_Manager::SELECT,
+          'default'   => 'press',
+          'options'   => [
+              'custom'  => __('Custom', 'tmc'),
+              'press'   => __('Press Post Type', 'tmc'),
+          ],    
+        ]
+      );
+
+      $this->add_control(
+        'cat',
+        [
+          'label'     => __( 'Categories', 'tmc' ),
+          'type'      => Controls_Manager::SELECT2,
+          'multiple'  => true,
+          'options'   => $this->get_press_categories(),
+          'condition' => [
+            'source'  => 'press',
+          ],
+        ]
+      );
+
+      $this->add_control(
+        'per_page',
+        [
+          'label'     => __( 'Post per page', 'tmc' ),
+          'type'      => Controls_Manager::TEXT,
+          'default'     => 8,
+          'condition' => [
+            'source'  => 'press',
+          ],
+        ]
+      );
+
+      $this->add_control(
+        'p_button_text',
+        [
+          'label'       => __( 'Button text', 'tmc' ),
+          'type'        => Controls_Manager::TEXT,
+          'default'     => __( 'Read the article', 'tmc' ),
+          'placeholder' => __( 'Type your text', 'tmc' ),
+          'condition' => [
+            'source'  => 'press',
+          ],
+        ]
+      );
+
       $repeater = new Repeater();
       $repeater->add_control(
         'title',
@@ -94,7 +174,7 @@ class Press extends Widget_Base{
           'label'     => __( 'Button text', 'tmc' ),
           'type'      => Controls_Manager::TEXT,
           'default'   => __('Read the article','tmc'),
-          'placeholder'   => __( 'Type your description', 'tmc' ),
+          'placeholder'   => __( 'Type your text', 'tmc' ),
         ]
       );
       $repeater->add_control(
@@ -132,6 +212,9 @@ class Press extends Widget_Base{
               'title' => __( 'Article 4', 'tmc' ),
             ],
           ],
+          'condition' => [
+            'source'  => 'custom',
+          ],
           'title_field' => '{{{ title }}}',
         ]
       );
@@ -141,8 +224,27 @@ class Press extends Widget_Base{
     }
     protected function render()
     {
-       $settings = $this->get_settings();
-       $press = $settings['press_list'];
+        $settings = $this->get_settings();
+        $source   = !empty($settings['source']) ? $settings['source'] : 'press';
+        if($source == 'press'){
+          $cat = !empty($settings['cat']) ? $settings['cat'] : '';
+          $per_page = !empty($settings['per_page']) ? $settings['per_page'] : 8;
+          $args = [
+            'post_type'     => 'tmc_press',
+            'post_per_page' => $per_page,
+            'orderby'       => 'date',
+            'order'         => 'DESC'
+          ];
+          if(!empty($cat)){
+            $args['tax_query'] = [
+              [
+                  'taxonomy' => 'press_cat',
+                  'field' => 'term_id',
+                  'terms' => $cat,
+              ]
+            ];
+          }
+        }       
         ?>
         <div class="tmc-press-widget">
           <?php if(!empty($settings['title_heading'])):?>
@@ -160,31 +262,51 @@ class Press extends Widget_Base{
             </h2>
           <?php endif;?>
 
-            <?php if(!empty($press) && is_array($press)):?>
+            
               <div class="tmc-press-content">
-                  <?php
-                    foreach ( $press as $p ) {
-                      $pt = isset($p['title']) ? $p['title'] : esc_html__('News','tmc');
-                      $pi = isset($p['image']['url']) ? $p['image']['url'] : '';
-                      $pd = isset($p['desc']) ? $p['desc'] : '';
-                      $pb = isset($p['button_text']) ? $p['button_text'] : esc_html__('Read the article','tmc');
-                      $p_url = !empty($p['url']['url']) ? $p['url']['url'] : '#';
-                      $p_link_props = ' href="' . esc_url( $p_url ) . '" ';
-                      if ( isset($p['url']['is_external']) && $p['url']['is_external'] ) {
-                        $p_link_props .= ' target="_blank" ';
-                      }
-                      if ( isset($p['url']['nofollow']) && $p['url']['nofollow'] ) {
-                        $p_link_props .= ' rel="nofollow" ';
-                      }
-                      ?>
-                      <div class="p-item">
-                          <img src="<?php echo esc_url($pi);?>" alt="<?php echo esc_attr($pt);?>">
-                          <p class="desc"><?php echo wp_kses_post($pd);?></p>
-                          <a class="read-more" <?php echo $p_link_props;?>><?php echo $pb?></a>
-                      </div>
-                  <?php }?>
-              </div>
-            <?php endif;?>
+                <?php if($source == 'custom'):
+                  $press = $settings['press_list'];
+                  ?>
+                  <?php if(!empty($press) && is_array($press)):?>
+                    <?php foreach ( $press as $p ) {
+                        $pt = isset($p['title']) ? $p['title'] : esc_html__('News','tmc');
+                        $pi = isset($p['image']['url']) ? $p['image']['url'] : '';
+                        $pd = isset($p['desc']) ? $p['desc'] : '';
+                        $pb = isset($p['button_text']) ? $p['button_text'] : esc_html__('Read the article','tmc');
+                        $p_url = !empty($p['url']['url']) ? $p['url']['url'] : '#';
+                        $p_link_props = ' href="' . esc_url( $p_url ) . '" ';
+                        if ( isset($p['url']['is_external']) && $p['url']['is_external'] ) {
+                          $p_link_props .= ' target="_blank" ';
+                        }
+                        if ( isset($p['url']['nofollow']) && $p['url']['nofollow'] ) {
+                          $p_link_props .= ' rel="nofollow" ';
+                        }
+                        ?>
+                        <div class="p-item">
+                            <img src="<?php echo esc_url($pi);?>" alt="<?php echo esc_attr($pt);?>">
+                            <p class="desc"><?php echo wp_kses_post($pd);?></p>
+                            <a class="read-more" <?php echo $p_link_props;?>><?php echo $pb?></a>
+                        </div>
+                    <?php }?>
+                  <?php endif;?>
+                <?php else:
+                    $press = new \WP_Query($args);
+                    $button_text = $settings['p_button_text'];
+                    if($press->have_posts()):
+                      while ( $press->have_posts()): $press->the_post();
+                        $pi = get_post_meta(get_the_ID(), 'press_image',true);
+                        $url = get_post_meta(get_the_ID(), 'custom_url',true);
+                        ?>
+
+                        <div class="p-item">
+                          <img src="<?php echo esc_url($pi);?>" alt="<?php the_title();?>">
+                          <div class="desc"><?php the_content();?></div>
+                          <a class="read-more" href="<?php echo esc_url($url);?>" rel="nofollow" target="_blank"><?php echo esc_html($button_text);?></a>
+                        </div> 
+                      <?php endwhile;?>
+                    <?php endif;?>
+                <?php endif;?>
+              </div>            
         </div>
         <?php
     }

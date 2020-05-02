@@ -85,6 +85,53 @@ if(!class_exists('TMC_Add_Metabox')):
 				'id'      => 'event_place',
 				'type'    => 'text',
 			) );
+			/*--------------------------------------------------------------------
+			* Press Metabox
+			*--------------------------------------------------------------------*/
+			$cmb_press = new_cmb2_box( array(
+				'id'            => $prefix . 'press_metabox',
+				'title'         => esc_html__( 'Press Info', 'tmc' ),
+				'object_types'  => array( 'tmc_press' ), // Post type
+				'context'       => 'normal',
+				'priority'      => 'high',
+				'show_names'    => true, // Show field names on the left
+				// 'hookup'       => false, // Only display on frontend
+		        // 'save_fields'  => false, // Not Save field
+				// 'cmb_styles' => false, // false to disable the CMB stylesheet
+				// 'closed'     => true, // Keep the metabox closed by default
+			) );
+			
+
+			$cmb_press->add_field( array(
+				'name'    => __('Image','tmc'),
+				'desc'    => __('Upload an image or enter an URL.','tmc'),
+				'id'      => 'press_image',
+				'type'    => 'file',
+				// Optional:
+				'options' => array(
+					'url' => false, // Hide the text input for the url
+				),
+				'text'    => array(
+					'add_upload_file_text' => __('Add File','tmc') // Change upload button text. Default: "Add or Upload File"
+				),
+				// query_args are passed to wp.media's library query.
+				'query_args' => array(
+					// 'type' => 'application/pdf', // Make library only display PDFs.
+					// Or only allow gif, jpg, or png images
+					'type' => array(
+						'image/gif',
+						'image/jpeg',
+						'image/png',
+					),
+				),
+				'preview_size' => 'large', // Image size to use when previewing in the admin.
+			) );
+			$cmb_press->add_field( array(
+				'name' => __( 'URL', 'tmc' ),
+				'id'   => 'custom_url',
+				'type' => 'text_url',
+				// 'protocols' => array( 'http', 'https', 'ftp', 'ftps', 'mailto', 'news', 'irc', 'gopher', 'nntp', 'feed', 'telnet' ), // Array of allowed protocols
+			) );
 
 		}
 	}

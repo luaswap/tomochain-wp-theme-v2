@@ -34,7 +34,7 @@ if(!class_exists('TMC_Use_Case')){
                 'description'           => esc_html__( 'Display Use Case', 'tmc' ),
                 'hierarchical'          => true,
                 'public'                => true,
-                'menu_icon'             => 'dashicons-screenoptions',
+                'menu_icon'             => 'dashicons-networking',
                 'menu_position'         => 5,
                 'show_in_admin_bar'     => true,
                 'show_in_nav_menus'     => true,
