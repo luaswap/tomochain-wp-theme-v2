@@ -1,6 +1,6 @@
 /*!
- * The Final Countdown for jQuery v2.2.0 (http://hilios.github.io/jQuery.countdown/)
- * Copyright (c) 2016 Edson Hilios
+ * The Final Countdown for jQuery v2.1.0 (http://hilios.github.io/jQuery.countdown/)
+ * Copyright (c) 2015 Edson Hilios
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy of
  * this software and associated documentation files (the "Software"), to deal in
@@ -30,8 +30,7 @@
     "use strict";
     var instances = [], matchers = [], defaultOptions = {
         precision: 100,
-        elapse: false,
-        defer: false
+        elapse: false
     };
     matchers.push(/^[0-9]*$/.source);
     matchers.push(/([0-9]{1,2}\/){2}[0-9]{4}( [0-9]{1,2}(:[0-9]{2}){2})?/.source);
@@ -57,16 +56,12 @@
         Y: "years",
         m: "months",
         n: "daysToMonth",
-        d: "daysToWeek",
         w: "weeks",
-        W: "weeksToMonth",
+        d: "daysToWeek",
+        D: "totalDays",
         H: "hours",
         M: "minutes",
-        S: "seconds",
-        D: "totalDays",
-        I: "totalHours",
-        N: "totalMinutes",
-        T: "totalSeconds"
+        S: "seconds"
     };
     function escapedRegExp(str) {
         var sanitize = str.toString().replace(/([.?*+^$[\]\\(){}|-])/g, "\\$1");
@@ -111,10 +106,10 @@
                 plural = format[1];
             }
         }
-        if (Math.abs(count) > 1) {
-            return plural;
-        } else {
+        if (Math.abs(count) === 1) {
             return singular;
+        } else {
+            return plural;
         }
     }
     var Countdown = function(el, finalDate, options) {
@@ -123,7 +118,6 @@
         this.interval = null;
         this.offset = {};
         this.options = $.extend({}, defaultOptions);
-        this.firstTick = true;
         this.instanceNumber = instances.length;
         instances.push(this);
         this.$el.data("countdown-instance", this.instanceNumber);
@@ -137,9 +131,7 @@
             }
         }
         this.setFinalDate(finalDate);
-        if (this.options.defer === false) {
-            this.start();
-        }
+        this.start();
     };
     $.extend(Countdown.prototype, {
         start: function() {
@@ -183,12 +175,11 @@
                 this.remove();
                 return;
             }
-            var now = new Date(), newTotalSecsLeft;
+            var hasEventsAttached = $._data(this.el, "events") !== undefined, now = new Date(), newTotalSecsLeft;
             newTotalSecsLeft = this.finalDate.getTime() - now.getTime();
             newTotalSecsLeft = Math.ceil(newTotalSecsLeft / 1e3);
             newTotalSecsLeft = !this.options.elapse && newTotalSecsLeft < 0 ? 0 : Math.abs(newTotalSecsLeft);
-            if (this.totalSecsLeft === newTotalSecsLeft || this.firstTick) {
-                this.firstTick = false;
+            if (this.totalSecsLeft === newTotalSecsLeft || !hasEventsAttached) {
                 return;
             } else {
                 this.totalSecsLeft = newTotalSecsLeft;
@@ -201,14 +192,10 @@
                 days: Math.floor(this.totalSecsLeft / 60 / 60 / 24) % 7,
                 daysToWeek: Math.floor(this.totalSecsLeft / 60 / 60 / 24) % 7,
                 daysToMonth: Math.floor(this.totalSecsLeft / 60 / 60 / 24 % 30.4368),
-                weeks: Math.floor(this.totalSecsLeft / 60 / 60 / 24 / 7),
-                weeksToMonth: Math.floor(this.totalSecsLeft / 60 / 60 / 24 / 7) % 4,
-                months: Math.floor(this.totalSecsLeft / 60 / 60 / 24 / 30.4368),
-                years: Math.abs(this.finalDate.getFullYear() - now.getFullYear()),
                 totalDays: Math.floor(this.totalSecsLeft / 60 / 60 / 24),
-                totalHours: Math.floor(this.totalSecsLeft / 60 / 60),
-                totalMinutes: Math.floor(this.totalSecsLeft / 60),
-                totalSeconds: this.totalSecsLeft
+                weeks: Math.floor(this.totalSecsLeft / 60 / 60 / 24 / 7),
+                months: Math.floor(this.totalSecsLeft / 60 / 60 / 24 / 30.4368),
+                years: Math.abs(this.finalDate.getFullYear() - now.getFullYear())
             };
             if (!this.options.elapse && this.totalSecsLeft === 0) {
                 this.stop();

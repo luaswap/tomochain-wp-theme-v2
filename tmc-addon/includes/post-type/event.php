@@ -34,7 +34,7 @@ if(!class_exists('TMC_Event')){
                 'description'           => esc_html__( 'Display Event', 'tmc' ),
                 'hierarchical'          => false,
                 'public'                => true,
-                'menu_icon'             => 'dashicons-screenoptions',
+                'menu_icon'             => 'dashicons-calendar-alt',
                 'menu_position'         => 5,
                 'show_in_admin_bar'     => true,
                 'show_in_nav_menus'     => true,

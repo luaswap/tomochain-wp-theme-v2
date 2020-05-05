@@ -2179,3 +2179,36 @@
 		}
 	}
 }
+/* Countdown */
+.tmc-countdown-widget{
+	#tmc-clock{
+		div{
+			display: inline-block;
+			text-align: center;
+			padding: 10px 20px;
+			&:last-child{
+				.item{
+					&:before{
+						display: none;
+					}
+				}
+			}
+		}
+		span{
+			display: block;
+		}
+		.item{
+			font-size: 40px;
+			font-weight: bold;
+			position: relative;
+			&:before{
+				position: absolute;
+				content: ':';
+				right: -22px;
+				top: 50%;
+				transform:translateY(-50%);
+			}
+
+		}
+	}
+}
