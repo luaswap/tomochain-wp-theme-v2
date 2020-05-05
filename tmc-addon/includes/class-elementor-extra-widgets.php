@@ -87,6 +87,7 @@ if(!class_exists('TMC_Elementor_Widgets')){
 		 */
 		public function add_elementor_category() {
 
+			// Tomochain Addon
 			$category_args = apply_filters( 'tmc_elementor_category_args', array(
 				'slug'  => 'tmc-element-widgets',
 				'title' => esc_html__( 'Tomochain Addon', 'tmc' ),
@@ -98,6 +99,20 @@ if(!class_exists('TMC_Elementor_Widgets')){
 				array(
 					'title' => $category_args['title'],
 					'icon'  => $category_args['slug'],
+				),
+				1
+			);
+			// TomoDEX
+			$dex_args = apply_filters( 'tmc_dex_args', array(
+				'slug'  => 'tmc-dex-widgets',
+				'title' => esc_html__( 'Tomochain DEX', 'tmc' ),
+				'icon'  => 'fa fa-plug',
+			) );
+			\Elementor\Plugin::instance()->elements_manager->add_category(
+				$dex_args['slug'],
+				array(
+					'title' => $dex_args['title'],
+					'icon'  => $dex_args['slug'],
 				),
 				1
 			);
