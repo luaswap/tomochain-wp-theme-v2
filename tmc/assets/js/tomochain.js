@@ -293,10 +293,10 @@
     $(document).ready(function() {
         $('.reportFade').slick({
             dots: false,
-            infinite: true,
+            infinite: false,
             arrows: false,
             autoplay: true,
-            autoplaySpeed: 5000,
+            autoplaySpeed: 8000,
             slidesToShow: 2,
             responsive: [
                 {
