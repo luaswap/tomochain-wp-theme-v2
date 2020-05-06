@@ -323,8 +323,8 @@ class Dex_Start extends Widget_Base{
           'type'              => Controls_Manager::SELECT,
           'label'             => '<i class="fa fa-columns"></i> ' . esc_html__( 'Columns', 'tmc' ),
           'default'           => 2,
-          'tm_tablet_default' => 2,
-          'tm_mobile_default' => 1,
+          'tablet_default'    => 2,
+          'mobile_default'    => 1,
           'options'           => [
             1 => 1,
             2 => 2,
@@ -344,7 +344,274 @@ class Dex_Start extends Widget_Base{
             'tab'  => Controls_Manager::TAB_CONTENT
         ]
       );
+      $this->add_control(
+        'o_title',
+        [
+          'type'        => Controls_Manager::TEXT,
+          'label'       => __('Heading', 'tmc' ),
+          'default'     => __( 'DEX Optimizaion', 'tmc' ),
+          'placeholder' => __( 'Type your text', 'tmc' ),
+        ]
+      );
+      $this->add_control(
+        'ol_option',
+        [
+          'label'     => __( 'Lending', 'tmc' ),
+          'type'      => Controls_Manager::HEADING,
+          'separator' => 'after',
+        ]
+      );
+      $this->add_control(
+        'ol_overlay',
+        [
+          'type'        => Controls_Manager::TEXT,
+          'label'       => __('Heading Overlay', 'tmc' ),
+          'default'     => __( 'Lending', 'tmc' ),
+          'placeholder' => __( 'Type your text', 'tmc' ),
+        ]
+      );
+      $this->add_control(
+        'ol_title',
+        [
+          'type'        => Controls_Manager::TEXT,
+          'label'       => __('Heading Title', 'tmc' ),
+          'default'     => __( 'Enable crypto assets P2P lending on your DEX with TomoLending', 'tmc' ),
+          'placeholder' => __( 'Type your text', 'tmc' ),
+        ]
+      );
+      $this->add_control(
+        'ol_desc',
+        [
+          'label'       => __( 'Description', 'tmc' ),
+          'type'        => Controls_Manager::WYSIWYG,
+          'default'     => __( 'Default description', 'tmc' ),
+          'placeholder' => __( 'Type your description here', 'tmc' ),
+        ]
+      );
+      $repeater = new Repeater();
 
+      $repeater->add_control(
+        'old_icon',
+        [
+          'label' => __( 'Icon', 'tmc' ),
+          'type' => Controls_Manager::ICONS,
+          'default' => [
+            'value' => 'fas fa-star',
+            'library' => 'solid',
+          ],
+        ]
+      );
+
+      $repeater->add_control(
+        'old_title',
+        [
+          'type'      => Controls_Manager::TEXT,
+          'label'     => esc_html__( 'Title', 'tmc' ),
+        ]
+      );
+      $repeater->add_control(
+        'old_desc',
+        [
+          'type'        => Controls_Manager::TEXTAREA,
+          'rows'        => 5,
+          'label'       => esc_html__( 'Description', 'tmc' ),
+          'description' => esc_html__('Type your description','tmc')
+        ]
+      );
+
+      $this->add_control(
+        'old_list',
+        [
+          'label' => __( 'Service List', 'tmc' ),
+          'type' => Controls_Manager::REPEATER,
+          'fields' => $repeater->get_controls(),
+          'default' => [
+            [
+              'old_title' => __( 'Service 1', 'tmc' ),
+            ],
+            [
+              'old_title' => __( 'Service 2', 'tmc' ),
+            ],
+            [
+              'old_title' => __( 'Service 3', 'tmc' ),
+            ],
+          ],
+          'title_field'   => '{{{ old_title }}}',
+        ]
+      );
+      $this->add_responsive_control(
+        'ol_columns',
+        [
+          'type'              => Controls_Manager::SELECT,
+          'label'             => '<i class="fa fa-columns"></i> ' . esc_html__( 'Columns', 'tmc' ),
+          'default'           => 2,
+          'tablet_default'    => 2,
+          'mobile_default'    => 1,
+          'options'           => [
+            1 => 1,
+            2 => 2,
+            3 => 3,
+            4 => 4,
+            5 => 5,
+          ]
+        ]
+      );
+      $this->add_control(
+        'ol_button_text',
+        [
+          'type'        => Controls_Manager::TEXT,
+          'label'       => __('Button text', 'tmc' ),
+          'default'     => __( 'Read TomoLending Docs', 'tmc' ),
+          'placeholder' => __( 'Type your text', 'tmc' ),
+        ]
+      );
+      $this->add_control(
+        'ol_button_link',
+        [
+          'label'         => __( 'Button Link', 'tmc' ),
+          'type'          => Controls_Manager::URL,
+          'placeholder'   => __( 'https://your-link.com', 'tmc' ),
+          'show_external' => true,
+          'default'       => [
+            'url'         => '',
+            'is_external' => true,
+            'nofollow'    => true,
+          ],
+        ]
+      );
+
+      $this->add_control(
+        'ob_option',
+        [
+          'label'     => __( 'Bridge', 'tmc' ),
+          'type'      => Controls_Manager::HEADING,
+          'separator' => 'after',
+        ]
+      );
+      $this->add_control(
+        'ob_overlay',
+        [
+          'type'        => Controls_Manager::TEXT,
+          'label'       => __('Heading Overlay', 'tmc' ),
+          'default'     => __( 'Lending', 'tmc' ),
+          'placeholder' => __( 'Type your text', 'tmc' ),
+        ]
+      );
+      $this->add_control(
+        'ob_title',
+        [
+          'type'        => Controls_Manager::TEXT,
+          'label'       => __('Heading Title', 'tmc' ),
+          'default'     => __( 'Increase the liquidity of your DEX', 'tmc' ),
+          'placeholder' => __( 'Type your text', 'tmc' ),
+        ]
+      );
+      $this->add_control(
+        'ob_desc',
+        [
+          'label'       => __( 'Description', 'tmc' ),
+          'type'        => Controls_Manager::WYSIWYG,
+          'default'     => __( 'Default description', 'tmc' ),
+          'placeholder' => __( 'Type your description here', 'tmc' ),
+        ]
+      );
+      $this->add_control(
+        'ob_feature',
+        [
+          'type'        => Controls_Manager::TEXT,
+          'label'       => __('Feature text', 'tmc' ),
+          'default'     => __( 'Features', 'tmc' ),
+          'placeholder' => __( 'Type your text', 'tmc' ),
+        ]
+      );
+
+      $repeater = new Repeater();
+
+      $repeater->add_control(
+        'obf_icon',
+        [
+          'label' => __( 'Icon', 'tmc' ),
+          'type' => Controls_Manager::ICONS,
+          'default' => [
+            'value' => 'fas fa-star',
+            'library' => 'solid',
+          ],
+        ]
+      );
+
+      $repeater->add_control(
+        'obf_title',
+        [
+          'type'      => Controls_Manager::TEXT,
+          'label'     => esc_html__( 'Title', 'tmc' ),
+        ]
+      );
+      $repeater->add_control(
+        'obf_desc',
+        [
+          'type'        => Controls_Manager::TEXTAREA,
+          'rows'        => 5,
+          'label'       => esc_html__( 'Description', 'tmc' ),
+          'description' => esc_html__('Type your description','tmc')
+        ]
+      );
+
+      $this->add_control(
+        'obf_list',
+        [
+          'label' => __( 'Feature List', 'tmc' ),
+          'type' => Controls_Manager::REPEATER,
+          'fields' => $repeater->get_controls(),
+          'default' => [
+            [
+              'obf_title' => __( 'Feature 1', 'tmc' ),
+            ],
+            [
+              'obf_title' => __( 'Feature 2', 'tmc' ),
+            ],
+            [
+              'obf_title' => __( 'Feature 3', 'tmc' ),
+            ],
+          ],
+          'title_field'   => '{{{ obf_title }}}',
+        ]
+      );
+      $this->add_responsive_control(
+        'ob_columns',
+        [
+          'type'              => Controls_Manager::SELECT,
+          'label'             => '<i class="fa fa-columns"></i> ' . esc_html__( 'Columns', 'tmc' ),
+          'default'           => 2,
+          'tablet_default'    => 2,
+          'mobile_default'    => 1,
+          'options'           => [
+            1 => 1,
+            2 => 2,
+            3 => 3,
+            4 => 4,
+            5 => 5,
+          ]
+        ]
+      );
+
+      $this->add_control(
+        'ob_turotal',
+        [
+          'type'        => Controls_Manager::TEXT,
+          'label'       => __('Turotal text', 'tmc' ),
+          'default'     => __( 'Turotal', 'tmc' ),
+          'placeholder' => __( 'Type your text', 'tmc' ),
+        ]
+      );
+      $this->add_control(
+        'ob_html',
+        [
+          'label'       => __( 'Add HTML', 'tmc' ),
+          'type'        => Controls_Manager::CODE,
+          'language'    => 'html',
+          'rows'        => 10,
+        ]
+      );
       $this->end_controls_section();
 
     }
@@ -467,6 +734,112 @@ class Dex_Start extends Widget_Base{
                       <?php }?>
                     </div>
                   <?php endif;?>
+                </div>                
+              </div>
+              <div class="tx-optimization-layer">
+                <?php if(!empty($settings['o_title'])):?>
+                  <div class="tx-sub-heading">
+                    <span class="tx-sub-number">4</span>
+                    <h4 class="tx-layer-title"><?php echo wp_kses_post($settings['o_title']);?></h4>
+                  </div>
+                <?php endif;?>
+                <div class="tx-optimization-wrap">
+                  <div class="tx-o-lending">
+                    <div class="tx-ol-head">
+                      <?php if(!empty($settings['ol_overlay'])):?>
+                        <span class="tx-ol-overlay"><?php echo $settings['ol_overlay'];?></span>
+                      <?php endif;?>
+                      <?php if(!empty($settings['ol_title'])):?>
+                        <h3 class="tx-ol-title"><?php echo $settings['ol_title'];?></h3>
+                      <?php endif;?>
+                    </div>
+                    <?php if(!empty($settings['ol_desc'])):?>
+                      <div class="tx-ol-desc">
+                        <?php echo wp_kses_post($settings['ol_desc']);?>
+                      </div>
+                    <?php endif;?>
+                    <div class="tx-ol-service">
+                      <?php 
+                      $ol_mobile_class = ( ! empty( $settings['ol_columns_mobile'] ) ? ' tmc-mobile-' . $settings['ol_columns_mobile'] : '' );
+                      $ol_tablet_class = ( ! empty( $settings['ol_columns_tablet'] ) ? ' tmc-tablet-' . $settings['ol_columns_tablet'] : '' );
+                      $ol_desktop_class = ( ! empty( $settings['ol_columns'] ) ? ' tmc-desktop-' . $settings['ol_columns'] : '' );
+                      $ol_item_class = ' tmc-grid-col'.$ol_desktop_class . $ol_tablet_class . $ol_mobile_class;
+                      $tf_list = $settings['old_list']?>
+                      <?php if(!empty($tf_list)):?>
+                      <div class="tx-ol-info<?php echo esc_attr($ol_item_class);?>">
+                          <?php foreach ( $tf_list as $tf ) {
+                            $i = isset($tf['old_icon']) ? $tf['old_icon'] : '';
+                            $h = isset($tf['old_title']) ? $tf['old_title'] : '';
+                            $d = isset($tf['old_desc']) ? $tf['old_desc'] : '';?>
+                            <div class="tx-ol-item tmc-grid-item">
+                              <div class="tx-ol-icon">
+                                <?php Icons_Manager::render_icon( $i, [ 'aria-hidden' => 'true' ], 'i' );?>
+                              </div>
+                              <h3 class="tx-ol-title"><?php echo wp_kses_post($h);?></h3>
+                              <div class="tx-ol-info">
+                                <?php echo wp_kses_post($d);?>
+                              </div>
+                            </div>
+                        <?php }?>
+                      </div>
+                    <?php endif;?>
+                    </div>
+                    <div class="tx-ol-button">
+                      <?php
+                        $ob_button_text = $settings['ol_button_text'];
+                        $target = $settings['ol_button_link']['is_external'] ? ' target="_blank"' : '';
+                        $nofollow = $settings['ol_button_link']['nofollow'] ? ' rel="nofollow"' : '';
+                        echo '<a href="' . $settings['ol_button_link']['url'] . '"' . $target . $nofollow . '>'. $ob_button_text .'</a>';
+                      ?>
+                    </div>
+                  </div>
+
+                  <div class="tx-o-bridge">
+                    <div class="tx-ob-head">
+                      <?php if(!empty($settings['ob_overlay'])):?>
+                        <span class="tx-ob-overlay"><?php echo $settings['ob_overlay'];?></span>
+                      <?php endif;?>
+                      <?php if(!empty($settings['ob_title'])):?>
+                        <h3 class="tx-ob-title"><?php echo $settings['ob_title'];?></h3>
+                      <?php endif;?>
+                    </div>
+                    <?php if(!empty($settings['ob_desc'])):?>
+                      <div class="tx-ob-desc">
+                        <?php echo wp_kses_post($settings['ob_desc']);?>
+                      </div>
+                    <?php endif;?>
+                    <div class="tx-ob-feature">
+                      <?php 
+                      $ob_mobile_class = ( ! empty( $settings['ob_columns_mobile'] ) ? ' tmc-mobile-' . $settings['ob_columns_mobile'] : '' );
+                      $ob_tablet_class = ( ! empty( $settings['ob_columns_tablet'] ) ? ' tmc-tablet-' . $settings['ob_columns_tablet'] : '' );
+                      $ob_desktop_class = ( ! empty( $settings['ob_columns'] ) ? ' tmc-desktop-' . $settings['ob_columns'] : '' );
+                      $ob_item_class = ' tmc-grid-col'.$ob_desktop_class . $ob_tablet_class . $ob_mobile_class;
+                      $obf_list = $settings['obf_list']?>
+                      <?php if(!empty($obf_list)):?>
+                      <div class="tx-obf-info<?php echo esc_attr($ob_item_class);?>">
+                          <?php foreach ( $obf_list as $obf ) {
+                            $i = isset($obf['obf_icon']) ? $obf['obf_icon'] : '';
+                            $h = isset($obf['obf_title']) ? $obf['obf_title'] : '';
+                            $d = isset($obf['obf_desc']) ? $obf['obf_desc'] : '';?>
+                            <div class="tx-obf-item tmc-grid-item">
+                              <div class="tx-obf-icon">
+                                <?php Icons_Manager::render_icon( $i, [ 'aria-hidden' => 'true' ], 'i' );?>
+                              </div>
+                              <h3 class="tx-obf-title"><?php echo wp_kses_post($h);?></h3>
+                              <div class="tx-obf-info">
+                                <?php echo wp_kses_post($d);?>
+                              </div>
+                            </div>
+                        <?php }?>
+                      </div>
+                    <?php endif;?>
+                    </div>
+                    <?php if(!empty($settings['ob_html'])):?>
+                      <div class="tx-ob-tutorial">
+                        <?php echo $settings['ob_html'];?>
+                      </div>
+                    <?php endif;?>
+                  </div>
                 </div>
               </div>
           </div>
