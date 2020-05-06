@@ -123,7 +123,6 @@ class Layer extends Widget_Base{
       $settings = $this->get_settings();
       $style = $settings['style'];
       $layer = $settings['layer_list'];
-      $item_class = '';
       $mobile_class = ( ! empty( $settings['columns_mobile'] ) ? ' tmc-mobile-' . $settings['columns_mobile'] : '' );
       $tablet_class = ( ! empty( $settings['columns_tablet'] ) ? ' tmc-tablet-' . $settings['columns_tablet'] : '' );
       $desktop_class = ( ! empty( $settings['columns'] ) ? ' tmc-desktop-' . $settings['columns'] : '' );
