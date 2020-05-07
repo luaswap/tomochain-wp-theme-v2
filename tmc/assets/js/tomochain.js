@@ -18,6 +18,7 @@
             TMC.click();
             TMC.tomoProduct();
             TMC.countdown();
+            TMC.tomoxaccordion();
             
         },
         header: function(){
@@ -302,6 +303,15 @@
                     }
                 });                
             }        
+        },
+        tomoxaccordion: function(){
+            if($('.tx-accordion').length > 0){
+                $('.tx-accordion').on('click', function(){
+                    $(this).toggleClass('active');
+                    
+                    $(this).next().toggle(600);
+                })
+            }
         }
 
     }

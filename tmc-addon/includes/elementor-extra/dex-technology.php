@@ -148,7 +148,8 @@ class Dex_Technology extends Widget_Base{
             <?php endif;?>
           </div>
           <?php if(!empty($tech_list)):?>
-            <div class="tx-tech-desc tx-accordion-content<?php echo esc_attr($item_class);?>">
+            <div class="tx-tech-desc tx-accordion-content">
+              <div class="<?php echo esc_attr($item_class);?>">
                 <?php foreach ( $tech_list as $t ) {
                   $i = isset($t['icon']) ? $t['icon'] : '';
                   $h = isset($t['title']) ? $t['title'] : '';
@@ -162,7 +163,8 @@ class Dex_Technology extends Widget_Base{
                       <?php echo wp_kses_post($d);?>
                     </div>
                   </div>
-              <?php }?>
+                <?php }?>
+              </div>
             </div>
           <?php endif;?>
       </div>
