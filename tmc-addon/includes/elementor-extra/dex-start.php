@@ -175,16 +175,6 @@ class Dex_Start extends Widget_Base{
         ]
       );
       $this->add_control(
-        'tutorial_html',
-        [
-          'label'       => __( 'Add HTML', 'tmc' ),
-          'type'        => Controls_Manager::CODE,
-          'language'    => 'html',
-          'rows'        => 10,
-        ]
-      );
-
-      $this->add_control(
         'tutorial_heading',
         [
           'type'        => Controls_Manager::TEXT,
@@ -193,6 +183,16 @@ class Dex_Start extends Widget_Base{
           'placeholder' => __( 'Type your text', 'tmc' ),
         ]
       );
+      $this->add_control(
+        'tutorial_html',
+        [
+          'label'       => __( 'Add HTML', 'tmc' ),
+          'type'        => Controls_Manager::CODE,
+          'language'    => 'html',
+          'rows'        => 10,
+        ]
+      );
+    
 
       $this->end_controls_section();
       // DEX Setup
@@ -635,12 +635,13 @@ class Dex_Start extends Widget_Base{
           <div class="tx-dex-start-desc tx-accordion-content">
               <div class="tx-r-layer">
                 <?php if(!empty($settings['r_title'])):?>
-                  <div class="tx-sub-heading">
+                  <div class="tx-sub-heading tx-accordion">
                     <span class="tx-sub-number">1</span>
                     <h4 class="tx-layer-title"><?php echo wp_kses_post($settings['r_title']);?></h4>
+                    <span class=tx-icon><i class="fas fa-caret-down"></i></span>
                   </div>
                 <?php endif;?>
-                <div class="tx-r-wrap">
+                <div class="tx-r-wrap tx-accordion-content">
                   <div class="tx-r-desc">
                     <?php echo wp_kses_post($settings['r_desc']);?>
                   </div>
@@ -649,14 +650,15 @@ class Dex_Start extends Widget_Base{
                     $mobile_class = ( ! empty( $settings['columns_mobile'] ) ? ' tmc-mobile-' . $settings['columns_mobile'] : '' );
                     $tablet_class = ( ! empty( $settings['columns_tablet'] ) ? ' tmc-tablet-' . $settings['columns_tablet'] : '' );
                     $desktop_class = ( ! empty( $settings['columns'] ) ? ' tmc-desktop-' . $settings['columns'] : '' );
-                    $item_class = ' tmc-grid-col'.$desktop_class . $tablet_class . $mobile_class;
+                    $item_class = 'tmc-grid-col'.$desktop_class . $tablet_class . $mobile_class;
                     $f_list = $settings['rf_list']
                     ?>
                     <?php if(!empty($settings['rf_heading'])):?>
                       <h4 class="tx-rf-heading"><?php echo $settings['rf_heading'];?></h4>
                     <?php endif;?>
                     <?php if(!empty($f_list)):?>
-                      <div class="tx-rf-info<?php echo esc_attr($item_class);?>">
+                      <div class="tx-rf-info">
+                        <div class="<?php echo esc_attr($item_class);?>">
                           <?php foreach ( $f_list as $f ) {
                             $i = isset($f['rf_icon']) ? $f['rf_icon'] : '';
                             $h = isset($f['rf_title']) ? $f['rf_title'] : '';
@@ -670,39 +672,46 @@ class Dex_Start extends Widget_Base{
                                 <?php echo wp_kses_post($d);?>
                               </div>
                             </div>
-                        <?php }?>
+                          <?php }?>
+                        </div>
                       </div>
                     <?php endif;?>
                   </div>
-                  <?php if(!empty($settings['toturial_html'])):?>
-                    <div class="tx-r-tutorial">
-                      <?php echo $settings['toturial_html'];?>
-                    </div>
-                  <?php endif;?>
+                  
+                  <div class="tx-r-tutorial">
+                    <?php if(!empty($settings['tutorial_heading'])):?>
+                      <h4 class="tx-rt-heading"><?php echo $settings['tutorial_heading'];?></h4>
+                    <?php endif;?>
+                    <?php if(!empty($settings['tutorial_html'])):?>
+                      <?php echo $settings['tutorial_html'];?>
+                    <?php endif;?>
+                  </div>                  
                 </div>
 
               </div>
               <div class="tx-s-layer">
                 <?php if(!empty($settings['r_title'])):?>
-                  <div class="tx-sub-heading">
+                  <div class="tx-sub-heading tx-accordion">
                     <span class="tx-sub-number">2</span>
                     <h4 class="tx-layer-title"><?php echo wp_kses_post($settings['s_title']);?></h4>
+                    <span class=tx-icon><i class="fas fa-caret-down"></i></span>
                   </div>
                 <?php endif;?>
                 <?php if(!empty($settings['s_html'])):?>
-                  <div class="tx-s-wrap">
+                  <div class="tx-s-wrap tx-accordion-content">
                     <?php echo $settings['s_html'];?>
                   </div>
                 <?php endif;?>
               </div>
               <div class="tx-token-layer">
                 <?php if(!empty($settings['tm_title'])):?>
-                  <div class="tx-sub-heading">
+                  <div class="tx-sub-heading tx-accordion">
                     <span class="tx-sub-number">3</span>
                     <h4 class="tx-layer-title"><?php echo wp_kses_post($settings['tm_title']);?></h4>
+                    <span class=tx-icon><i class="fas fa-caret-down"></i></span>
                   </div>
                 <?php endif;?>
-                <div class="tx-token-wrap">
+                <div class="tx-token-wrap tx-accordion-content">
                   <div class="tx-tm-desc">
                     <?php echo wp_kses_post($settings['tm_desc']);?>
                   </div>
@@ -738,12 +747,13 @@ class Dex_Start extends Widget_Base{
               </div>
               <div class="tx-optimization-layer">
                 <?php if(!empty($settings['o_title'])):?>
-                  <div class="tx-sub-heading">
+                  <div class="tx-sub-heading tx-accordion">
                     <span class="tx-sub-number">4</span>
                     <h4 class="tx-layer-title"><?php echo wp_kses_post($settings['o_title']);?></h4>
+                    <span class=tx-icon><i class="fas fa-caret-down"></i></span>
                   </div>
                 <?php endif;?>
-                <div class="tx-optimization-wrap">
+                <div class="tx-optimization-wrap tx-accordion-content">
                   <div class="tx-o-lending">
                     <div class="tx-ol-head">
                       <?php if(!empty($settings['ol_overlay'])):?>
@@ -816,6 +826,9 @@ class Dex_Start extends Widget_Base{
                       $ob_item_class = ' tmc-grid-col'.$ob_desktop_class . $ob_tablet_class . $ob_mobile_class;
                       $obf_list = $settings['obf_list']?>
                       <?php if(!empty($obf_list)):?>
+                      <?php if(!empty($settings['tmf_heading'])):?>
+                        <h4 class="tx-ob-heading"><?php echo $settings['ob_feature'];?></h4>
+                      <?php endif;?>
                       <div class="tx-obf-info<?php echo esc_attr($ob_item_class);?>">
                           <?php foreach ( $obf_list as $obf ) {
                             $i = isset($obf['obf_icon']) ? $obf['obf_icon'] : '';

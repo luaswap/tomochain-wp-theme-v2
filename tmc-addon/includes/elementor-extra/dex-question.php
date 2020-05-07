@@ -119,11 +119,11 @@ class Dex_Question extends Widget_Base{
                   $h = isset($q['title']) ? $q['title'] : '';
                   $d = isset($q['desc']) ? $q['desc'] : '';?>
                   <div class="tx-question-item ">
-                    <div class="tx-sub-accordion">
+                    <div class="tx-q-heading tx-accordion">
                       <h4 class="tx-question-title"><?php echo wp_kses_post($h);?></h4>
                       <span class=tx-icon><i class="fas fa-caret-down"></i></span>
                     </div>
-                    <div class="tx-question-info">
+                    <div class="tx-question-info tx-accordion-content">
                       <?php echo wp_kses_post($d);?>
                     </div>
                   </div>
