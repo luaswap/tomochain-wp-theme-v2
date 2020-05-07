@@ -17,6 +17,7 @@
             TMC.video();
             TMC.click();
             TMC.tomoProduct();
+            TMC.countdown();
             
         },
         header: function(){
@@ -283,6 +284,24 @@
                 });
             }
 
+        },
+        countdown: function(){
+            if($('.tmc-countdown-shortcode').length > 0){
+                $('.tmc-clock-shortcode').each(function(){
+                    var clock = $(this).attr('data-date');
+                    var data_text = $(this).attr('data-text');
+                    data_text = JSON.parse(data_text);
+                    if(clock){
+                        $(this).countdown(clock, function(event) {
+                            var $this = $(this).html(event.strftime(''
+                                + '<div><span class="item day">%D</span> <span class="text">'+ data_text['day'] +'</span></div>'
+                                + '<div><span class="item hour">%H</span> <span class="text">'+ data_text['hour'] +'</span></div> '
+                                + '<div><span class="item min">%M</span> <span class="text">'+ data_text['min'] +'</span></div> '
+                                + '<div><span class="item sec">%S</span> <span class="text">'+ data_text['sec'] +'</span></div>'));
+                        });
+                    }
+                });                
+            }        
         }
 
     }
