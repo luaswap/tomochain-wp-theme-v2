@@ -45,9 +45,9 @@ class Countdown extends Widget_Base {
         	[
 	          	'label'     => __( 'Date', 'tmc' ),
 	          	'type'      => Controls_Manager::DATE_TIME,
-	          	'picker_options' => [
-	          		'dateFormat' => 'Y/m/d'
-	          	]
+	          	// 'picker_options' => [
+	          	// 	'dateFormat' => 'Y/m/d'
+	          	// ]
 	          	// 'placeholder'   => __( 'Date format: 2020/10/10', 'tmc' ),
         	]
       	);
