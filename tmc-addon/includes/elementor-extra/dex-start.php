@@ -835,12 +835,14 @@ class Dex_Start extends Widget_Base{
                             $h = isset($obf['obf_title']) ? $obf['obf_title'] : '';
                             $d = isset($obf['obf_desc']) ? $obf['obf_desc'] : '';?>
                             <div class="tx-obf-item tmc-grid-item">
-                              <div class="tx-obf-icon">
-                                <?php Icons_Manager::render_icon( $i, [ 'aria-hidden' => 'true' ], 'i' );?>
-                              </div>
-                              <h3 class="tx-obf-title"><?php echo wp_kses_post($h);?></h3>
-                              <div class="tx-obf-info">
-                                <?php echo wp_kses_post($d);?>
+                              <div class="inner">
+                                <div class="tx-obf-icon">
+                                  <?php Icons_Manager::render_icon( $i, [ 'aria-hidden' => 'true' ], 'i' );?>
+                                </div>
+                                <h3 class="tx-obf-title"><?php echo wp_kses_post($h);?></h3>
+                                <div class="tx-obf-info">
+                                  <?php echo wp_kses_post($d);?>
+                                </div>
                               </div>
                             </div>
                         <?php }?>

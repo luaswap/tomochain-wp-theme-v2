@@ -266,10 +266,10 @@
             if($('.tmc-layer-widget').length > 0){
                 if($('.tmc-layer-widget.default').length > 0){
                     $('.tmc-layer-content a:nth-child(2)').addClass('active');
-                    $('.section-layer').eq(1).show();
+                    $('.section-layer').eq(1).show(0);
                 }else{
                     $('.tmc-layer-content a').first().addClass('active');
-                    $('.section-layer').first().show();
+                    $('.section-layer').first().show(0);
                 }
                 $('.tmc-layer-widget').on('click', 'a', function(e){
                     e.preventDefault();
@@ -280,7 +280,7 @@
                     $('.tmc-layer-widget a').removeClass('active');
                     $('.tmc-layer-widget').find('#'+a).addClass('active');
                     var id = $($(this).attr('href'));
-                    $('.section-layer').hide(200);
+                    $('.section-layer').hide(0);
                     id.show(200);
                 });
             }
@@ -301,19 +301,17 @@
                                 + '<div><span class="item sec">%S</span> <span class="text">'+ data_text['sec'] +'</span></div>'));
                         });
                     }
-                });                
-            }        
+                });
+            }
         },
         tomoxaccordion: function(){
             if($('.tx-accordion').length > 0){
                 $('.tx-accordion').on('click', function(){
                     $(this).toggleClass('active');
-                    
-                    $(this).next().toggle(600);
+                    $(this).next().toggle(0);
                 })
             }
         }
-
     }
 
     $(document).ready(function() {
