@@ -22,7 +22,7 @@ class Dex_Technology extends Widget_Base{
 
     public function get_categories()
     {
-        return [ 'tmc-dex-widgets' ];
+        return [ 'tmc-introduce-widgets' ];
     }
     protected function _register_controls()
     {

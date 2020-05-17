@@ -4,18 +4,18 @@ namespace TMC_Elementor_Widgets;
 use Elementor\Controls_Manager;
 use Elementor\Widget_Base;
 
-class Dex_Define extends Widget_Base{
+class Tmc_Html extends Widget_Base{
     public function get_name()
     {
-      return 'tmc-dex-define';
+      return 'tmc-html';
     }
     public function get_icon()
     {
-        return 'fa fa-info';
+        return 'eicon-code';
     }
     public function get_title()
     {
-        return esc_html__('What is TomoX', 'tmc');
+        return esc_html__('TMC Custom HTML', 'tmc');
     }
 
     public function get_categories()
@@ -25,11 +25,11 @@ class Dex_Define extends Widget_Base{
     protected function _register_controls()
     {
       // Tab Content
-      $this->tmc_tomox_option();      
+      $this->tmc_html_option();      
     }
-    private function tmc_tomox_option(){
+    private function tmc_html_option(){
       $this->start_controls_section(
-        'tmc_dex_define',
+        'tmc_html',
         [
             'label' => esc_html__('General', 'tmc')
         ]
@@ -47,22 +47,29 @@ class Dex_Define extends Widget_Base{
         'title',
         [
           'type'        => Controls_Manager::TEXT,
-          'label'       => __('Title', 'tmc' ),
-          'default'     => __( 'What is TomoX?', 'tmc' ),
+          'label'       => __('Heading', 'tmc' ),
+          'default'     => __( 'The Heading', 'tmc' ),
           'placeholder' => __( 'Type your text', 'tmc' ),
         ]
       );
       $this->add_control(
         'desc',
         [
-          'type'        => Controls_Manager::TEXTAREA,
-          'label'       => __('Description', 'tmc' ),
-          'rows'        => 10,
+          'label'       => __( 'Description', 'tmc' ),
+          'type'        => Controls_Manager::WYSIWYG,
           'default'     => __( 'Default description', 'tmc' ),
           'placeholder' => __( 'Type your description here', 'tmc' ),
         ]
       );
-      // Columns.
+      $this->add_control(
+        'html',
+        [
+          'label'       => __( 'Add HTML', 'tmc' ),
+          'type'        => Controls_Manager::CODE,
+          'language'    => 'html',
+          'rows'        => 10,
+        ]
+      );
       
       $this->end_controls_section();
 
@@ -71,7 +78,7 @@ class Dex_Define extends Widget_Base{
     {
       $settings = $this->get_settings();
       ?>
-      <div class="tmc-tomox-widget">
+      <div class="tmc-custom-html-widget">
           <div class="tx-heading tx-accordion">
             <?php if(!empty($settings['step'])):?>
               <span class="tx-step"><?php echo wp_kses_post($settings['step']);?></span>
@@ -81,11 +88,18 @@ class Dex_Define extends Widget_Base{
               <span class=tx-icon><i class="fas fa-caret-down"></i></span>
             <?php endif;?>
           </div>
-          <?php if(!empty($settings['desc'])):?>
-            <div class="tx-dex-desc tx-accordion-content">
-                <?php echo wp_kses_post($settings['desc']);?>
-            </div>
-          <?php endif;?>
+          
+          <div class="tx-dex-desc tx-accordion-content">
+              <?php if(!empty($settings['desc'])):?>
+                <div class="tx-sub-desc">
+                  <?php echo wp_kses_post($settings['desc']);?>
+                </div>
+              <?php endif;?>
+              <?php if(!empty($settings['tutorial_html'])):?>
+                <?php echo $settings['tutorial_html'];?>
+              <?php endif;?>
+          </div>      
+
       </div>
       <?php
     }

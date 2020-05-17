@@ -16,12 +16,12 @@ class Dex_Question extends Widget_Base{
     }
     public function get_title()
     {
-        return esc_html__('Dex Asked Questions', 'tmc');
+        return esc_html__('Asked Questions', 'tmc');
     }
 
     public function get_categories()
     {
-        return [ 'tmc-dex-widgets' ];
+        return [ 'tmc-introduce-widgets' ];
     }
     protected function _register_controls()
     {
