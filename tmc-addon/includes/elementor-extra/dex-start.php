@@ -17,12 +17,12 @@ class Dex_Start extends Widget_Base{
     }
     public function get_title()
     {
-        return esc_html__('How to start', 'tmc');
+        return esc_html__('[DEX] How to start', 'tmc');
     }
 
     public function get_categories()
     {
-        return [ 'tmc-dex-widgets' ];
+        return [ 'tmc-introduce-widgets' ];
     }
     protected function _register_controls()
     {
