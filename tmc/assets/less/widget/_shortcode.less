@@ -1283,6 +1283,11 @@
 	display: none;
 	width: 100%!important;
 }
+.elementor-editor-active {
+	.section-layer{
+		display: block;
+	}
+}
 .pt-lp-15 .elementor-widget-container {
 	@media (min-width: 1200px) and (max-width: 1500px){
 		margin-top: 15px!important;
@@ -2218,7 +2223,7 @@
 	font-size: 24px;
 	font-weight: bold;
 	line-height: 1;
-	display: none;
+	// display: none;
 }
 .tx-r-tutorial {
 	.tmc-button-widget {
@@ -2454,6 +2459,11 @@
 	font-size: 24px;
 	font-weight: bold;
 }
+// .tx-o-lending {
+// 	.tx-ol-button{
+// 		display: none!important;
+// 	}
+// }
 .tx-ol-button {
 	margin: 0 0 50px;
 	display: inline-block;
@@ -2526,4 +2536,75 @@
     .elementor-row {
         flex-direction: row-reverse;
     }
+}
+
+
+// tomop-how-it-works
+.tomop-how-it-works {
+	.tx-s-layer,
+	.tx-token-layer,
+	.tx-optimization-layer,
+	.tx-r-feature,
+	.tx-rt-heading {
+		display: none;
+	}
+	.tx-sub-heading {
+		&::before {
+			display: none;
+		}
+		.tx-sub-number,
+		.tx-icon {
+			display: none;
+		}
+	}
+	.tx-r-wrap {
+		display: block!important;
+	}
+	.tmc-dex-start-widget .tx-dex-start-desc {
+		padding-left: 0;
+		&::before {
+			display: none;
+		}
+	}
+}
+
+.tomop-advanced-technolory {
+	.tx-r-layer,
+	.tx-s-layer,
+	.tx-optimization-layer {
+		display: none;
+	}
+	.tx-token-layer {
+		padding-top: 0!important;
+	}
+	.tx-sub-heading {
+		display: none;
+	}
+	.tx-token-wrap {
+		display: block!important;
+	}
+	.tmc-dex-start-widget .tx-dex-start-desc {
+		padding-left: 0;
+		&::before {
+			display: none;
+		}
+	}
+	.tx-tmf-info {
+		margin: 0!important;
+	}
+	.tx-tmf-item {
+		position: relative;
+		padding: 25px;
+		&::before {
+			content: '';
+			width: calc(100% - 25px);
+			height: 100%;
+			box-shadow: 0 10px 50px 0 rgba(16, 69, 91, 0.1);
+			background-color: #ffffff;
+			position: absolute;
+			top: 0;
+			left: 0;
+			z-index: -1;
+		}
+	}
 }
