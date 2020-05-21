@@ -95,8 +95,8 @@ class Tmc_Html extends Widget_Base{
                   <?php echo wp_kses_post($settings['desc']);?>
                 </div>
               <?php endif;?>
-              <?php if(!empty($settings['tutorial_html'])):?>
-                <?php echo $settings['tutorial_html'];?>
+              <?php if(!empty($settings['html'])):?>
+                <?php echo $settings['html'];?>
               <?php endif;?>
           </div>      
 
