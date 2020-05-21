@@ -213,7 +213,19 @@
                     + '<div><span class="item sec">%S</span> <span class="text">'+ data_text['sec'] +'</span></div>'));
             });
         }
-    }
+    };
+    var stakeProfit = function($scope, $){
+        var per_profit = $scope.find('.tmc-stake-profit-form').attr('data-profit');
+        $scope.find('#tmc-amount').keyup(function(){
+            var tomo_own = $(this).val();
+            var number_profit = '';
+            if(tomo_own > 0){
+                number_profit = tomo_own*per_profit/100;
+            }
+            
+            $(this).closest('.tmc-stake-profit-form').find('#tmc-profit').val(number_profit);
+        });
+    };
 
     // Make sure you run this code under Elementor.
     $( window ).on( 'elementor/frontend/init', function() {
@@ -226,6 +238,7 @@
         elementorFrontend.hooks.addAction( 'frontend/element_ready/tmc-usecase.default', UsecaseSlick );
         elementorFrontend.hooks.addAction( 'frontend/element_ready/tmc-build.default', DeveloperSlick );
         elementorFrontend.hooks.addAction( 'frontend/element_ready/tmc-slider.default', SliderSwiper );
+        elementorFrontend.hooks.addAction( 'frontend/element_ready/stake-profit.default', stakeProfit );
     } );
 
 })( jQuery );
