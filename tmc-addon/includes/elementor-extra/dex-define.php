@@ -15,7 +15,7 @@ class Dex_Define extends Widget_Base{
     }
     public function get_title()
     {
-        return esc_html__('What is TomoX', 'tmc');
+        return esc_html__('What is anything', 'tmc');
     }
 
     public function get_categories()

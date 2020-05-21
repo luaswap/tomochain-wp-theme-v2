@@ -131,12 +131,86 @@ class Stake_Tutorial extends Widget_Base{
         ]
       );
       $this->add_control(
-        'html',
+        'other_platform_stake',
         [
-          'label'       => __( 'Add HTML', 'tmc' ),
-          'type'        => Controls_Manager::CODE,
-          'language'    => 'html',
-          'rows'        => 10,
+          'type'        => Controls_Manager::TEXT,
+          'label'       => __('Other Platform Stake', 'tmc' ),
+          'default'     => __( 'Other Platform where you can stake your TOMO', 'tmc' ),
+          'placeholder' => __( 'Type your text', 'tmc' ),
+        ]
+      );
+      $p_repeater = new Repeater();
+
+      $p_repeater->add_control(
+        'p_title',
+        [
+          'label' => __( 'Title', 'tmc' ),
+          'type' => Controls_Manager::TEXT,
+          'default' => [
+            'value' => 'fas fa-star',
+            'library' => 'solid',
+          ],
+        ]
+      );
+
+      $p_repeater->add_control(
+        'p_image',
+        [
+          'label' => __( 'Choose Image', 'elementor' ),
+          'type'  => Controls_Manager::MEDIA,
+        ]
+      );
+      $p_repeater->add_control(
+        'p_url',
+        [
+          'label'         => __( 'Url', 'tmc' ),
+          'type'          => Controls_Manager::URL,
+          'placeholder'   => __( 'https://your-link.com', 'tmc' ),
+          'show_external' => true,
+          'default'       => [
+            'url'         => '',
+            'is_external' => true,
+            'nofollow'    => true,
+          ],
+        ]
+      );
+
+      $this->add_control(
+        'p_list',
+        [
+          'label' => __( 'Platform List', 'tmc' ),
+          'type' => Controls_Manager::REPEATER,
+          'fields' => $p_repeater->get_controls(),
+          'default' => [
+            [
+              'p_title' => __( 'Kucoin', 'tmc' ),
+            ],
+            [
+              'p_title' => __( 'Binance', 'tmc' ),
+            ],
+            [
+              'p_title' => __( 'Hotbit', 'tmc' ),
+            ],
+          ],
+          'title_field' => '{{{ p_title }}}',
+        ]
+      );
+      // Columns.
+      $this->add_responsive_control(
+        'p_columns',
+        [
+          'type'           => Controls_Manager::SELECT,
+          'label'          => '<i class="fa fa-columns"></i> ' . esc_html__( 'Columns', 'tmc' ),
+          'default'        => 2,
+          'tablet_default' => 2,
+          'mobile_default' => 1,
+          'options'        => [
+            1 => 1,
+            2 => 2,
+            3 => 3,
+            4 => 4,
+            5 => 5,
+          ]
         ]
       );
       
@@ -189,9 +263,35 @@ class Stake_Tutorial extends Widget_Base{
                     </div>                    
                 <?php }?>
               </div>
-              <?php if(!empty($settings['html'])):?>
-                <?php echo $settings['html'];?>
-              <?php endif;?>
+              <div class="tmc-other-platform">
+                <?php 
+                  $p_list = $settings['p_list'];
+                  $p_mobile_class = ( ! empty( $settings['p_columns_mobile'] ) ? ' tmc-mobile-' . $settings['p_columns_mobile'] : '' );
+                  $p_tablet_class = ( ! empty( $settings['p_columns_tablet'] ) ? ' tmc-tablet-' . $settings['p_columns_tablet'] : '' );
+                  $p_desktop_class = ( ! empty( $settings['p_columns'] ) ? ' tmc-desktop-' . $settings['p_columns'] : '' );
+                  $p_item_class = ' tmc-grid-col'.$p_desktop_class . $p_tablet_class . $p_mobile_class;
+                ?>
+                <div class="<?php echo esc_attr($p_item_class);?>">
+                  <?php foreach ( $p_list as $p ) {
+                      $t = isset($p['p_title']) ? $p['p_title'] : '';                  
+                      $img = isset($p['p_image']['url']) ? $p['p_image']['url'] : '';
+
+                      $pu = isset($p['p_url']['url']) ? $p['p_url']['url'] : '';
+                      $p_link = ' href="' .  esc_url($pu) . '" ';
+                      if ( isset($p['p_url']['is_external']) && $p['p_url']['is_external'] ) {
+                        $p_link .= ' target="_blank" ';
+                      }
+                      ?>
+                      
+                      <div class="tx-platform-item tmc-grid-item">
+                        <a <?php echo $p_link?>>
+                          <img src="<?php echo esc_url($img);?>" alt="<?php echo esc_attr($t);?>">
+                        </a>
+                      </div>                    
+                  <?php }?>
+                </div>
+              </div>
+              
           </div>      
 
       </div>
