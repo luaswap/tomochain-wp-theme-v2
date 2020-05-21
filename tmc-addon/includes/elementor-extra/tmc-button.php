@@ -93,7 +93,27 @@ class Tmc_Button extends Widget_Base{
             'value' => Scheme_Color::COLOR_2,
           ],
         ]
-      );      
+      );
+      $repeater->add_control(
+        'popup',
+        [
+          'label'     => esc_html__( 'Use Popup', 'tmc' ),
+          'type'      => Controls_Manager::SWITCHER,
+          'default'   => '',
+        ]
+      );
+      $repeater->add_control(
+        'popup_content',
+        [
+          'type'        => Controls_Manager::TEXTAREA,
+          'rows'        => 4,
+          'label'       => esc_html__( 'Popup Content', 'tmc' ),
+          'description' => esc_html__('Add popup content','tmc'),
+          'condition'   => [
+            'popup' => 'yes'
+          ]
+        ]
+      );
       $this->add_control(
         'button_list',
         [
@@ -209,6 +229,11 @@ class Tmc_Button extends Widget_Base{
             <a class="button-link type-<?php echo $i;?>" <?php echo $link;?> <?php echo $style;?>>
               <?php echo $title;?>
             </a>
+            <?php if($value['popup'] == 'yes'):?>
+              <div id="type-<?php echo $i;?>" class="tmc-popup-content">
+                <?php echo $value['popup_content'];?>
+              </div>
+            <?php endif;?>
           <?php }?>
         <?php endif;?>
       </div>
