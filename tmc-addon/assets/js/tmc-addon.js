@@ -227,6 +227,65 @@
         });
     };
 
+    var tutorialTab = function($scope, $){
+        $scope.find('.tx-tab-list').slick({
+            slidesToShow: 4,
+            slidesToScroll: 4,
+            speed: 1000,
+            arrows: true,
+            autoplay: true,
+            prevArrow:'<i class="tmc-arrow-left fas fa-angle-left"></i>',
+            nextArrow: '<i class="tmc-arrow-right fas fa-angle-right"></i>',
+            responsive: [
+                {
+                    breakpoint: 1025,
+                    settings: {
+                        slidesToShow: 2,
+                        slidesToScroll: 2,
+                    }
+                },
+                {
+                    breakpoint: 768,
+                    settings: {
+                        slidesToShow: 1,
+                        slidesToScroll: 1,
+                    }
+                }
+            ]
+        });
+
+        $scope.find('.tx-tab-list li').first().addClass('tab-active');
+        $scope.find('.tx-tab-content-item').first().show();
+        $scope.find('.tx-tab-list').on('click', 'a', function(e){
+            e.preventDefault();
+
+            var id = $(this).attr('href');
+
+            $('.tx-tab-list li').removeClass('tab-active');
+            $(this).parent().addClass('tab-active');
+
+            $scope.find('.tx-tab-content-item').hide();
+            $(id).show();
+        })
+    }
+
+    var buttonPopup = function($scope, $){
+        var popup = $scope.find('.button-link').attr('data-type');
+        console.log(popup);
+        if(popup != ''){
+            $scope.find('.button-link').on('click', function(e){
+                e.preventDefault();
+                popup = $(this).attr('data-type');
+                $(popup).show();
+            });
+            $scope.find('.tmc-close-popup').on('click', function(e){
+                e.preventDefault();
+                var close = $(this).attr('data-type');
+                $(close).hide();
+            });
+        }
+    }
+
     // Make sure you run this code under Elementor.
     $( window ).on( 'elementor/frontend/init', function() {
 
@@ -239,6 +298,8 @@
         elementorFrontend.hooks.addAction( 'frontend/element_ready/tmc-build.default', DeveloperSlick );
         elementorFrontend.hooks.addAction( 'frontend/element_ready/tmc-slider.default', SliderSwiper );
         elementorFrontend.hooks.addAction( 'frontend/element_ready/stake-profit.default', stakeProfit );
+        elementorFrontend.hooks.addAction( 'frontend/element_ready/tmc-tutorial-tab.default', tutorialTab );
+        elementorFrontend.hooks.addAction( 'frontend/element_ready/tmc_button.default', buttonPopup );
     } );
 
 })( jQuery );
