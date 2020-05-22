@@ -226,12 +226,13 @@ class Tmc_Button extends Widget_Base{
             }
             $style .= '"';
             ?>
-            <a class="button-link type-<?php echo $i;?>" <?php echo $link;?> <?php echo $style;?>>
+            <a class="button-link type-<?php echo $i;?>" <?php echo $link;?> <?php echo $style;?><?php if($value['popup'] == 'yes'):?> data-type="#type-<?php echo $i;?>" <?php endif;?>>
               <?php echo $title;?>
             </a>
             <?php if($value['popup'] == 'yes'):?>
               <div id="type-<?php echo $i;?>" class="tmc-popup-content">
                 <?php echo $value['popup_content'];?>
+                <a href="#" class="tmc-close-popup" data-type="#type-<?php echo $i;?>">×</a>
               </div>
             <?php endif;?>
           <?php }?>
