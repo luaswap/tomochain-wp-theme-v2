@@ -20,6 +20,24 @@ class Tutorial_Tab extends Widget_Base{
         return esc_html__('Tutorial Tab', 'tmc');
     }
 
+    /*
+    * Depend Style
+    */
+    public function get_style_depends() {
+          return [
+              'slick',
+          ];
+      }
+    /*
+    * Depend Script
+    */
+    public function get_script_depends() {
+        return [
+            'slick',
+            'tmc-addon',
+        ];
+    }
+
     public function get_categories()
     {
         return [ 'tmc-introduce-widgets' ];
