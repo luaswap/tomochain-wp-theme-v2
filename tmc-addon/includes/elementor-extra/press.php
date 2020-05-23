@@ -187,7 +187,7 @@ class Press extends Widget_Base{
           'default'     => [
             'url'     => '',
             'is_external' => true,
-            'dofollow' => true,
+            'nofollow' => true,
           ],
         ]
       );
@@ -278,8 +278,8 @@ class Press extends Widget_Base{
                         if ( isset($p['url']['is_external']) && $p['url']['is_external'] ) {
                           $p_link_props .= ' target="_blank" ';
                         }
-                        if ( isset($p['url']['dofollow']) && $p['url']['dofollow'] ) {
-                          $p_link_props .= ' rel="dofollow" ';
+                        if ( isset($p['url']['nofollow']) && $p['url']['nofollow'] ) {
+                          $p_link_props .= ' rel="nofollow" ';
                         }
                         ?>
                         <div class="p-item">
@@ -301,7 +301,7 @@ class Press extends Widget_Base{
                         <div class="p-item">
                           <img src="<?php echo esc_url($pi);?>" alt="<?php the_title();?>">
                           <div class="desc"><?php the_content();?></div>
-                          <a class="read-more" href="<?php echo esc_url($url);?>" rel="dofollow" target="_blank"><?php echo esc_html($button_text);?></a>
+                          <a class="read-more" href="<?php echo esc_url($url);?>" rel="nofollow" target="_blank"><?php echo esc_html($button_text);?></a>
                         </div> 
                       <?php endwhile;?>
                     <?php endif;?>

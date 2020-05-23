@@ -717,6 +717,16 @@
 			border-color: #ffffff!important;
 			color: #242828!important;
 		}
+		&.btn-blue {
+			background-color: #00E8B5!important;
+			border-color: #00E8B5!important;
+			color: #ffffff!important;
+			&:hover {
+				background-color: #242424!important;
+				border-color: #242424!important;
+				color: #ffffff!important;
+			}
+		}
 	}
 }
 
@@ -2107,7 +2117,7 @@
 
 .tx-tech-desc {
 	margin-bottom: 50px;
-	margin-top: 30px;
+	margin-top: 50px;
 	.tmc-grid-col {
 		@media (min-width: 1400px){
 			margin-left: -50px;
@@ -2130,6 +2140,9 @@
 	}
 }
 .tx-tech-item {
+	@media (max-width: 991px){
+		margin-top: 25px;
+	}
 	@media (max-width: 767px){
 		margin-top: 50px;
 		&:first-child {
@@ -2459,11 +2472,6 @@
 	font-size: 24px;
 	font-weight: bold;
 }
-// .tx-o-lending {
-// 	.tx-ol-button{
-// 		display: none!important;
-// 	}
-// }
 .tx-ol-button {
 	margin: 0 0 50px;
 	display: inline-block;
@@ -2538,36 +2546,6 @@
     }
 }
 
-
-// tomop-how-it-works
-.tomop-how-it-works {
-	.tx-s-layer,
-	.tx-token-layer,
-	.tx-optimization-layer,
-	.tx-r-feature,
-	.tx-rt-heading {
-		display: none;
-	}
-	.tx-sub-heading {
-		&::before {
-			display: none;
-		}
-		.tx-sub-number,
-		.tx-icon {
-			display: none;
-		}
-	}
-	.tx-r-wrap {
-		display: block!important;
-	}
-	.tmc-dex-start-widget .tx-dex-start-desc {
-		padding-left: 0;
-		&::before {
-			display: none;
-		}
-	}
-}
-
 //
 .tomop-advanced-technolory {
 	.tmc-tech-widget {
@@ -2584,11 +2562,12 @@
 				top: 0;
 				left: 0;
 				z-index: -1;
+				@media (max-width: 767px){
+					width: calc(100%);
+				}
 			}
 		}
 		.tx-tech-desc {
-			margin-bottom: 50px;
-			margin-top: 50px;
 			.tmc-grid-col {
 				margin-left: 0;
 				margin-right: 0;
