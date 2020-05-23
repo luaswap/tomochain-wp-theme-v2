@@ -301,7 +301,7 @@ class Press extends Widget_Base{
                         <div class="p-item">
                           <img src="<?php echo esc_url($pi);?>" alt="<?php the_title();?>">
                           <div class="desc"><?php the_content();?></div>
-                          <a class="read-more" href="<?php echo esc_url($url);?>" rel="nofollow" target="_blank"><?php echo esc_html($button_text);?></a>
+                          <a class="read-more" href="<?php echo esc_url($url);?>" target="_blank"><?php echo esc_html($button_text);?></a>
                         </div> 
                       <?php endwhile;?>
                     <?php endif;?>

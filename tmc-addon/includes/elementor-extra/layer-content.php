@@ -171,7 +171,11 @@ class Layer_Content extends Widget_Base{
                               <?php if($image):?>
                                 <img src="<?php echo esc_url($image)?>" alt="<?php echo esc_attr($title);?>">
                               <?php endif;?>
-                              <h3 class="layer-title"><?php echo wp_kses_post($title);?></h3>
+                              <h3 class="layer-title"><?php echo wp_kses_post($title);?>
+                                <?php if ( isset($s['url']['nofollow']) && !empty($s['url']['nofollow']) ) {?>
+                                    <i class="fas fa-external-link-alt"></i> 
+                                <?php };?>
+                              </h3>
                               <?php if($subtitle):?>
                                 <div class="sub-title"><?php echo wp_kses_post($subtitle);?></div>
                               <?php endif;?>
