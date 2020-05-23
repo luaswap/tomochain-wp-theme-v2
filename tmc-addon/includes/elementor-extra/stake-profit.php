@@ -20,7 +20,7 @@ class Stake_Profit extends Widget_Base{
 
     public function get_categories()
     {
-        return [ 'tmc-elementor-widgets' ];
+        return [ 'tmc-introduce-widgets' ];
     }
     protected function _register_controls()
     {

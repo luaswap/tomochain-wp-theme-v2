@@ -132,6 +132,18 @@ if(!class_exists('TMC_Add_Metabox')):
 				'type' => 'text_url',
 				// 'protocols' => array( 'http', 'https', 'ftp', 'ftps', 'mailto', 'news', 'irc', 'gopher', 'nntp', 'feed', 'telnet' ), // Array of allowed protocols
 			) );
+			$cmb_press->add_field( array(
+				'name' => __( 'Open in new window', 'tmc' ),
+				'id'   => 'target_blank',
+				'type' => 'checkbox',
+				// 'protocols' => array( 'http', 'https', 'ftp', 'ftps', 'mailto', 'news', 'irc', 'gopher', 'nntp', 'feed', 'telnet' ), // Array of allowed protocols
+			) );
+			$cmb_press->add_field( array(
+				'name' => __( 'Add nofollow', 'tmc' ),
+				'id'   => 'nofollow',
+				'type' => 'checkbox',
+				// 'protocols' => array( 'http', 'https', 'ftp', 'ftps', 'mailto', 'news', 'irc', 'gopher', 'nntp', 'feed', 'telnet' ), // Array of allowed protocols
+			) );
 
 		}
 	}
