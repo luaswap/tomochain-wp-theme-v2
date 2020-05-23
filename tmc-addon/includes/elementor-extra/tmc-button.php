@@ -57,7 +57,7 @@ class Tmc_Button extends Widget_Base{
           'default'     => [
             'url'     => '',
             'is_external' => true,
-            'nofollow' => true,
+            'nofollow' => false,
           ],
         ]
       );
