@@ -100,8 +100,19 @@ class Layer_Content extends Widget_Base{
           'default'     => [
             'url'     => '',
             'is_external' => true,
-            'nofollow' => true,
+            'nofollow' => false,
           ],
+        ]
+      );
+      $repeater->add_control(
+        'url_external',
+        [
+          'label'     => __( 'External url', 'tmc' ),
+          'type'      => Controls_Manager::SWITCHER,
+          'label_on'  => __( 'Yes', 'tmc' ),
+          'label_off' => __( 'No', 'tmc' ),
+          'return_value' => 'yes',
+          'default' => 'yes',
         ]
       );
       $repeater->add_control(
@@ -163,6 +174,8 @@ class Layer_Content extends Widget_Base{
                       }
                       if ( isset($s['url']['nofollow']) && $s['url']['nofollow'] ) {
                         $link_props .= ' rel="nofollow" ';
+                      }else{
+                        $link_props .= ' rel="dofollow" ';
                       }
                       ?>
                       <div class="layer-content-item tmc-grid-item">
@@ -172,7 +185,7 @@ class Layer_Content extends Widget_Base{
                                 <img src="<?php echo esc_url($image)?>" alt="<?php echo esc_attr($title);?>">
                               <?php endif;?>
                               <h3 class="layer-title"><?php echo wp_kses_post($title);?>
-                                <?php if ( isset($s['url']['nofollow']) && !empty($s['url']['nofollow']) ) {?>
+                                <?php if ( $s['url_external'] == 'yes' ) {?>
                                     <i class="fas fa-external-link-alt"></i> 
                                 <?php };?>
                               </h3>

@@ -280,6 +280,8 @@ class Press extends Widget_Base{
                         }
                         if ( isset($p['url']['nofollow']) && $p['url']['nofollow'] ) {
                           $p_link_props .= ' rel="nofollow" ';
+                        }else{
+                          $p_link_props .= ' rel="dofollow" ';
                         }
                         ?>
                         <div class="p-item">
@@ -296,12 +298,14 @@ class Press extends Widget_Base{
                       while ( $press->have_posts()): $press->the_post();
                         $pi = get_post_meta(get_the_ID(), 'press_image',true);
                         $url = get_post_meta(get_the_ID(), 'custom_url',true);
+                        $blank = get_post_meta(get_the_ID(), 'target_blank',true);
+                        $nofollow = get_post_meta(get_the_ID(), 'nofollow',true);
                         ?>
 
                         <div class="p-item">
                           <img src="<?php echo esc_url($pi);?>" alt="<?php the_title();?>">
                           <div class="desc"><?php the_content();?></div>
-                          <a class="read-more" href="<?php echo esc_url($url);?>" target="_blank"><?php echo esc_html($button_text);?></a>
+                          <a class="read-more" href="<?php echo esc_url($url);?>" <?php if($nofollow):?>rel="nofollow"<?php else:?> rel="dofollow"<?php endif;?> <?php if($blank):?>target="_blank"<?php endif;?>><?php echo esc_html($button_text);?></a>
                         </div> 
                       <?php endwhile;?>
                     <?php endif;?>

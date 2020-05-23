@@ -271,8 +271,8 @@
 
     var buttonPopup = function($scope, $){
         var popup = $scope.find('.button-link').attr('data-type');
-        console.log(popup);
-        if(popup != ''){
+
+        if(typeof popup != 'undefined'){
             $scope.find('.button-link').on('click', function(e){
                 e.preventDefault();
                 popup = $(this).attr('data-type');
