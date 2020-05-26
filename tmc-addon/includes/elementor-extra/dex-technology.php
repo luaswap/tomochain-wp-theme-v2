@@ -57,6 +57,26 @@ class Dex_Technology extends Widget_Base{
       $repeater = new Repeater();
 
       $repeater->add_control(
+        'icon_type',
+        [
+          'label' => __( 'Icon Type', 'tmc' ),
+          'type' => Controls_Manager::CHOOSE,
+          'options' => [
+            's_icon' => [
+              'title' => __( 'Icon', 'tmc' ),
+              'icon' => 'fas fa-info',
+            ],
+            's_image' => [
+              'title' => __( 'Image', 'tmc' ),
+              'icon' => 'far fa-image',
+            ]
+          ],
+          'default' => 's_icon',
+          'toggle' => true,
+        ]
+      );
+
+      $repeater->add_control(
         'icon',
         [
           'label' => __( 'Icon', 'tmc' ),
@@ -65,6 +85,19 @@ class Dex_Technology extends Widget_Base{
             'value' => 'fas fa-star',
             'library' => 'solid',
           ],
+          'condition' => [
+              'icon_type' => 's_icon'
+          ]
+        ]
+      );
+      $repeater->add_control(
+        'image',
+        [
+          'label'       => __( 'Choose Image', 'tmc' ),
+          'type'        => Controls_Manager::MEDIA,
+          'condition'   => [
+            'icon_type' => 's_image'  
+          ]
         ]
       );
       $repeater->add_control(
@@ -156,7 +189,11 @@ class Dex_Technology extends Widget_Base{
                   $d = isset($t['desc']) ? $t['desc'] : '';?>
                   <div class="tx-tech-item tmc-grid-item">
                     <div class="tx-tech-icon">
-                      <?php Icons_Manager::render_icon( $i, [ 'aria-hidden' => 'true' ], 'i' );?>
+                      <?php if($t['icon_type'] == 's_icon'):?>
+                        <?php Icons_Manager::render_icon( $i, [ 'aria-hidden' => 'true' ], 'i' );?>
+                      <?php else:?>
+                          <img src="<?php echo $t['image']['url']?>" alt="<?php echo $h;?>">
+                      <?php endif;?>
                     </div>
                     <h3 class="tx-tech-title"><?php echo wp_kses_post($h);?></h3>
                     <div class="tx-tech-info">
