@@ -17,7 +17,14 @@ class Stake_Profit extends Widget_Base{
     {
         return esc_html__('Stake Profit', 'tmc');
     }
-
+    /*
+    * Depend Script
+    */
+    public function get_script_depends() {
+      return [
+          'tmc-addon'
+      ];
+    }
     public function get_categories()
     {
         return [ 'tmc-introduce-widgets' ];

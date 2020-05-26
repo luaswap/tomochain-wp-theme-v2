@@ -183,3 +183,178 @@
 .publications-flex-reverse .elementor-row {
     flex-direction: row-reverse;
 }
+
+// page tomo staking
+
+.h-vh-100 {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+}
+.tmc-stake-profit-widget {
+    color: #ffffff;
+    input {
+        background: #2D3232;
+        border: 0;
+        padding: 10px;
+        font-size: 18px;
+        color: #00E8B5;
+        text-align: center;
+    }
+    .tmc-amount-tomo,
+    .tmc-return-profit {
+        display: flex;
+        align-items: center;
+        label {
+            line-height: 1.4;
+            padding-right: 25px;
+            width: 50%;
+            @media(max-width: 1024px){
+                padding-right: 15px;
+                font-size: 14px;
+            }
+        }
+    }
+    .tmc-amount-tomo {
+        margin-bottom: 15px;
+    }
+    .tmc-return-profit {
+        label {
+            display: flex;
+            align-items: center;
+            &::before {
+                content: '\e900';
+                font-size: 14px;
+                font-family: font-tomochain;
+                color: #00E8B5;
+                margin-right: 25px;
+                @media(max-width: 1024px){
+                    margin-right: 10px;
+                    font-size: 10px;
+                }
+            }
+        }
+    }
+}
+
+.stake_table {
+    box-shadow: 0 0 20px 5px rgba(32, 37, 51, 0.07);
+    background-color: #ffffff;
+    @media(max-width: 767px){
+        padding: 1em 0;
+        margin: 0!important;
+        table {
+            display: block;
+            overflow-x: scroll;
+            white-space: nowrap;
+        }
+    }
+    .wpb_content_element {
+        margin-bottom: 0;
+    }
+    .style-table {
+        padding: 25px;
+    }
+    .table {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        th,
+        td {
+            padding: 1.5rem .7rem
+        }
+        th {
+            font-weight: normal;
+            color: #000000;
+            font-weight: bold;
+        }
+        td {
+            text-align: center;
+            color: #565A66;
+        }
+    }
+    thead {
+        td {
+            color: #00E8B5!important;
+            font-weight: bold;
+        }
+    }
+}
+.box-title-table {
+    background-color: #00E8B5;
+    padding: 25px;
+    text-align: center;
+}
+
+.line-height-14 {
+    line-height: 1.4!important;
+}
+
+.sty-staking-works {
+    text-align: center;
+    .tx-sta-info {
+        &.type-img {
+            position: relative;
+            font-size: 20px;
+            padding-top: 50px;
+            line-height: 1.4;
+            font-weight: bold;
+            &::before {
+                content: '';
+                width:0px;
+                height:0px;
+                border-left: 100px solid transparent;
+                border-right: 100px solid transparent;
+                border-bottom: 150px solid #00E8B5;
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%);
+                z-index: -1;
+            }
+        }
+    }
+    .tx-sta-icon {
+        svg {
+            height: 200px;
+        }
+    }
+}
+
+.staking-tutorial {
+    .tx-tab-list {
+        margin: 0;
+        padding: 0;
+    }
+    .slick-track {
+        min-width: 1140px;
+        .tx-tab-item {
+            background-color: #fafafa;
+            min-width: 230px;
+            margin: 25px;
+            padding: 35px 25px;
+            text-align: center;
+            .tx-tab-icon {
+                display: block;
+                margin-bottom: 15px;
+                svg {
+                    height: 60px;
+                }
+            }
+            &.tab-active {
+                box-shadow: 0 5px 30px -5px rgba(36, 40, 40, 0.1);
+                background-color: #ffffff;
+            }
+        }
+    }
+}
+
+.tx-tutorial-tab-content {
+    margin-top: 30px;
+}
+
+.tx-tab-content-item {
+    display: none;
+}
+
+// /page tomo staking
