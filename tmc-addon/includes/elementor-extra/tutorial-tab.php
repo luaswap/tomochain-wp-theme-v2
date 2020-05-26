@@ -187,18 +187,20 @@ class Tutorial_Tab extends Widget_Base{
                   array_push($tabs, array('tab_name' => $l['tab_name'],'icon'=>$l['icon']));
                   array_push($contents, $c);
               }?>
-              <ul class="tx-tab-list">
+              <div class="tx-tab-list">
                 <?php $j = 1;
                 foreach($tabs as $tab){?>
-                  <li class="tx-tab-item">
-                    <span class="tx-tab-icon">
-                      <?php Icons_Manager::render_icon( $tab['icon'], [ 'aria-hidden' => 'true' ], 'i' );?>
-                    </span>
-                    <a href="#tab-<?php echo $j;?>"><?php echo $tab['tab_name'];?></a>
-                  </li>
+                  <a class="tx-tab-item" href="#tab-<?php echo $j;?>">
+                    <div class="inner">
+                      <p class="tx-tab-icon">
+                        <?php Icons_Manager::render_icon( $tab['icon'], [ 'aria-hidden' => 'true' ], 'i' );?>
+                      </p>
+                      <span><?php echo $tab['tab_name'];?></span>
+                    </div>
+                  </a>
                 <?php $j++;
                 };?>
-              </ul>
+              </div>
               <div class="tx-tab-content-wrap">
                 <?php $n = 1;
                 foreach($contents as $content){?>

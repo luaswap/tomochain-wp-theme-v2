@@ -232,8 +232,8 @@
             slidesToShow: 4,
             slidesToScroll: 4,
             speed: 1000,
-            arrows: true,
-            autoplay: true,
+            arrows: false,
+            autoplay: false,
             prevArrow:'<i class="tmc-arrow-left fas fa-angle-left"></i>',
             nextArrow: '<i class="tmc-arrow-right fas fa-angle-right"></i>',
             responsive: [
@@ -254,15 +254,15 @@
             ]
         });
 
-        $scope.find('.tx-tab-list li').first().addClass('tab-active');
+        $scope.find('.tx-tab-list .tx-tab-item').first().addClass('tab-active');
         $scope.find('.tx-tab-content-item').first().show();
         $scope.find('.tx-tab-list').on('click', 'a', function(e){
             e.preventDefault();
 
             var id = $(this).attr('href');
 
-            $('.tx-tab-list li').removeClass('tab-active');
-            $(this).parent().addClass('tab-active');
+            $('.tx-tab-list .tx-tab-item').removeClass('tab-active');
+            $(this).addClass('tab-active');
 
             $scope.find('.tx-tab-content-item').hide();
             $(id).show();
