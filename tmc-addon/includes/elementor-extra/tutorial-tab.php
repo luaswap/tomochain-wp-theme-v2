@@ -187,6 +187,14 @@ class Tutorial_Tab extends Widget_Base{
           ]
         ]
       );
+      $this->add_control(
+        'custom_html',
+        [
+          'type'        => Controls_Manager::TEXTAREA,
+          'rows'        => 5,
+          'label'       => esc_html__( 'Custom HTML', 'tmc' ),
+        ]
+      );
       
       $this->end_controls_section();
 
@@ -252,6 +260,11 @@ class Tutorial_Tab extends Widget_Base{
                 <?php $n++;
                 };?>
               </div>
+              <?php if(!empty($settings['custom_html'])):?>
+                <div class="tx-tutorial-html">
+                  <?php echo $settings['custom_html'];?>
+                </div>
+              <?php endif;?>
           </div>      
 
       </div>
