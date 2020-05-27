@@ -88,10 +88,44 @@ class Tutorial_Tab extends Widget_Base{
       $repeater = new Repeater();
 
       $repeater->add_control(
+        'icon_type',
+        [
+          'label' => __( 'Icon Type', 'tmc' ),
+          'type' => Controls_Manager::CHOOSE,
+          'options' => [
+            's_icon' => [
+              'title' => __( 'Icon', 'tmc' ),
+              'icon' => 'fas fa-info',
+            ],
+            's_image' => [
+              'title' => __( 'Image', 'tmc' ),
+              'icon' => 'far fa-image',
+            ]
+          ],
+          'default' => 's_icon',
+          'toggle' => true,
+        ]
+      );
+
+      $repeater->add_control(
         'icon',
         [
           'label' => __( 'Icon', 'tmc' ),
           'type' => Controls_Manager::ICONS,
+          'condition' => [
+              'icon_type' => 's_icon'
+          ]
+        ]
+      );
+
+      $repeater->add_control(
+        'image',
+        [
+          'label'       => __( 'Choose Image', 'tmc' ),
+          'type'        => Controls_Manager::MEDIA,
+          'condition'   => [
+            'icon_type' => 's_image'  
+          ]
         ]
       );
 
@@ -183,8 +217,12 @@ class Tutorial_Tab extends Widget_Base{
               ?>
               <?php foreach ( $list as $l ) {
                   $c = $l['content'];
-                  
-                  array_push($tabs, array('tab_name' => $l['tab_name'],'icon'=>$l['icon']));
+                  if($l['icon_type'] == 's_icon'){
+                    $icon = $l['icon'];
+                  }else{
+                    $icon = $l['image']['url'];
+                  }
+                  array_push($tabs, array('tab_name' => $l['tab_name'],'icon_type'=>$l['icon_type'],'icon'=>$icon));
                   array_push($contents, $c);
               }?>
               <div class="tx-tab-list">
@@ -193,7 +231,11 @@ class Tutorial_Tab extends Widget_Base{
                   <a class="tx-tab-item" href="#tab-<?php echo $j;?>">
                     <div class="inner">
                       <p class="tx-tab-icon">
-                        <?php Icons_Manager::render_icon( $tab['icon'], [ 'aria-hidden' => 'true' ], 'i' );?>
+                        <?php if($tab['icon_type'] == 's_icon'):?>
+                          <?php Icons_Manager::render_icon( $tab['icon'], [ 'aria-hidden' => 'true' ], 'i' );?>
+                        <?php else: ?>
+                          <img src="<?php echo $tab['icon']?>" alt="<?php echo $tab['tab_name'];?>">
+                        <?php endif;?>
                       </p>
                       <span><?php echo $tab['tab_name'];?></span>
                     </div>
