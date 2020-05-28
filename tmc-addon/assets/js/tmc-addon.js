@@ -228,30 +228,35 @@
     };
 
     var tutorialTab = function($scope, $){
-        $scope.find('.tx-tab-list').slick({
-            slidesToShow: 4,
-            slidesToScroll: 4,
-            speed: 1000,
-            arrows: false,
-            autoplay: false,
-            prevArrow:'<i class="tmc-arrow-left fas fa-angle-left"></i>',
-            nextArrow: '<i class="tmc-arrow-right fas fa-angle-right"></i>',
-            responsive: [
-                {
-                    breakpoint: 1025,
-                    settings: {
-                        slidesToShow: 2,
-                        slidesToScroll: 2,
+        var tutorialTab = function($scope, $){
+        $scope.find('.tx-heading').on('click', function(){
+            if($(this).hasClass('active')){
+                $scope.find('.tx-tab-list').slick({
+                slidesToShow: 4,
+                slidesToScroll: 4,
+                speed: 1000,
+                arrows: true,
+                autoplay: true,
+                prevArrow:'<i class="tmc-arrow-left fas fa-angle-left"></i>',
+                nextArrow: '<i class="tmc-arrow-right fas fa-angle-right"></i>',
+                responsive: [
+                    {
+                        breakpoint: 1025,
+                        settings: {
+                            slidesToShow: 2,
+                            slidesToScroll: 2,
+                        }
+                    },
+                    {
+                        breakpoint: 768,
+                        settings: {
+                            slidesToShow: 1,
+                            slidesToScroll: 1,
+                        }
                     }
-                },
-                {
-                    breakpoint: 768,
-                    settings: {
-                        slidesToShow: 1,
-                        slidesToScroll: 1,
-                    }
-                }
-            ]
+                ]
+            });
+            }
         });
 
         $scope.find('.tx-tab-list .tx-tab-item').first().addClass('tab-active');
