@@ -274,21 +274,23 @@
         })
     }
 
-    var buttonPopup = function($scope, $){
-        var popup = $scope.find('.button-link').attr('data-type');
-
-        if(typeof popup != 'undefined'){
-            $scope.find('.button-link').on('click', function(e){
-                e.preventDefault();
-                popup = $(this).attr('data-type');
-                $(popup).show();
-            });
-            $scope.find('.tmc-close-popup').on('click', function(e){
-                e.preventDefault();
-                var close = $(this).attr('data-type');
-                $(close).hide();
-            });
-        }
+    var buttonPopup = function($scope, $){        
+        $scope.find('.button-link').each(function(){
+            var popup = $(this).attr('data-type');
+            if(typeof popup !== 'undefined'){
+                $(this).on('click', function(e){
+                    e.preventDefault();
+                    popup = $(this).attr('data-type');
+                    $(popup).show();
+                });
+                $scope.find('.tmc-close-popup').on('click', function(e){
+                    e.preventDefault();
+                    var close = $(this).attr('data-type');
+                    $(close).hide();
+                });
+            }
+        });
+        
     }
 
     // Make sure you run this code under Elementor.
