@@ -184,6 +184,10 @@
     flex-direction: row-reverse;
 }
 
+.flex-direction {
+    flex-direction: row-reverse!important;
+}
+
 // page tomo staking
 
 .h-vh-100 {
@@ -200,19 +204,23 @@
         font-size: 18px;
         color: #00E8B5;
         text-align: center;
+        width: 50%;
+    }
+    label {
+        line-height: 1.4;
+        padding-right: 25px;
+        width: 50%;
+        @media(max-width: 1024px){
+            padding-right: 15px;
+            font-size: 14px;
+        }
     }
     .tmc-amount-tomo,
     .tmc-return-profit {
         display: flex;
         align-items: center;
-        label {
-            line-height: 1.4;
-            padding-right: 25px;
-            width: 50%;
-            @media(max-width: 1024px){
-                padding-right: 15px;
-                font-size: 14px;
-            }
+        @media(max-width: 1024px){
+            justify-content: center;
         }
     }
     .tmc-amount-tomo {
@@ -322,28 +330,46 @@
 }
 
 .staking-tutorial {
+    .max-w-1000 {
+        max-width: 1000px;
+        margin: auto;
+    }
     .tx-tab-list {
         margin: 0;
         padding: 0;
+        display: flex;
+        justify-content: space-between;
+        overflow: auto;
+        border-bottom: 2px solid #f2f2f2;
     }
-    .slick-track {
-        min-width: 1140px;
-        .tx-tab-item {
-            background-color: #fafafa;
-            min-width: 230px;
-            margin: 25px;
-            padding: 35px 25px;
-            text-align: center;
-            .tx-tab-icon {
-                display: block;
-                margin-bottom: 15px;
-                svg {
-                    height: 60px;
-                }
+    .tx-tab-item {
+        color: #242828!important;
+        font-size: 14px;
+        padding: 0 1em;
+        .inner {
+            display: flex;
+            align-items: center;
+            white-space: nowrap;
+        }
+        .tx-tab-icon {
+            display: block;
+            margin-right: 15px;
+            svg,
+            img {
+                height: 60px;
+                max-width: fit-content;
             }
-            &.tab-active {
-                box-shadow: 0 5px 30px -5px rgba(36, 40, 40, 0.1);
-                background-color: #ffffff;
+        }
+        &.tab-active {
+            position: relative;
+            &::before {
+                content: '';
+                height: 4px;
+                width: 100%;
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                background-color: #00E8B5;
             }
         }
     }
