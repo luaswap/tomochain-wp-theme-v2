@@ -186,7 +186,7 @@ class Layer_Content extends Widget_Base{
                               <?php endif;?>
                               <h3 class="layer-title"><?php echo wp_kses_post($title);?>
                                 <?php if ( $s['url_external'] == 'yes' ) {?>
-                                    <i class="fas fa-external-link-alt"></i> 
+                                    <span class="ftomo tomo-open-link"></span>
                                 <?php };?>
                               </h3>
                               <?php if($subtitle):?>
