@@ -344,8 +344,10 @@
     }
     .tx-tab-item {
         color: #242828!important;
-        font-size: 14px;
-        padding: 0 1em;
+        font-size: 16px;
+        padding: 0 1em 1em;
+        opacity: .5;
+        transition: all .3s;
         .inner {
             display: flex;
             align-items: center;
@@ -360,8 +362,12 @@
                 max-width: fit-content;
             }
         }
+        &:hover {
+            opacity: 1;
+        }
         &.tab-active {
             position: relative;
+            opacity: 1;
             &::before {
                 content: '';
                 height: 4px;
@@ -382,5 +388,47 @@
 .tx-tab-content-item {
     display: none;
 }
-
 // /page tomo staking
+
+// button popup
+.tmc-popup-content {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    background-color: rgba(#242828, 0.5);
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .container {
+        max-width: 550px;
+    }
+    .inner {
+        position: relative;
+        background: #fff;
+        padding: 5em;
+        @media(max-width: 767px){
+            padding: 1.5em;
+        }
+        h2 {
+            margin-bottom: 20px;
+        }
+        .tmc-close-popup {
+            position: absolute;
+            right: 15px;
+            top: 15px;
+        }
+        a {
+            border: 0!important;
+            padding: 0!important;
+            margin: 0!important;
+        }
+    }
+}
+
+// size font icon
+.tomo-open-link {
+    font-size: 18px;
+}

@@ -230,9 +230,13 @@ class Tmc_Button extends Widget_Base{
               <?php echo $title;?>
             </a>
             <?php if($value['popup'] == 'yes'):?>
-              <div id="type-<?php echo $i;?>" class="tmc-popup-content">
-                <?php echo $value['popup_content'];?>
-                <a href="#" class="tmc-close-popup" data-type="#type-<?php echo $i;?>">×</a>
+              <div id="type-<?php echo $i;?>" class="tmc-popup-content" style="display: none;">
+                <div class="container">
+                  <div class="inner">
+                    <a href="#" class="tmc-close-popup" data-type="#type-<?php echo $i;?>"><span class="ftomo tomo-times"></span></a>
+                    <?php echo $value['popup_content'];?>
+                  </div>
+                </div>
               </div>
             <?php endif;?>
           <?php }?>
