@@ -70,8 +70,8 @@
         }
         &:before{
             content:'';
-            width: 6px;
-            height: 6px;
+            width: 7px;
+            height: 7px;
             background: @secondary-color;
             border-radius: 50%;
             position: absolute;
@@ -338,7 +338,7 @@
         margin: 0;
         padding: 0;
         display: flex;
-        justify-content: space-between;
+        justify-content: center;
         overflow: auto;
         border-bottom: 2px solid #f2f2f2;
     }
@@ -431,4 +431,139 @@
 // size font icon
 .tomo-open-link {
     font-size: 18px;
+}
+
+//tomoz
+.h-56 {
+    height: 56px!important;
+    @media (max-width: 767px) {
+        height: auto !important;
+    }
+}
+.fs-70 {
+    font-size: 70px!important;
+}
+.tomoz-comparison {
+    position: relative;
+    font-size: 17px;
+    &:before {
+        content: '';
+        background: #404041;
+        border-radius: 50%;
+        width: 7px;
+        height: 7px;
+        top: 0;
+        position: absolute;
+        left: calc(50% - 3px);
+    }
+    .z_txt_subtitle {
+        color: #242828;
+        line-height: 2;
+        margin-bottom: 0px;
+    }
+    ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-wrap: wrap;
+        &:before {
+            content: '';
+            left: calc(50%);
+            width: 1px;
+            height: calc(100%);
+            background-image: linear-gradient(to top, transparent 50%, #404041 50%);
+            background-size: 100% 15px;
+            position: absolute;
+            top: 0;
+        }
+        &:after {
+            content: '';
+            background: #404041;
+            border-radius: 50%;
+            width: 7px;
+            height: 7px;
+            bottom: 0;
+            position: absolute;
+            left: calc(50% - 3px);
+        }
+        li {
+            width: 50%;
+            color: #000;
+            line-height: 2;
+            position: relative;
+            margin: 35px 0;
+            padding: 1px 0;
+            h4 {
+                margin-bottom: 15px;
+            }
+            &:nth-child(2n) {
+                padding-left: 100px;
+                text-align: left;
+                transform: translateY(100px);
+                @media (max-width: 767px) {
+                    padding-left: 30px;
+                }
+                &:after {
+                    content: '';
+                    position: absolute;
+                    background: #404041;
+                    width: 7px;
+                    height: 7px;
+                    border-radius: 50%;
+                    top: 27px;
+                    left: 70px;
+                    @media (max-width: 767px) {
+                        left: 28px;
+                    }
+                }
+                &:before {
+                    content: '';
+                    position: absolute;
+                    background-image: linear-gradient(to left, transparent 50%, #404041 50%);
+                    background-size: 15px 100%;
+                    width: 70px;
+                    height: 1px;
+                    top: 30px;
+                    left: 0;
+                    @media (max-width: 767px) {
+                        width: 30px;
+                    }
+                }
+            }
+            &:nth-child(2n + 1) {
+                padding-right: 100px;
+                text-align: right;
+                @media (max-width: 767px) {
+                    padding-right: 30px;
+                }
+                &:after {
+                    content: '';
+                    position: absolute;
+                    background: #404041;
+                    width: 7px;
+                    height: 7px;
+                    border-radius: 50%;
+                    top: 27px;
+                    right: 70px;
+                    @media (max-width: 767px) {
+                        right: 28px;
+                    }
+                }
+                &:before {
+                    content: '';
+                    position: absolute;
+                    background-image: linear-gradient(to left, transparent 50%, #404041 50%);
+                    background-size: 15px 100%;
+                    width: 70px;
+                    height: 1px;
+                    top: 30px;
+                    right: 0;
+                    @media (max-width: 767px) {
+                        width: 30px;
+                    }
+                }
+            }
+        }
+    }
 }
