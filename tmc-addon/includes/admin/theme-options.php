@@ -20,9 +20,9 @@ class TMC_Theme_Options {
 		add_action( 'cmb2_admin_init', array($this,'tmc_general_options_metabox') );
 	}
 	function tmc_general_options_metabox() {
-		/**
-		 * Registers Tomochain options page menu item and form.
-		 */
+		/**====================================================
+		 * Home Options
+		 =====================================================*/
 		$args = array(
 			'id'           => 'tmc_options_page',
 			'title'        => esc_html__('Tomo Settings','tmc'),
@@ -130,22 +130,9 @@ class TMC_Theme_Options {
 		    'id'   => 'social_url',
 		    'type' => 'text_url',
 		) );
-
-		/**
-		 * Options fields ids only need
-		 * to be unique within this box.
-		 * Prefix is not needed.
-		 */
-		// $options->add_field( array(
-		// 	'name'    => esc_html__('Site Background Color','tmc'),
-		// 	'desc'    => esc_html__('field description (optional)','tmc'),
-		// 	'id'      => 'bg_color',
-		// 	'type'    => 'colorpicker',
-		// 	'default' => '#ffffff',
-		// ) );
-		/**--------------------------------------------------------------------
-		 * Registers secondary options page, and set main item as parent.
-		 *--------------------------------------------------------------------*/
+		/**====================================================================
+		 * Header Options
+		 *=====================================================================*/
 		$args = array(
 			'id'           => 'tmc_header_options_page',
 			'menu_title'   => esc_html__('Header','tmc'), // Use menu title, & not title to hide main h2.
@@ -175,9 +162,55 @@ class TMC_Theme_Options {
 				'header-fixed' => esc_html('Header Fixed','tmc'),
 			),
 		) );
-		/**
-		 * Registers Footer options page, and set main item as parent.
-		 */
+		/**====================================================================
+		 * RoadMap Options
+		 *=====================================================================*/
+		$args = array(
+			'id'           => 'tmc_roadmap_options_page',
+			'menu_title'   => esc_html__('Road map','tmc'), // Use menu title, & not title to hide main h2.
+			'object_types' => array( 'options-page' ),
+			'option_key'   => 'tmc_roadmap_options',
+			'parent_slug'  => 'tmc_options',
+			'tab_group'    => 'tmc_options',
+			'tab_title'    => esc_html('Road map','tmc'),
+		);
+		// 'tab_group' property is supported in > 2.4.0.
+		if ( version_compare( CMB2_VERSION, '2.4.0' ) ) {
+			$args['display_cb'] = array($this,'tmc_options_display_with_tabs');
+		}
+		$roadmap_options = new_cmb2_box( $args );
+
+		$roadmap_options->add_field( array(
+			'name' 			=> esc_html__('Enter Repostoriry','tmc'),
+			'type' 			=> 'text',
+			'id'   			=> 'tmc_repos',
+			'description' 	=> __('Repostories are separated by commas','tmc'),
+			'attributes'	=> [
+				'placeholder'	=> 'tomox-sdk-ui,tomoscan,tomowallet'
+			]
+		) );
+		$roadmap_options->add_field( array(
+			'name' 			=> esc_html__('Enter Commit number limit','tmc'),
+			'type' 			=> 'text',
+			'id'   			=> 'tmc_commit_number',
+			'description' 	=> __('Default 10 commit on each repostority','tmc'),
+			'attributes'	=> [
+				'placeholder'	=> '10',
+				'type' 			=> 'number',
+				'pattern' 		=> '\d*',
+				'min'			=> 1
+			]
+		) );
+
+		$roadmap_options->add_field( array(
+			'name' 			=> esc_html__('Github Access Token','tmc'),
+			'type' 			=> 'text',
+			'id'   			=> 'tmc_access_token',
+			'description' 	=> __('<a href="https://help.github.com/en/github/authenticating-to-github/creating-a-personal-access-token-for-the-command-line" target="_blank"> Get github access token</a>','tmc'),
+		) );
+		/**==============================================================
+		 * Footer Options
+		 *===============================================================*/
 		$args = array(
 			'id'           => 'tmc_footer_options_page',
 			'menu_title'   => esc_html__('Footer','tmc'), // Use menu title, & not title to hide main h2.
@@ -247,6 +280,7 @@ class TMC_Theme_Options {
 				'options'          => $form_list
 			) );
 		}
+		
 	}
 	/**
 	 * A CMB2 options-page display callback override which adds tab navigation among
@@ -330,6 +364,21 @@ function tmc_get_header_option( $key = '', $default = false ) {
 	}
 	// Fallback to get_option if CMB2 is not loaded yet.
 	$opts = get_option( 'tmc_header_options', $default );
+	$val = $default;
+	if ( 'all' == $key ) {
+		$val = $opts;
+	} elseif ( is_array( $opts ) && array_key_exists( $key, $opts ) && false !== $opts[ $key ] ) {
+		$val = $opts[ $key ];
+	}
+	return $val;
+}
+function tmc_get_roadmap_option( $key = '', $default = false ) {
+	if ( function_exists( 'cmb2_get_option' ) ) {
+		// Use cmb2_get_option as it passes through some key filters.
+		return cmb2_get_option( 'tmc_roadmap_options', $key, $default );
+	}
+	// Fallback to get_option if CMB2 is not loaded yet.
+	$opts = get_option( 'tmc_roadmap_options', $default );
 	$val = $default;
 	if ( 'all' == $key ) {
 		$val = $opts;

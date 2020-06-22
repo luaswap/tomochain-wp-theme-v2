@@ -75,6 +75,12 @@ if(!class_exists('TMC_Elementor_Widgets')){
 				null,
 				true
 			);
+			wp_localize_script( 'tmc-addon',
+				'tmcAddon',
+				array(
+					'ajax_url' => admin_url( 'admin-ajax.php' )
+				)
+			);
 		}
 		// 
 		public function enqueue_preview_styles(){

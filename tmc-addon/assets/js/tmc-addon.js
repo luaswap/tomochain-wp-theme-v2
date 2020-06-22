@@ -293,6 +293,43 @@
         
     }
 
+    var roadMap = function($scope, $){
+
+        if ( $( '.tmc-roadmap-filter' ).length > 0) {
+            $scope.on('click', 'a[data-filter]', function(e){
+
+                e.preventDefault();
+
+                var $_this   = $(this);
+                var $wrapper = $('.tmc-roadmap-content');
+                var $id      = $_this.attr('data-filter');
+                $wrapper.addClass('loading');
+                $_this.closest('ul').find('.selected').removeClass('selected');
+                $_this.parent().addClass('selected');
+                var $params    = {
+                    'id'  :  $id
+                };
+
+                $.ajax({
+                    url: tmcAddon.ajax_url,
+                    type: 'POST',
+                    data: ({
+                        action: 'roadmap_ajax',
+                        params: $params
+                    }),
+                    dataType: 'html',
+
+                    success: function ( data ) {
+                        console.log(data);
+                        $wrapper.removeClass('loading');
+                        $wrapper.find('.tmc-roadmap-left').html(data);
+                    }
+                });
+            });
+        }
+    }
+
+
     // Make sure you run this code under Elementor.
     $( window ).on( 'elementor/frontend/init', function() {
 
@@ -307,6 +344,7 @@
         elementorFrontend.hooks.addAction( 'frontend/element_ready/stake-profit.default', stakeProfit );
         elementorFrontend.hooks.addAction( 'frontend/element_ready/tmc-tutorial-tab.default', tutorialTab );
         elementorFrontend.hooks.addAction( 'frontend/element_ready/tmc_button.default', buttonPopup );
+        elementorFrontend.hooks.addAction( 'frontend/element_ready/tmc-roadmap.default', roadMap );
     } );
 
 })( jQuery );

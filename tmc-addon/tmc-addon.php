@@ -18,7 +18,8 @@ if ( ! class_exists( 'TMC_Addon' ) ) {
 	    	$this->prefix = 'tmc';
 	    	$this->define_constants();
 	    	$this->define_hook();
-	        $this->include_files();
+			$this->include_files();
+			add_action('init', array($this,'github_api'));
 	    }
 	    function define_constants() {
 	    	// Plugin Folder Url
@@ -65,7 +66,8 @@ if ( ! class_exists( 'TMC_Addon' ) ) {
 				require_once TMC_ADDON_INCLUDES_DIR . '/libs/cmb2-extend/ajax-search/cmb-field-ajax-search.php';
 			}
 			/* Register Custom Post type */
-	    	require_once TMC_ADDON_INCLUDES_DIR . '/post-type/event.php';
+			require_once TMC_ADDON_INCLUDES_DIR . '/post-type/event.php';
+			require_once TMC_ADDON_INCLUDES_DIR . '/post-type/roadmap.php';
 	    	require_once TMC_ADDON_INCLUDES_DIR . '/post-type/publication.php';
 	    	require_once TMC_ADDON_INCLUDES_DIR . '/post-type/usecase.php';
 	    	require_once TMC_ADDON_INCLUDES_DIR . '/post-type/press.php';
@@ -98,6 +100,11 @@ if ( ! class_exists( 'TMC_Addon' ) ) {
 			}
 			
 			return in_array( 'elementor/elementor.php', $active_plugins ) || array_key_exists( 'elementor/elementor.php', $active_plugins );
+		}
+
+		function github_api(){
+			/* Include Roadmap - Github */
+			require_once TMC_ADDON_INCLUDES_DIR . '/data-roadmap/tmc-github.php';
 		}
 	}
 	new TMC_Addon;
