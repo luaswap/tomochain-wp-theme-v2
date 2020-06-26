@@ -19,6 +19,12 @@ class Roadmap extends Widget_Base{
         return esc_html__('TMC Roadmap', 'tmc');
     }
     /*
+    * Depend Style
+    */
+    // public function get_style_depends() {
+    //       return [];
+    //   }
+    /*
     * Depend Script
     */
     public function get_script_depends() {
@@ -192,7 +198,7 @@ class Roadmap extends Widget_Base{
       $terms = get_terms(
         array(
           'taxonomy'   => 'roadmap_cat',
-          'hide_empty' => true
+          'hide_empty' => true,
         )
       );
       if ( ! empty( $terms ) ) {
@@ -240,9 +246,8 @@ class Roadmap extends Widget_Base{
             <div class="tmc-roadmap-head">
               <ul class="tmc-roadmap-filter">
                 <li class="selected">
-                  <a href="#" data-filter="all"><?php echo esc_html__('All','tmc')?>                    
+                  <a href="#" data-filter="all" data-desc="<?php esc_attr_e($desc);?>"><?php echo esc_html__('All','tmc')?>                    
                   </a>
-                  <p class="tmc-desc"><?php echo $desc;?></p>
                 </li>
                 <?php
                 if(!empty($cats)):
@@ -251,10 +256,8 @@ class Roadmap extends Widget_Base{
                       $rm = get_term_by('id',$cat,'roadmap_cat');
                     ?>
                       <li>
-                        <a href="#" data-filter="<?php echo esc_attr($rm->term_id)?>" data-desc= "<?php echo wp_kses_post(term_description($rm->term_id));?>"><?php echo esc_html($rm->name);?>
-                         
+                        <a href="#" data-filter="<?php echo esc_attr($rm->term_id)?>" data-desc="<?php echo esc_attr(term_description($rm->term_id));?>"><?php echo esc_html($rm->name);?>
                         </a>
-                        <p class="tmc-desc"><?php echo term_description($rm->term_id);?></p>
                       </li>
                   <?php
                     }
@@ -262,6 +265,7 @@ class Roadmap extends Widget_Base{
                 endif;
                 ?>
               </ul>
+              <div class="tmc-term-desc"></div>
             </div>
             <div class="tmc-roadmap-content">
               <div class="row">

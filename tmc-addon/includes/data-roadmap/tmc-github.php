@@ -124,7 +124,7 @@ class Tmc_Get_Github_Data{
 					'url'    => $value->html_url
 				);
 			}
-			if(is_array($args)){
+			if(is_array($args) && count($args) > 0){
 				krsort($args);
 				$args = json_encode($args);
 			}
@@ -133,7 +133,7 @@ class Tmc_Get_Github_Data{
 			if(!empty($args)){
 	        	$wp_filesystem->put_contents( $c_dir ."/commit.txt", $args);
 	        }
-	    	return $c_dir . '/commit.txt';		
+	    	return $c_dir . '/commit.txt';
 		}
 	}
 

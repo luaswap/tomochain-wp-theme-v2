@@ -292,10 +292,11 @@
         });
         
     }
-
     var roadMap = function($scope, $){
 
         if ( $( '.tmc-roadmap-filter' ).length > 0) {
+            var $default = $('.tmc-roadmap-filter li').first().find('a').attr('data-desc');
+            $('.tmc-roadmap-head').find('.tmc-term-desc').html($default);
             $scope.on('click', 'a[data-filter]', function(e){
 
                 e.preventDefault();
@@ -303,9 +304,12 @@
                 var $_this   = $(this);
                 var $wrapper = $('.tmc-roadmap-content');
                 var $id      = $_this.attr('data-filter');
+                var $desc    = $_this.attr('data-desc');
                 $wrapper.addClass('loading');
                 $_this.closest('ul').find('.selected').removeClass('selected');
                 $_this.parent().addClass('selected');
+
+
                 var $params    = {
                     'id'  :  $id
                 };
@@ -320,7 +324,7 @@
                     dataType: 'html',
 
                     success: function ( data ) {
-                        console.log(data);
+                        $_this.closest('.tmc-roadmap-head').find('.tmc-term-desc').html($desc);
                         $wrapper.removeClass('loading');
                         $wrapper.find('.tmc-roadmap-left').html(data);
                     }
@@ -328,7 +332,6 @@
             });
         }
     }
-
 
     // Make sure you run this code under Elementor.
     $( window ).on( 'elementor/frontend/init', function() {
