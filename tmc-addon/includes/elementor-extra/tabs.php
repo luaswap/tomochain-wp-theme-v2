@@ -441,12 +441,12 @@ class Tabs extends Widget_Base{
                         </a> -->
                       </div>
                   <?php }?>
-                  <?php if(!empty($ex_html)):?>
-                    <div class="mt-2">
-                      <?php echo $ex_html;?>
-                    </div>
-                  <?php endif;?>
                 </div>
+                <?php if(!empty($ex_html)):?>
+                  <div class="mt-2">
+                    <?php echo $ex_html;?>
+                  </div>
+                <?php endif;?>
               </div>
             <?php endif;?>
             <?php if(!empty($w_list) && is_array($w_list)):?>
