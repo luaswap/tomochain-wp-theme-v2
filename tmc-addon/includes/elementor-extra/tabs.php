@@ -432,6 +432,13 @@ class Tabs extends Widget_Base{
                       </div>
                   <?php }?>
                 </div>
+                <div class="mt-2">
+                  See
+                  <a style="font-weight: bold" href="https://coinmarketcap.com/currencies/tomochain/markets" target="_blank" rel="noopener noreferrer">
+                    CoinMaketCap
+                  </a>
+                  for the overview of where and which pairs are currently listed.
+                </div>
               </div>
             <?php endif;?>
             <?php if(!empty($w_list) && is_array($w_list)):?>
