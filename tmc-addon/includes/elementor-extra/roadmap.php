@@ -334,70 +334,72 @@ class Roadmap extends Widget_Base{
                     </div>
                     <div class="col-lg-6">
                       <div class="tmc-inner tmc-in-progress-wrap">
-                      <h2 class="tmc-inner-title"><?php echo esc_html__('In Progress','tmc')?></h2>
-                      <div class="tmc-inner-box">
-                        <?php $p = $this->get_data_query('in-progress');
-                          if( $p->have_posts() ):
-                          while( $p->have_posts() ): $p->the_post();
+                        <div class="main-inner">
+                          <h2 class="tmc-inner-title"><?php echo esc_html__('In Progress','tmc')?></h2>
+                          <div class="tmc-inner-box">
+                            <?php $p = $this->get_data_query('in-progress');
+                              if( $p->have_posts() ):
+                              while( $p->have_posts() ): $p->the_post();
 
-                            $logo = get_post_meta(get_the_ID(),'tmc_image',true);
-                            $p_url = get_post_meta(get_the_ID(),'tmc_url',true);
-                            $github_url = get_post_meta(get_the_ID(),'tmc_github',true);
-                            $doc_url = get_post_meta(get_the_ID(),'tmc_doc',true);
-                            $due_date = get_post_meta(get_the_ID(),'tmc_due_date',true);
+                                $logo = get_post_meta(get_the_ID(),'tmc_image',true);
+                                $p_url = get_post_meta(get_the_ID(),'tmc_url',true);
+                                $github_url = get_post_meta(get_the_ID(),'tmc_github',true);
+                                $doc_url = get_post_meta(get_the_ID(),'tmc_doc',true);
+                                $due_date = get_post_meta(get_the_ID(),'tmc_due_date',true);
 
-                            if( is_numeric($due_date) && strlen($due_date) !== 8 ) {
-                              $due_date = date_i18n('M d, Y', $due_date);
-                            }
-                            $per_cent = get_post_meta(get_the_ID(),'tmc_percent',true);
-                            $open_new_tab = get_post_meta(get_the_ID(),'tmc_new_tab',true) ? '__blank' : '';?>
-                            <div class="tmc-box-item">
-                              <div class="item-header">
-                                <?php
-                                  if($logo){?>
-                                    <div class="col-logo">
-                                      <img src="<?php echo $logo;?>" alt="<?php the_title();?>">
+                                if( is_numeric($due_date) && strlen($due_date) !== 8 ) {
+                                  $due_date = date_i18n('M d, Y', $due_date);
+                                }
+                                $per_cent = get_post_meta(get_the_ID(),'tmc_percent',true);
+                                $open_new_tab = get_post_meta(get_the_ID(),'tmc_new_tab',true) ? '__blank' : '';?>
+                                <div class="tmc-box-item">
+                                  <div class="item-header">
+                                    <?php
+                                      if($logo){?>
+                                        <div class="col-logo">
+                                          <img src="<?php echo $logo;?>" alt="<?php the_title();?>">
 
-                                    </div>
-                                <?php }?>
-                                <div class="col-infor">
-                                  <div class="box-title">
-                                    <a class="txt-name" href="<?php echo esc_url($p_url);?>" target="<?php echo esc_attr($open_new_tab);?>">
-                                      <?php the_title();?>
-                                    </a>
-                                  </div>
-                                  <div class="update-on">
-                                    <div class="box-progress">
-                                      <div class="innrer-progress">
-                                        <div class="progress-value" style="width:<?php echo esc_attr($per_cent);?>%"></div>
+                                        </div>
+                                    <?php }?>
+                                    <div class="col-infor">
+                                      <div class="box-title">
+                                        <a class="txt-name" href="<?php echo esc_url($p_url);?>" target="<?php echo esc_attr($open_new_tab);?>">
+                                          <?php the_title();?>
+                                        </a>
                                       </div>
-                                      <span><?php echo esc_html($per_cent);?>%</span>
+                                      <div class="update-on">
+                                        <div class="box-progress">
+                                          <div class="innrer-progress">
+                                            <div class="progress-value" style="width:<?php echo esc_attr($per_cent);?>%"></div>
+                                          </div>
+                                          <span><?php echo esc_html($per_cent);?>%</span>
+                                        </div>
+                                        <?php if($due_date){?>
+                                          <span><?php echo esc_html__('Due date:','tmc')?> <?php echo esc_html($due_date);?></span>
+                                        <?php }?>
+                                        <br>
+                                        <?php if($github_url){?>
+                                          <a href="<?php echo esc_url($github_url);?>" target="<?php echo esc_attr($open_new_tab);?>">
+                                            <i class="fab fa-github"></i>
+                                          </a>
+                                        <?php }?>
+                                        <?php if($doc_url){?>
+                                          <a href="<?php echo esc_url($doc_url);?>" target="<?php echo esc_attr($open_new_tab);?>">
+                                            <i class="fa fa-file"></i>
+                                          </a>
+                                        <?php }?>
+                                      </div>
                                     </div>
-                                    <?php if($due_date){?>
-                                      <span><?php echo esc_html__('Due date:','tmc')?> <?php echo esc_html($due_date);?></span>
-                                    <?php }?>
-                                    <br>
-                                    <?php if($github_url){?>
-                                      <a href="<?php echo esc_url($github_url);?>" target="<?php echo esc_attr($open_new_tab);?>">
-                                        <i class="fab fa-github"></i>
-                                      </a>
-                                    <?php }?>
-                                    <?php if($doc_url){?>
-                                      <a href="<?php echo esc_url($doc_url);?>" target="<?php echo esc_attr($open_new_tab);?>">
-                                        <i class="fa fa-file"></i>
-                                      </a>
-                                    <?php }?>
                                   </div>
-                                </div>
-                              </div>
-                              <div class="item-body">
-                                <?php the_content();?>
-                              </div>
-                            </div><!-- box-item -->  
-                        <?php endwhile;
-                        endif;
-                        ?>
-                      </div>
+                                  <div class="item-body">
+                                    <?php the_content();?>
+                                  </div>
+                                </div><!-- box-item -->  
+                            <?php endwhile;
+                            endif;
+                            ?>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
