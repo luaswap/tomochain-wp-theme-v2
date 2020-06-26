@@ -192,6 +192,14 @@ class Tabs extends Widget_Base{
         ]
       );
 
+      $this->add_control(
+        'ex_custom_html', [
+          'label' => __( 'Custom HTML', 'tmc' ),
+          'type' => Controls_Manager::TEXTAREA,
+          'placeholder' => __( 'Add custom html' , 'tmc' ),
+          'label_block' => true,
+        ]
+      );
       $this->end_controls_section();
       $this->start_controls_section(
         'tmc_tab_wallet',
@@ -409,7 +417,9 @@ class Tabs extends Widget_Base{
                 </div>
               </div>
             <?php endif;?>
-            <?php if(!empty($ex_list) && is_array($ex_list)):?>
+            <?php if(!empty($ex_list) && is_array($ex_list)):
+              $ex_html = $settings['ex_custom_html'];
+              ?>
               <div id="ex-tab" class="tab-content">
                 <div class="row">
                   <?php
@@ -431,13 +441,11 @@ class Tabs extends Widget_Base{
                         </a> -->
                       </div>
                   <?php }?>
-                </div>
-                <div class="mt-2">
-                  See
-                  <a style="font-weight: bold" href="https://coinmarketcap.com/currencies/tomochain/markets" target="_blank" rel="noopener noreferrer">
-                    CoinMaketCap
-                  </a>
-                  for the overview of where and which pairs are currently listed.
+                  <?php if(!empty($ex_html)):?>
+                    <div class="mt-2">
+                      <?php echo $ex_html;?>
+                    </div>
+                  <?php endif;?>
                 </div>
               </div>
             <?php endif;?>
