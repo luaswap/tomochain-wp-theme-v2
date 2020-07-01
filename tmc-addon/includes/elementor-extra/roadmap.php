@@ -369,7 +369,7 @@ class Roadmap extends Widget_Base{
                                       </div>
                                       <div class="update-on">
                                         <div class="box-progress">
-                                          <div class="innrer-progress">
+                                          <div class="inner-progress">
                                             <div class="progress-value" style="width:<?php echo esc_attr($per_cent);?>%"></div>
                                           </div>
                                           <span><?php echo esc_html($per_cent);?>%</span>
