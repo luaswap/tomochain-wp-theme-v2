@@ -88,6 +88,22 @@ class Roadmap extends Widget_Base{
         ]
       );
       $this->add_control(
+        'see_all_url',
+        [
+          'type'        => Controls_Manager::URL,
+          'label'       => esc_html__( 'URL', 'tmc' ),
+          'placeholder' => __( 'https://your-link.com', 'tmc' ),
+          'show_external' => true,
+          'default'       => [
+            'is_external' => true,
+            'nofollow'    => true,
+          ],
+          'condition'     => [
+            'see_all' => 'yes'
+          ]
+        ]
+      );
+      $this->add_control(
         'discuss',
         [
           'label' => __( 'Discuss with out Team:', 'tmc' ),
@@ -369,7 +385,7 @@ class Roadmap extends Widget_Base{
                                       </div>
                                       <div class="update-on">
                                         <div class="box-progress">
-                                          <div class="inner-progress">
+                                          <div class="innrer-progress">
                                             <div class="progress-value" style="width:<?php echo esc_attr($per_cent);?>%"></div>
                                           </div>
                                           <span><?php echo esc_html($per_cent);?>%</span>
@@ -408,8 +424,21 @@ class Roadmap extends Widget_Base{
                   <div class="box-activities">
                     <div class="box-title">
                       <h3><?php echo esc_html__('Latest commits','tmc');?></h3>
-                      <?php if($see_more){?>
-                        <a target="_blank" href="<?php echo esc_url($see_more);?>"><?php echo esc_html__('See all','tmc');?></a>
+                      <?php if($see_more){
+                        $see_all_url = $settings['see_all_url'];
+                        $url_info = '';
+                        if($see_all_url['url']){
+                          $url_info = ' href="' . esc_url($see_all_url['url']) . '" ';
+                          if ( $see_all_url['is_external'] ) {
+                            $url_info .= ' target="_blank" ';
+                          }
+                          if ( $see_all_url['nofollow'] ) {
+                            $url_info .= ' rel="nofollow" ';
+                          }?>                          
+                        <?php }?>   
+                        <a <?php echo $url_info;?>>
+                            <?php echo esc_html__('See all','tmc');?>
+                        </a>                     
                       <?php }?>
                     </div>
                     <div class="box_latest_commit">
