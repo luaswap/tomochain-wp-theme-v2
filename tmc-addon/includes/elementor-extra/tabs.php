@@ -399,7 +399,7 @@ class Tabs extends Widget_Base{
                     foreach ( $p_list as $p ) {
                       $pt = isset($p['p_title']) ? $p['p_title'] : '';
                       $pi = isset($p['p_image']['url']) ? $p['p_image']['url'] : '';
-                      $p_url = !empty($p['p_url']['url']) ? $p['p_url']['url'] : '#';
+                      $p_url = !empty($p['p_url']['url']) ? $p['p_url']['url'] : '';
                       $p_link_props = ' href="' . esc_url( $p_url ) . '" ';
                       if ( isset($p['p_url']['is_external']) && $p['p_url']['is_external'] ) {
                         $p_link_props .= ' target="_blank" ';
@@ -409,9 +409,15 @@ class Tabs extends Widget_Base{
                       }
                       ?>
                       <div class="p-item col-4 col-md-3">
-                        <div class="common-logo-item"><img src="<?php echo esc_url($pi);?>" alt="<?php echo esc_attr($pt);?>"></div>
-                        <!-- <a class="link" <?php //echo $p_link_props;?>>
-                        </a> -->
+                        <div class="common-logo-item">
+                          <?php if ( $p_url ):?>
+                            <a class="link" <?php echo $p_link_props;?>>
+                          <?php endif;?>
+                            <img src="<?php echo esc_url($pi);?>" alt="<?php echo esc_attr($pt);?>">
+                          <?php if ( $p_url ):?>
+                            </a>
+                          <?php endif;?>
+                        </div>
                       </div>
                   <?php }?>
                 </div>
@@ -426,7 +432,7 @@ class Tabs extends Widget_Base{
                     foreach ( $ex_list as $ex ) {
                       $et = isset($ex['ex_title']) ? $ex['ex_title'] : '';
                       $ei = isset($ex['image']['url']) ? $ex['image']['url'] : '';
-                      $e_url = !empty($ex['url']['url']) ? $ex['url']['url'] : '#';
+                      $e_url = !empty($ex['url']['url']) ? $ex['url']['url'] : '';
                       $link_props = ' href="' . esc_url( $e_url ) . '" ';
                       if ( isset($ex['url']['nofollow']) && $ex['url']['is_external'] ) {
                         $link_props .= ' target="_blank" ';
@@ -436,9 +442,15 @@ class Tabs extends Widget_Base{
                       }
                       ?>
                       <div class="ex-item col-4 col-md-3">
-                        <div class="common-logo-item"><img src="<?php echo esc_url($ei);?>" alt="<?php echo esc_attr($et);?>"></div>
-                        <!-- <a class="link" <?php //echo $link_props;?>>
-                        </a> -->
+                        <div class="common-logo-item">
+                          <?php if ( $e_url ):?>
+                            <a class="link" <?php echo $link_props;?>>
+                          <?php endif;?>
+                              <img src="<?php echo esc_url($ei);?>" alt="<?php echo esc_attr($et);?>">
+                          <?php if ( $e_url ):?>
+                            </a>
+                          <?php endif;?>
+                        </div>
                       </div>
                   <?php }?>
                 </div>
@@ -456,7 +468,7 @@ class Tabs extends Widget_Base{
                     foreach ( $w_list as $w ) {
                       $wt = $w['w_title'];
                       $wi = isset($w['w_image']['url']) ? $w['w_image']['url'] : '';
-                      $w_url = isset($w['w_url']['url']) && !empty($w['w_url']['url']) ? $w['w_url']['url'] : '#';
+                      $w_url = isset($w['w_url']['url']) && !empty($w['w_url']['url']) ? $w['w_url']['url'] : '';
                       $w_link_props = ' href="' . esc_url( $w_url ) . '" ';
                       if ( isset($w['w_url']['is_external']) && $w['w_url']['is_external'] ) {
                         $w_link_props .= ' target="_blank" ';
@@ -466,9 +478,15 @@ class Tabs extends Widget_Base{
                       }
                       ?>
                       <div class="w-item col-4 col-md-3">
-                        <div class="common-logo-item"><img src="<?php echo esc_url($wi);?>" alt="<?php echo esc_attr($wt);?>"></div>
-                        <!-- <a class="link" <?php //echo $w_link_props;?>>
-                        </a> -->
+                        <div class="common-logo-item">
+                          <?php if ( $w_url ):?>
+                            <a class="link" <?php echo $w_link_props;?>>
+                          <?php endif;?>
+                              <img src="<?php echo esc_url($wi);?>" alt="<?php echo esc_attr($wt);?>">
+                          <?php if ( $w_url ):?>
+                            </a>
+                          <?php endif;?>
+                        </div>
                       </div>
                   <?php }?>
                 </div>
@@ -481,7 +499,7 @@ class Tabs extends Widget_Base{
                     foreach ( $c_list as $c ) {
                       $ct = isset($c['c_title']) ? $c['c_title'] : '';
                       $ci = isset($c['c_image']['url']) ? $c['c_image']['url'] : '';
-                      $c_url = !empty($c['c_url']['url']) ? $c['c_url']['url'] : '#';
+                      $c_url = !empty($c['c_url']['url']) ? $c['c_url']['url'] : '';
                       $c_link_props = ' href="' . esc_url( $c_url ) . '" ';
                       if ( isset($c['c_url']['is_external']) && $c['c_url']['is_external'] ) {
                         $c_link_props .= ' target="_blank" ';
@@ -491,9 +509,15 @@ class Tabs extends Widget_Base{
                       }
                       ?>
                       <div class="c-item col-4 col-md-3">
-                        <div class="common-logo-item"><img src="<?php echo esc_url($ci);?>" alt="<?php echo esc_attr($ct);?>"></div>
-                        <!-- <a class="link" <?php //echo $c_link_props;?>>
-                        </a> -->
+                        <div class="common-logo-item">
+                          <?php if ( $c_url ):?>
+                            <a class="link" <?php echo $c_link_props;?>>
+                          <?php endif;?>
+                              <img src="<?php echo esc_url($ci);?>" alt="<?php echo esc_attr($ct);?>">
+                          <?php if ( $c_url ):?>
+                            </a>
+                          <?php endif;?>
+                        </div>
                       </div>
                   <?php }?>
                 </div>
