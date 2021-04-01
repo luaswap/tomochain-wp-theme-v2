@@ -51,6 +51,12 @@ $form_id        = tmc_get_footer_option( 'form_subscribe' );
                                 </li>
                             <?php }
                             ?>
+                            <li class="social-item">
+                                <div class="popup icon-weixin">
+                                    <i class="fab fa-weixin"></i>
+                                    <div class="wechat-qrc"> <img src="https://tomochain.com/wp-content/uploads/2021/04/wechat-qr-code.jpg" alt="qr-code"> </div>
+                                </div>
+                            </li>
                         </ul>
                     </div>
                     <div class="col-lg-1"></div>
