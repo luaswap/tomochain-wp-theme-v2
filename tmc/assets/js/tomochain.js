@@ -336,6 +336,81 @@
                 }
             ]
         });
+
+        var count_p_tab = $("#p-tab .p-item").length;
+        var count_ex_tab = $("#ex-tab .ex-item").length;
+        var count_w_tab = $("#w-tab .w-item").length;
+        var count_c_tab = $("#c-tab .c-item").length;
+
+        if( count_p_tab > 16 ) {
+            $( "#p-tab .row" ).after( '<div class="less-more-p">View More</div>' );
+        }
+
+        if( count_ex_tab > 16 ) {
+            $( "#ex-tab .row" ).after( '<div class="less-more-ex">View More</div>' );
+        }
+
+        if( count_w_tab > 16 ) {
+            $( "#w-tab .row" ).after( '<div class="less-more-w">View More</div>' );
+        }
+
+        if( count_c_tab > 16 ) {
+            $( "#c-tab .row" ).after( '<div class="less-more-c">View More</div>' );
+        }
+
+        $( ".less-more-p" ).click(function() {
+
+            $("#p-tab").toggleClass("show");
+
+            var text_btn = $(".less-more-p").text();
+
+            if( text_btn == 'View More' ) {
+                $( ".less-more-p" ).text( 'Less' );
+            }else {
+                $( ".less-more-p" ).text( 'View More' );
+            }
+        });
+
+        $( ".less-more-ex" ).click(function() {
+
+            $("#ex-tab").toggleClass("show");
+
+            var text_btn = $(".less-more-ex").text();
+
+            if( text_btn == 'View More' ) {
+                $( ".less-more-ex" ).text( 'Less' );
+            }else {
+                $( ".less-more-ex" ).text( 'View More' );
+            }
+        });
+
+        $( ".less-more-w" ).click(function() {
+
+            $("#w-tab").toggleClass("show");
+
+            var text_btn = $(".less-more-w").text();
+
+            if( text_btn == 'View More' ) {
+                $( ".less-more-w" ).text( 'Less' );
+            }else {
+                $( ".less-more-w" ).text( 'View More' );
+            }
+        });
+
+        $( ".less-more-c" ).click(function() {
+
+            $("#c-tab").toggleClass("show");
+
+            var text_btn = $(".less-more-c").text();
+
+            if( text_btn == 'View More' ) {
+                $( ".less-more-c" ).text( 'Less' );
+            }else {
+                $( ".less-more-c" ).text( 'View More' );
+            }
+        });
+
+
     })
 
 

@@ -85,6 +85,31 @@
 	.tab-content{
 		display: none;
 		width: 100%!important;
+		.row {
+			height: 300px;
+			overflow: hidden;
+			transition: all .3s;
+		}
+		.less-more-p,
+		.less-more-ex,
+		.less-more-w,
+		.less-more-c {
+			padding: 15px;
+			margin: 30px auto 50px;
+			width: 200px;
+			text-align: center;
+			font-size: 14px;
+			text-transform: uppercase;
+			font-weight: bold;
+			cursor: pointer;
+			border: 1px solid #242428;
+		}
+		&.show {
+			.row {
+				height: auto;
+				transition: all .3s;
+			}
+		}
 		.row{
 			align-items: center;
 			img{
