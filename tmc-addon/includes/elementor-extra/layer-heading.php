@@ -158,9 +158,9 @@ class Layer_Heading extends Widget_Base{
             </h2>
           <?php endif;?>
           <?php if(!empty($desc)):?>
-            <p class="tmc-layer-desc">
+            <div class="my-4 tmc-layer-desc">
               <?php echo wp_kses_post($desc);?>
-            </p>
+            </div>
           <?php endif;?>
         </div>
     <?php
